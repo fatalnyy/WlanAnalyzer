@@ -2,13 +2,34 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:WlanAnalyzer"
+             xmlns:ViewModel="clr-namespace:WlanAnalyzer.ViewModels"
              x:Class="WlanAnalyzer.MainPage">
-
+    <ContentPage.BindingContext>
+        <ViewModel:MainPageViewModel/>
+    </ContentPage.BindingContext>
     <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
+        <Label Text="Name"/>
+        <Entry Text="{Binding Name}" Placeholder="FullName"/>
+
+        <Label Text="{Binding DisplayMessage}"/>
+
+        <ListView x:Name="ScanResults" 
+                  ItemsSource="{Binding WifiNetworks}"
+                  HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <Label Text="{Binding SSID}"/>
+                            <Label Text="{Binding BSSID}"/>
+                            <Label Text="{Binding Frequency}"/>
+                            <Label Text="{Binding Level}"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </StackLayout>
+    
 
 </ContentPage>

@@ -12,6 +12,7 @@ namespace WlanAnalyzer
         public MainPage()
         {
             InitializeComponent();
+            //BindingContext = new MainPageViewModel(this);
         }
     }
 }

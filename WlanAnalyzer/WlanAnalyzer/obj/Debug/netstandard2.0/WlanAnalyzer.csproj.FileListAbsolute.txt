@@ -10,3 +10,7 @@ D:\EngineerProject\WlanAnalyzer\WlanAnalyzer\obj\Debug\netstandard2.0\WlanAnalyz
 D:\EngineerProject\WlanAnalyzer\WlanAnalyzer\obj\Debug\netstandard2.0\XamlC.stamp
 D:\EngineerProject\WlanAnalyzer\WlanAnalyzer\obj\Debug\netstandard2.0\WlanAnalyzer.dll
 D:\EngineerProject\WlanAnalyzer\WlanAnalyzer\obj\Debug\netstandard2.0\WlanAnalyzer.pdb
+D:\EngineerProject\WlanAnalyzer\WlanAnalyzer\bin\Debug\netstandard2.0\Mono.Android.dll
+D:\EngineerProject\WlanAnalyzer\WlanAnalyzer\bin\Debug\netstandard2.0\Mono.Android.pdb
+D:\EngineerProject\WlanAnalyzer\WlanAnalyzer\bin\Debug\netstandard2.0\Mono.Android.xml
+D:\EngineerProject\WlanAnalyzer\WlanAnalyzer\obj\Debug\netstandard2.0\WlanAnalyzer.csproj.CopyComplete
