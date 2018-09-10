@@ -12,9 +12,10 @@
         <Entry Text="{Binding Name}" Placeholder="FullName"/>
 
         <Label Text="{Binding DisplayMessage}"/>
-
+        <Button Text="Start Scanning" Command="{Binding StartScanningCommand}"/>
+        <ActivityIndicator IsRunning="{Binding IsBusy}"/>
         <ListView x:Name="ScanResults" 
-                  ItemsSource="{Binding WifiNetworks}"
+                  ItemsSource="{Binding DetectedWifiNetworks}"
                   HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -24,6 +25,7 @@
                             <Label Text="{Binding BSSID}"/>
                             <Label Text="{Binding Frequency}"/>
                             <Label Text="{Binding Level}"/>
+                            <Label Text="{Binding TimeStamp}"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

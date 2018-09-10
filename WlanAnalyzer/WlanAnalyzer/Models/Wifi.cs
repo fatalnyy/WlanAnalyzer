@@ -10,5 +10,6 @@ namespace WlanAnalyzer.Models
         public string BSSID { get; set; }
         public int Frequency { get; set; }
         public int Level { get; set; }
+        public long TimeStamp { get; set; }
     }
 }

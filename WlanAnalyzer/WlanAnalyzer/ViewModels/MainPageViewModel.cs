@@ -3,27 +3,65 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Android.Content;
 using Android.Net.Wifi;
 using WlanAnalyzer.Models;
+using Xamarin.Forms;
 
 namespace WlanAnalyzer.ViewModels
 {
     public class MainPageViewModel : INotifyPropertyChanged
     {
         private Context context = null;
+        private bool _isBusy;
         private static WifiManager wifiManager;
         private WifiReceiver wifiReceiver;
-        //public static List<string> WifiNetworks;
-        public ObservableCollection<Person> PersonList { get; set; }
-        public static ObservableCollection<Wifi> WifiNetworks { get; set; }
+        public static List<Wifi> ListOfWifiNetworks;
+        //public ObservableCollection<Person> PersonList { get; set; }
+        private ObservableCollection<Wifi> _detectedWifiNetworks;
+        public ObservableCollection<Wifi> DetectedWifiNetworks
+        {
+            get
+            {
+                return _detectedWifiNetworks;
+            }
+            set
+            {
+                _detectedWifiNetworks = value;
+                OnPropertyChanged("DetectedWifiNetworks");
+            }
+        }     
 
+        public Command StartScanningCommand { get; set; }
+        public bool IsBusy
+        {
+            get
+            {
+                return _isBusy;
+            }
+            set
+            {
+                _isBusy = value;
+                OnPropertyChanged("IsBusy");
+            }
+        }
         public MainPageViewModel()
         {
+            DetectedWifiNetworks = new ObservableCollection<Wifi>();
+            ListOfWifiNetworks = new List<Wifi>();
             context = Android.App.Application.Context;
-            WifiNetworks = new ObservableCollection<Wifi>();
-            GetWifiNetworks();
+            StartScanningCommand = new Command(async ()=> await GetWifiNetworks(),
+                                                     () => !IsBusy);
+
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    WifiNetworks.Add(new Wifi() { SSID = "fsagsa", BSSID = "gasgdsagsa", Frequency = 231, Level = 12 });
+            //}
+
+
+            //GetWifiNetworks();
             //PersonList = new ObservableCollection<Person>();
             //for (int i = 0; i < 10; i++)
             //{
@@ -31,24 +69,28 @@ namespace WlanAnalyzer.ViewModels
             //}
 
 
-            //PersonList = new ObservableCollection<Person>
-            //{
-            //    new Person(){Name = "Adam", Age =22},
-            //    new Person(){Name = "Gjj", Age =21},
-            //    new Person(){Name = "Cwel", Age =25},
-            //};
         }
         //public string Name { get; set; }
         //public int Age { get; set; }
-        public void GetWifiNetworks()
+
+        public async Task GetWifiNetworks()
         {
-            
 
             wifiManager = (WifiManager)context.GetSystemService(Context.WifiService);
 
             wifiReceiver = new WifiReceiver();
             context.RegisterReceiver(wifiReceiver, new IntentFilter(WifiManager.ScanResultsAvailableAction));
             wifiManager.StartScan();
+            IsBusy = true;
+            await Task.Delay(2500);
+            IsBusy = false;
+            if (ListOfWifiNetworks.Count > 0)
+            {
+                foreach (var wlan in ListOfWifiNetworks)
+                {
+                    DetectedWifiNetworks.Add(new Wifi() { SSID = wlan.SSID, BSSID = wlan.BSSID, Frequency = wlan.Frequency, Level = wlan.Level, TimeStamp = wlan.TimeStamp });
+                }
+            }
         }
 
         class WifiReceiver : BroadcastReceiver
@@ -58,9 +100,10 @@ namespace WlanAnalyzer.ViewModels
                 IList<ScanResult> scanWifiNetworks = wifiManager.ScanResults;
                 foreach (ScanResult wifiNetwork in scanWifiNetworks)
                 {
-                    WifiNetworks.Add(new Wifi() { SSID = wifiNetwork.Ssid, BSSID = wifiNetwork.Bssid, Frequency = wifiNetwork.Frequency, Level = wifiNetwork.Level });
+                    ListOfWifiNetworks.Add(new Wifi() { SSID = wifiNetwork.Ssid, BSSID = wifiNetwork.Bssid, Frequency = wifiNetwork.Frequency, Level = wifiNetwork.Level, TimeStamp = wifiNetwork.Timestamp });
                 }
             }
+
         }
         public class Person
         {
