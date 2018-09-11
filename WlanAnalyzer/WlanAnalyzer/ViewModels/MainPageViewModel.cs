@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,9 +19,11 @@ namespace WlanAnalyzer.ViewModels
         private bool _isBusy;
         private static WifiManager wifiManager;
         private WifiReceiver wifiReceiver;
-        public static List<Wifi> ListOfWifiNetworks;
+        private int _numberOfDetectedAccessPoints;
+        public static ObservableCollection<Wifi> ListOfWifiNetworks;
         //public ObservableCollection<Person> PersonList { get; set; }
         private ObservableCollection<Wifi> _detectedWifiNetworks;
+        public static AutoResetEvent CollectionofNetworksArrived = new AutoResetEvent(false);
         public ObservableCollection<Wifi> DetectedWifiNetworks
         {
             get
@@ -30,11 +33,11 @@ namespace WlanAnalyzer.ViewModels
             set
             {
                 _detectedWifiNetworks = value;
-                OnPropertyChanged("DetectedWifiNetworks");
+                RaisePropertyChanged("DetectedWifiNetworks");
             }
-        }     
-
+        }
         public Command StartScanningCommand { get; set; }
+        public Command ClearCommand { get; set; }
         public bool IsBusy
         {
             get
@@ -44,16 +47,37 @@ namespace WlanAnalyzer.ViewModels
             set
             {
                 _isBusy = value;
-                OnPropertyChanged("IsBusy");
+                RaisePropertyChanged("IsBusy");
+            }
+        }
+        public int NumberOfDetectedAccessPoints
+        {
+            get
+            {
+                return _numberOfDetectedAccessPoints;
+            }
+            set
+            {
+                _numberOfDetectedAccessPoints = value;
+                RaisePropertyChanged("NumberOfDetectedAccessPoints");
+                RaisePropertyChanged("NumberOfDetectedAccessPointsText");
+            }
+        }
+        public string NumberOfDetectedAccessPointsText
+        {
+            get
+            {
+                return ($"Number of detected access points {NumberOfDetectedAccessPoints}");
             }
         }
         public MainPageViewModel()
         {
             DetectedWifiNetworks = new ObservableCollection<Wifi>();
-            ListOfWifiNetworks = new List<Wifi>();
+            ListOfWifiNetworks = new ObservableCollection<Wifi>();
             context = Android.App.Application.Context;
-            StartScanningCommand = new Command(async ()=> await GetWifiNetworks(),
-                                                     () => !IsBusy);
+            StartScanningCommand = new Command(GetWifiNetworks);
+            ClearCommand = new Command(ClearWifiNetworksCollection);
+                                                  
 
             //for (int i = 0; i < 10; i++)
             //{
@@ -73,26 +97,37 @@ namespace WlanAnalyzer.ViewModels
         //public string Name { get; set; }
         //public int Age { get; set; }
 
-        public async Task GetWifiNetworks()
+        public void GetWifiNetworks()
         {
 
-            wifiManager = (WifiManager)context.GetSystemService(Context.WifiService);
-
-            wifiReceiver = new WifiReceiver();
-            context.RegisterReceiver(wifiReceiver, new IntentFilter(WifiManager.ScanResultsAvailableAction));
-            wifiManager.StartScan();
-            IsBusy = true;
-            await Task.Delay(2500);
-            IsBusy = false;
-            if (ListOfWifiNetworks.Count > 0)
+            Task.Run(() =>
             {
-                foreach (var wlan in ListOfWifiNetworks)
-                {
-                    DetectedWifiNetworks.Add(new Wifi() { SSID = wlan.SSID, BSSID = wlan.BSSID, Frequency = wlan.Frequency, Level = wlan.Level, TimeStamp = wlan.TimeStamp });
-                }
-            }
-        }
+                ClearWifiNetworksCollection();
+                wifiManager = (WifiManager)context.GetSystemService(Context.WifiService);
 
+                wifiReceiver = new WifiReceiver();
+                context.RegisterReceiver(wifiReceiver, new IntentFilter(WifiManager.ScanResultsAvailableAction));
+                IsBusy = true;
+                wifiManager.StartScan();
+                Thread.Sleep(3000);
+                CollectionofNetworksArrived.WaitOne();
+                context.UnregisterReceiver(wifiReceiver);
+                if (ListOfWifiNetworks.Count > 0)
+                {
+                    DetectedWifiNetworks = ListOfWifiNetworks;
+                    CollectionofNetworksArrived.Reset();
+                }
+                IsBusy = false;
+                NumberOfDetectedAccessPoints = DetectedWifiNetworks.Count;
+            });
+
+        }
+        private void ClearWifiNetworksCollection()
+        {
+            DetectedWifiNetworks.Clear();
+            ListOfWifiNetworks.Clear();
+            NumberOfDetectedAccessPoints = 0;
+        }
         class WifiReceiver : BroadcastReceiver
         {
             public override void OnReceive(Context context, Intent intent)
@@ -100,8 +135,9 @@ namespace WlanAnalyzer.ViewModels
                 IList<ScanResult> scanWifiNetworks = wifiManager.ScanResults;
                 foreach (ScanResult wifiNetwork in scanWifiNetworks)
                 {
-                    ListOfWifiNetworks.Add(new Wifi() { SSID = wifiNetwork.Ssid, BSSID = wifiNetwork.Bssid, Frequency = wifiNetwork.Frequency, Level = wifiNetwork.Level, TimeStamp = wifiNetwork.Timestamp });
+                    ListOfWifiNetworks.Add(new Wifi(wifiNetwork.Ssid, wifiNetwork.Bssid, wifiNetwork.Frequency, wifiNetwork.Level, wifiNetwork.ChannelWidth, wifiNetwork.CenterFreq0, wifiNetwork.CenterFreq1, wifiNetwork.Timestamp));
                 }
+                CollectionofNetworksArrived.Set(); 
             }
 
         }
@@ -116,33 +152,32 @@ namespace WlanAnalyzer.ViewModels
             //    Age = age;
             //}
         }
-        //private string _name = "Adam";
-        //public MainPageViewModel()
-        //{
+        private string _name = "Adam";
 
-        //}
+        public string Name
+        {
+            get { return _name; }
+            set
+            {
+                _name = value;
+                RaisePropertyChanged("Name");
+                RaisePropertyChanged("DisplayMessage");
+            }
+        }
 
-        //public string Name
-        //{
-        //    get { return _name; }
-        //    set
-        //    {
-        //        _name = value;
-        //        OnPropertyChanged("Name");
-        //        OnPropertyChanged("DisplayMessage");
-        //    }
-        //}
-
-        //public string DisplayMessage
-        //{
-        //    get { return $"Your new friend is named {Name}"; } 
-        //}
+        public string DisplayMessage
+        {
+            get { return $"Your new friend is named {Name}"; }
+        }
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
 
-        void OnPropertyChanged(string name)
+        protected void RaisePropertyChanged([CallerMemberName] string propertyName = null)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
         #endregion
     }
