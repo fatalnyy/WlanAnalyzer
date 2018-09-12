@@ -14,6 +14,7 @@
         <Label Text="{Binding NumberOfDetectedAccessPointsText}"/>
         <Button Text="Start Scanning" Command="{Binding StartScanningCommand}"/>
         <Button Text="Clear" Command="{Binding ClearCommand}"/>
+        <Button Text="Write to txt file" Command="{Binding WriteToJSONFileCommand}"/>
         <ActivityIndicator IsRunning="{Binding IsBusy}"/>
         <ListView x:Name="ScanResults" 
                   ItemsSource="{Binding DetectedWifiNetworks}"
@@ -26,9 +27,7 @@
                             <Label Text="{Binding BSSID}"/>
                             <Label Text="{Binding Frequency}"/>
                             <Label Text="{Binding Level}"/>
-                            <Label Text="{Binding ChannelWidth}"/>
-                            <Label Text="{Binding Freq1}"/>
-                            <Label Text="{Binding Freq2}"/>
+                            <Label Text="{Binding Channel}"/>
                             <Label Text="{Binding TimeStamp}"/>
                         </StackLayout>
                     </ViewCell>

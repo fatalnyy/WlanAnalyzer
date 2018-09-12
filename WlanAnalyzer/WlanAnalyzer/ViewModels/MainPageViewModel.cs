@@ -10,6 +10,9 @@ using Android.Content;
 using Android.Net.Wifi;
 using WlanAnalyzer.Models;
 using Xamarin.Forms;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
+using System.IO;
 
 namespace WlanAnalyzer.ViewModels
 {
@@ -20,11 +23,12 @@ namespace WlanAnalyzer.ViewModels
         private static WifiManager wifiManager;
         private WifiReceiver wifiReceiver;
         private int _numberOfDetectedAccessPoints;
-        public static ObservableCollection<Wifi> ListOfWifiNetworks;
+        public static ObservableCollection<WifiParameters> ListOfWifiNetworks;
         //public ObservableCollection<Person> PersonList { get; set; }
-        private ObservableCollection<Wifi> _detectedWifiNetworks;
+        private ObservableCollection<WifiParameters> _detectedWifiNetworks;
         public static AutoResetEvent CollectionofNetworksArrived = new AutoResetEvent(false);
-        public ObservableCollection<Wifi> DetectedWifiNetworks
+       // private WifiParametersJSON _wifiParametersJSON =  new WifiParametersJSON() { CollectionOfSavedWifiNetworks = DetectedWifiNetworks };
+        public ObservableCollection<WifiParameters> DetectedWifiNetworks
         {
             get
             {
@@ -38,6 +42,7 @@ namespace WlanAnalyzer.ViewModels
         }
         public Command StartScanningCommand { get; set; }
         public Command ClearCommand { get; set; }
+        public Command WriteToJSONFileCommand { get; set; }
         public bool IsBusy
         {
             get
@@ -67,17 +72,18 @@ namespace WlanAnalyzer.ViewModels
         {
             get
             {
-                return ($"Number of detected access points {NumberOfDetectedAccessPoints}");
+                return ($"Number of detected access points: {NumberOfDetectedAccessPoints}");
             }
         }
         public MainPageViewModel()
         {
-            DetectedWifiNetworks = new ObservableCollection<Wifi>();
-            ListOfWifiNetworks = new ObservableCollection<Wifi>();
+            DetectedWifiNetworks = new ObservableCollection<WifiParameters>();
+            ListOfWifiNetworks = new ObservableCollection<WifiParameters>();
             context = Android.App.Application.Context;
             StartScanningCommand = new Command(GetWifiNetworks);
             ClearCommand = new Command(ClearWifiNetworksCollection);
-                                                  
+            WriteToJSONFileCommand = new Command(Serialization);
+                                   
 
             //for (int i = 0; i < 10; i++)
             //{
@@ -128,6 +134,45 @@ namespace WlanAnalyzer.ViewModels
             ListOfWifiNetworks.Clear();
             NumberOfDetectedAccessPoints = 0;
         }
+        private void Serialization()
+        {
+            var sdCardPath = Android.OS.Environment.ExternalStorageDirectory.Path;
+            var filePath = Path.Combine(sdCardPath, "WifiParameters.txt");
+
+            DataContractJsonSerializer serObj = new DataContractJsonSerializer(typeof(ObservableCollection<WifiParameters>));
+            MemoryStream stream = new MemoryStream();
+            serObj.WriteObject(stream, DetectedWifiNetworks);
+            string s1 = Encoding.UTF8.GetString(stream.ToArray());
+
+            if (!File.Exists(filePath))
+            {
+                using (StreamWriter writer = new StreamWriter(filePath, true))
+                {
+                    writer.Write(s1);
+                }
+            }
+            else
+            {
+                using (StreamWriter writer = new StreamWriter(filePath, true))
+                {
+                    ObservableCollection<WifiParameters> DeserializedCollectionOfWifiNetworks = (ObservableCollection<WifiParameters>)serObj.ReadObject(new MemoryStream(File.ReadAllBytes(filePath)));
+                    foreach (var wifiNetwork in DetectedWifiNetworks)
+                    {
+                        DeserializedCollectionOfWifiNetworks.Add(wifiNetwork);
+                    }
+                    //var convertedJson = new DataContractJsonSerializer(typeof(ObservableCollection<WifiParameters>));
+                    serObj.WriteObject(stream, DeserializedCollectionOfWifiNetworks);
+                    string s2 = Encoding.UTF8.GetString(stream.ToArray());
+                    writer.Write(s2);
+                }
+            }
+        }
+        private void WriteTextFile()
+        {
+            
+
+
+        }
         class WifiReceiver : BroadcastReceiver
         {
             public override void OnReceive(Context context, Intent intent)
@@ -135,7 +180,8 @@ namespace WlanAnalyzer.ViewModels
                 IList<ScanResult> scanWifiNetworks = wifiManager.ScanResults;
                 foreach (ScanResult wifiNetwork in scanWifiNetworks)
                 {
-                    ListOfWifiNetworks.Add(new Wifi(wifiNetwork.Ssid, wifiNetwork.Bssid, wifiNetwork.Frequency, wifiNetwork.Level, wifiNetwork.ChannelWidth, wifiNetwork.CenterFreq0, wifiNetwork.CenterFreq1, wifiNetwork.Timestamp));
+                    ListOfWifiNetworks.Add(new WifiParameters() { SSID = wifiNetwork.Ssid, BSSID = wifiNetwork.Bssid, Frequency = wifiNetwork.Frequency, Level = wifiNetwork.Level, Channel = WifiParameters.GetChannel(wifiNetwork.Frequency), TimeStamp = wifiNetwork.Timestamp });
+                   // ListOfWifiNetworks.Add(new WifiParameters(wifiNetwork.Ssid, wifiNetwork.Bssid, wifiNetwork.Frequency, wifiNetwork.Level, WifiParameters.GetChannel(wifiNetwork.Frequency), wifiNetwork.Timestamp));
                 }
                 CollectionofNetworksArrived.Set(); 
             }
