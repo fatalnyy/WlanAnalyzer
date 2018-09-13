@@ -134,36 +134,74 @@ namespace WlanAnalyzer.ViewModels
             ListOfWifiNetworks.Clear();
             NumberOfDetectedAccessPoints = 0;
         }
+        private string ToJson()
+        {
+            using (MemoryStream stream = new MemoryStream())
+            {
+                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(ObservableCollection<WifiParameters>));
+                serializer.WriteObject(stream, DetectedWifiNetworks);
+                stream.Flush();
+
+                stream.Seek(0, SeekOrigin.Begin);
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    return reader.ReadToEnd();
+                }
+            }
+        }
+        private ObservableCollection<WifiParameters> FromJson(string filePath)
+        {
+            Stream stream = null;
+            stream = File.Open(filePath, FileMode.Open);
+            //StreamWriter writer = new StreamWriter(stream);
+            //writer.Write(json);
+            //writer.Flush();
+            //stream.Position = 0;
+      
+                    DataContractJsonSerializer deserializer = new DataContractJsonSerializer(typeof(ObservableCollection<WifiParameters>));
+                    ObservableCollection<WifiParameters> DeserializedCollectionOfWifiNetworks = (ObservableCollection<WifiParameters>)deserializer.ReadObject(stream);
+
+            stream.Dispose();
+            return DeserializedCollectionOfWifiNetworks;
+
+        }
         private void Serialization()
         {
             var sdCardPath = Android.OS.Environment.ExternalStorageDirectory.Path;
-            var filePath = Path.Combine(sdCardPath, "WifiParameters.txt");
+            var filePath = Path.Combine(sdCardPath, "WifiParameters.json");
+            
 
-            DataContractJsonSerializer serObj = new DataContractJsonSerializer(typeof(ObservableCollection<WifiParameters>));
-            MemoryStream stream = new MemoryStream();
-            serObj.WriteObject(stream, DetectedWifiNetworks);
-            string s1 = Encoding.UTF8.GetString(stream.ToArray());
+                
+            //string s1 = Encoding.UTF8.GetString(stream.ToArray());
 
             if (!File.Exists(filePath))
             {
                 using (StreamWriter writer = new StreamWriter(filePath, true))
                 {
-                    writer.Write(s1);
+                    writer.Write(ToJson());
+                    writer.Dispose();
                 }
             }
             else
             {
+                foreach (var wifiNetwork in FromJson(filePath))
+                {
+                    DetectedWifiNetworks.Add(wifiNetwork);
+                }
                 using (StreamWriter writer = new StreamWriter(filePath, true))
                 {
-                    ObservableCollection<WifiParameters> DeserializedCollectionOfWifiNetworks = (ObservableCollection<WifiParameters>)serObj.ReadObject(new MemoryStream(File.ReadAllBytes(filePath)));
-                    foreach (var wifiNetwork in DetectedWifiNetworks)
-                    {
-                        DeserializedCollectionOfWifiNetworks.Add(wifiNetwork);
-                    }
+
+                    //FileStream stream1 = new FileStream(filePath, FileMode.OpenOrCreate);
+                    //DataContractJsonSerializer deserializer = new DataContractJsonSerializer(typeof(ObservableCollection<WifiParameters>));
+                    //stream1.Position = 0;
+                    //ObservableCollection<WifiParameters> DeserializedCollectionOfWifiNetworks = (ObservableCollection<WifiParameters>)deserializer.ReadObject(stream1);
+
+                    
                     //var convertedJson = new DataContractJsonSerializer(typeof(ObservableCollection<WifiParameters>));
-                    serObj.WriteObject(stream, DeserializedCollectionOfWifiNetworks);
-                    string s2 = Encoding.UTF8.GetString(stream.ToArray());
-                    writer.Write(s2);
+                    //deserializer.WriteObject(stream, DeserializedCollectionOfWifiNetworks);
+                    //string s2 = Encoding.UTF8.GetString(stream.ToArray());
+                    writer.Write(ToJson());
+                    writer.Dispose();
                 }
             }
         }
