@@ -108,6 +108,7 @@ class MonoPackageManager_Resources {
 		/* We need to ensure that "WlanAnalyzer.Android.dll" comes first in this list. */
 		"WlanAnalyzer.Android.dll",
 		"FormsViewGroup.dll",
+		"Newtonsoft.Json.dll",
 		"WlanAnalyzer.dll",
 		"Xamarin.Android.Arch.Core.Common.dll",
 		"Xamarin.Android.Arch.Lifecycle.Common.dll",
