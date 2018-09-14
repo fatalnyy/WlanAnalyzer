@@ -10,6 +10,8 @@
     <StackLayout>
         <Label Text="Name"/>
         <Entry Text="{Binding Name}" Placeholder="FullName"/>
+        <Label Text="Enter file name"/>
+        <Entry Text="{Binding FileName}" Placeholder="e.g. WifiParameters"/>
         <Label Text="{Binding DisplayMessage}"/>
         <Label Text="{Binding NumberOfDetectedAccessPointsText}"/>
         <Button Text="Start Scanning" Command="{Binding StartScanningCommand}"/>

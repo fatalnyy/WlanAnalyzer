@@ -23,8 +23,9 @@ namespace WlanAnalyzer.ViewModels
         private static WifiManager wifiManager;
         private WifiReceiver wifiReceiver;
         private int _numberOfDetectedAccessPoints;
+        private string _fileName;
         public static ObservableCollection<WifiParameters> ListOfWifiNetworks;
-        //public ObservableCollection<Person> PersonList { get; set; }
+        //public ObservableCollection<WifiParameters> ListOfWifiNetworks1 { get; set; }
         private ObservableCollection<WifiParameters> _detectedWifiNetworks;
         public static AutoResetEvent CollectionofNetworksArrived = new AutoResetEvent(false);
        // private WifiParametersJSON _wifiParametersJSON =  new WifiParametersJSON() { CollectionOfSavedWifiNetworks = DetectedWifiNetworks };
@@ -37,7 +38,7 @@ namespace WlanAnalyzer.ViewModels
             set
             {
                 _detectedWifiNetworks = value;
-                RaisePropertyChanged("DetectedWifiNetworks");
+               RaisePropertyChanged("DetectedWifiNetworks");
             }
         }
         public Command StartScanningCommand { get; set; }
@@ -75,10 +76,19 @@ namespace WlanAnalyzer.ViewModels
                 return ($"Number of detected access points: {NumberOfDetectedAccessPoints}");
             }
         }
+        public string FileName
+        {
+            get { return _fileName; }
+            set
+            {
+                _fileName = value;
+            }
+        }
         public MainPageViewModel()
         {
             DetectedWifiNetworks = new ObservableCollection<WifiParameters>();
             ListOfWifiNetworks = new ObservableCollection<WifiParameters>();
+
             context = Android.App.Application.Context;
             StartScanningCommand = new Command(GetWifiNetworks);
             ClearCommand = new Command(ClearWifiNetworksCollection);
@@ -120,7 +130,11 @@ namespace WlanAnalyzer.ViewModels
                 context.UnregisterReceiver(wifiReceiver);
                 if (ListOfWifiNetworks.Count > 0)
                 {
-                    DetectedWifiNetworks = ListOfWifiNetworks;
+                    //DetectedWifiNetworks = ListOfWifiNetworks;
+                    foreach(var wifiNetwork in ListOfWifiNetworks)
+                    {
+                        DetectedWifiNetworks.Add(wifiNetwork);
+                    }
                     CollectionofNetworksArrived.Reset();
                 }
                 IsBusy = false;
@@ -134,31 +148,8 @@ namespace WlanAnalyzer.ViewModels
             ListOfWifiNetworks.Clear();
             NumberOfDetectedAccessPoints = 0;
         }
-        
-        //private string ToJson(string filePath)
-        //{
-        //    Stream stream = null;
-        //    stream = File.Open(filePath, FileMode.Open);
-        //    string serializer = JsonConvert.SerializeObject(stream);
-        //    return serializer;
-        //    //using (MemoryStream stream = new MemoryStream())
-        //    //{
-        //    //    //DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(ObservableCollection<WifiParameters>));
-        //    //    //serializer.WriteObject(stream, DetectedWifiNetworks);
-        //    //    //stream.Flush();
-
-        //    //    //stream.Seek(0, SeekOrigin.Begin);
-
-        //    //    //using (StreamReader reader = new StreamReader(stream))
-        //    //    //{
-        //    //    //    return reader.ReadToEnd();
-        //    //    //}
-        //    //}
-        //}
         private void ToJson(string filePath)
         {
-            //string serializer = JsonConvert.SerializeObject(ListOfWifiNetworks);
-            //return serializer;
             using (StreamWriter file = File.CreateText(filePath))
             {
                 JsonSerializer serializer = new JsonSerializer();
@@ -168,16 +159,6 @@ namespace WlanAnalyzer.ViewModels
         }
         private ObservableCollection<WifiParameters> FromJson(string filePath)
         {
-            //Stream stream = null;
-            //stream = File.Open(filePath, FileMode.Open);
-            //stream.Flush();
-            //StreamWriter writer = new StreamWriter(stream);
-            //writer.Write(json);
-            //writer.Flush();
-            //stream.Position = 0;
-
-            //DataContractJsonSerializer deserializer = new DataContractJsonSerializer(typeof(ObservableCollection<WifiParameters>));
-            //ObservableCollection<WifiParameters> DeserializedCollectionOfWifiNetworks = (ObservableCollection<WifiParameters>)deserializer.ReadObject(stream);
             using (StreamReader streamReader = File.OpenText(filePath))
             {
                 JsonSerializer serializer = new JsonSerializer();
@@ -185,28 +166,16 @@ namespace WlanAnalyzer.ViewModels
                 streamReader.Dispose();
                 return DeserializedCollectionOfWifiNetworks;
             }
-                //ObservableCollection<WifiParameters> DeserializedCollectionOfWifiNetworks = JsonConvert.DeserializeObject<ObservableCollection<WifiParameters>>(ToJson(filePath));
-               // stream.Dispose();
-            //return DeserializedCollectionOfWifiNetworks;
-
         }
         private void Serialization()
         {
             var sdCardPath = Android.OS.Environment.ExternalStorageDirectory.Path;
             //var sdCardPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            string filePath = Path.Combine(sdCardPath, "WifiParameters.json");
-            
-
-                
-            //string s1 = Encoding.UTF8.GetString(stream.ToArray());
+            string filePath = Path.Combine(sdCardPath, FileName + ".json");
 
             if (!File.Exists(filePath))
             {
-                //using (StreamWriter writer = new StreamWriter(filePath, true))
-                //{
-                //    writer.Write(ToJson());
-                //    writer.Dispose();
-                //}
+
                 ToJson(filePath);
             }
             else
@@ -216,29 +185,9 @@ namespace WlanAnalyzer.ViewModels
                     ListOfWifiNetworks.Add(wifiNetwork);
                 }
                 ToJson(filePath);
-                //using (StreamWriter writer = new StreamWriter(filePath, true))
-                //{
-
-                //    //FileStream stream1 = new FileStream(filePath, FileMode.OpenOrCreate);
-                //    //DataContractJsonSerializer deserializer = new DataContractJsonSerializer(typeof(ObservableCollection<WifiParameters>));
-                //    //stream1.Position = 0;
-                //    //ObservableCollection<WifiParameters> DeserializedCollectionOfWifiNetworks = (ObservableCollection<WifiParameters>)deserializer.ReadObject(stream1);
-
-                    
-                //    //var convertedJson = new DataContractJsonSerializer(typeof(ObservableCollection<WifiParameters>));
-                //    //deserializer.WriteObject(stream, DeserializedCollectionOfWifiNetworks);
-                //    //string s2 = Encoding.UTF8.GetString(stream.ToArray());
-                //    writer.Write(ToJson());
-                //    writer.Dispose();
-                //}
             }
         }
-        private void WriteTextFile()
-        {
-            
 
-
-        }
         class WifiReceiver : BroadcastReceiver
         {
             public override void OnReceive(Context context, Intent intent)

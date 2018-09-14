@@ -23,6 +23,11 @@
     <Jar>C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\lp\9\jl\bin\classes.jar</Jar>
   </Jars>
   <ResolvedResourceDirectories>
+    <ResolvedResourceDirectory>C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\lp\29\jl\res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\lp\30\jl\res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\lp\31\jl\res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\lp\32\jl\res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\lp\33\jl\res</ResolvedResourceDirectory>
     <ResolvedResourceDirectory>C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\lp\9\jl\res</ResolvedResourceDirectory>
     <ResolvedResourceDirectory>C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\lp\12\jl\res</ResolvedResourceDirectory>
     <ResolvedResourceDirectory>C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\lp\14\jl\res</ResolvedResourceDirectory>
@@ -34,10 +39,20 @@
     <ResolvedResourceDirectory>C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\lp\21\jl\res</ResolvedResourceDirectory>
   </ResolvedResourceDirectories>
   <ResolvedAssetDirectories>
+    <ResolvedAssetDirectory>obj\\Debug\MonoAndroid81\lp\29\jl\assets</ResolvedAssetDirectory>
+    <ResolvedAssetDirectory>obj\\Debug\MonoAndroid81\lp\30\jl\assets</ResolvedAssetDirectory>
+    <ResolvedAssetDirectory>obj\\Debug\MonoAndroid81\lp\31\jl\assets</ResolvedAssetDirectory>
+    <ResolvedAssetDirectory>obj\\Debug\MonoAndroid81\lp\32\jl\assets</ResolvedAssetDirectory>
+    <ResolvedAssetDirectory>obj\\Debug\MonoAndroid81\lp\33\jl\assets</ResolvedAssetDirectory>
     <ResolvedAssetDirectory>obj\\Debug\MonoAndroid81\lp\16\jl\assets</ResolvedAssetDirectory>
   </ResolvedAssetDirectories>
   <ResolvedEnvironmentFiles />
   <ResolvedResourceDirectoryStamps>
+    <ResolvedResourceDirectoryStamp>C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\lp\29.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\lp\30.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\lp\31.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\lp\32.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\lp\33.stamp</ResolvedResourceDirectoryStamp>
     <ResolvedResourceDirectoryStamp>C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\lp\9.stamp</ResolvedResourceDirectoryStamp>
     <ResolvedResourceDirectoryStamp>C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\lp\12.stamp</ResolvedResourceDirectoryStamp>
     <ResolvedResourceDirectoryStamp>C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\lp\14.stamp</ResolvedResourceDirectoryStamp>

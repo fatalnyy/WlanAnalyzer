@@ -45,4 +45,3 @@ C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer\obj\Debug\netstandard2.0\WlanAn
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer\obj\Debug\netstandard2.0\WlanAnalyzer.csproj.CopyComplete
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer\obj\Debug\netstandard2.0\WlanAnalyzer.dll
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer\obj\Debug\netstandard2.0\WlanAnalyzer.pdb
-C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer\obj\Debug\netstandard2.0\XamlC.stamp
