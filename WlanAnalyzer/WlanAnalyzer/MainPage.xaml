@@ -3,10 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:WlanAnalyzer"
              xmlns:ViewModel="clr-namespace:WlanAnalyzer.ViewModels"
-             x:Class="WlanAnalyzer.MainPage">
-    <ContentPage.BindingContext>
+             x:Class="WlanAnalyzer.MainPage"
+             Title="WlanAnalyzer ">
+    <!--<ContentPage.BindingContext>
         <ViewModel:MainPageViewModel/>
-    </ContentPage.BindingContext>
+    </ContentPage.BindingContext>-->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="Database" Text="Database" Command="{Binding DatabaseToolbarCommand}"/>
+    </ContentPage.ToolbarItems>
     <StackLayout>
         <Label Text="Name"/>
         <Entry Text="{Binding Name}" Placeholder="FullName"/>
@@ -17,9 +21,13 @@
         <Button Text="Start Scanning" Command="{Binding StartScanningCommand}"/>
         <Button Text="Clear" Command="{Binding ClearCommand}"/>
         <Button Text="Write to txt file" Command="{Binding WriteToJSONFileCommand}"/>
+        <Button Text="Save list to database" Command="{Binding SaveListToDatabaseCommand}"/>
+        <Button Text="Save file to database" Command="{Binding SaveFileToDatabaseCommand}"/>
         <ActivityIndicator IsRunning="{Binding IsBusy}"/>
         <ListView x:Name="ScanResults" 
                   ItemsSource="{Binding DetectedWifiNetworks}"
+                  SelectedItem="{Binding SelectedWifiNetwork}"
+                  SelectionMode="Single"
                   HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -31,6 +39,7 @@
                             <Label Text="{Binding Level}"/>
                             <Label Text="{Binding Channel}"/>
                             <Label Text="{Binding TimeStamp}"/>
+                            <Button Text="Add" BindingContext="{Binding Source={x:Reference ScanResults}, Path=BindingContext}" Command="{Binding AddSelectedWifiNetworkToDataBaseCommand}"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

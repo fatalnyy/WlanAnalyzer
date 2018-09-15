@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,6 +7,8 @@ namespace WlanAnalyzer.Models
 {
     public class WifiParameters
     {
+        [PrimaryKey, AutoIncrement]
+        public int WifiID { get; set; }
         public string SSID { get; set; }
         public string BSSID { get; set; }
         public int Frequency { get; set; }

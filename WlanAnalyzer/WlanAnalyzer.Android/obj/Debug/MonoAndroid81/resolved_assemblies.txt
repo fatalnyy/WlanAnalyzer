@@ -4,6 +4,12 @@ C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\android\assets\Mono.Android.dll
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\android\assets\mscorlib.dll
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\android\assets\Newtonsoft.Json.dll
+C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\android\assets\SQLite-net.dll
+C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\android\assets\SQLitePCLRaw.batteries_green.dll
+C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\android\assets\SQLitePCLRaw.batteries_v2.dll
+C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\android\assets\SQLitePCLRaw.core.dll
+C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\android\assets\SQLitePCLRaw.lib.e_sqlite3.dll
+C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\android\assets\SQLitePCLRaw.provider.e_sqlite3.dll
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\android\assets\System.Core.dll
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\android\assets\System.dll
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\android\assets\System.Xml.dll
@@ -64,4 +70,6 @@ C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\android\assets\System.Security.SecureString.dll
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\android\assets\System.Web.Services.dll
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\android\assets\System.Xml.XPath.XDocument.dll
+C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\android\assets\System.Threading.Tasks.dll
+C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\android\assets\System.Globalization.dll
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\android\assets\Mono.Security.dll

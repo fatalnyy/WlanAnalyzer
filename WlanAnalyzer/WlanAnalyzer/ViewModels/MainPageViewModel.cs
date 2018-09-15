@@ -16,8 +16,9 @@ using System.IO;
 using Newtonsoft.Json;
 namespace WlanAnalyzer.ViewModels
 {
-    public class MainPageViewModel : INotifyPropertyChanged
+    public class MainPageViewModel : BaseViewModel
     {
+        private INavigation _navigation;
         private Context context = null;
         private bool _isBusy;
         private static WifiManager wifiManager;
@@ -44,6 +45,11 @@ namespace WlanAnalyzer.ViewModels
         public Command StartScanningCommand { get; set; }
         public Command ClearCommand { get; set; }
         public Command WriteToJSONFileCommand { get; set; }
+        public Command DatabaseToolbarCommand { get; set; }
+        public Command SaveListToDatabaseCommand { get; set; }
+        public Command AddSelectedWifiNetworkToDataBaseCommand { get; set; }
+        public Command SaveFileToDatabaseCommand { get; set; }
+
         public bool IsBusy
         {
             get
@@ -84,8 +90,11 @@ namespace WlanAnalyzer.ViewModels
                 _fileName = value;
             }
         }
-        public MainPageViewModel()
+        public WifiParameters SelectedWifiNetwork { get; set; }
+
+        public MainPageViewModel(INavigation navigation)
         {
+            _navigation = navigation;
             DetectedWifiNetworks = new ObservableCollection<WifiParameters>();
             ListOfWifiNetworks = new ObservableCollection<WifiParameters>();
 
@@ -93,8 +102,10 @@ namespace WlanAnalyzer.ViewModels
             StartScanningCommand = new Command(GetWifiNetworks);
             ClearCommand = new Command(ClearWifiNetworksCollection);
             WriteToJSONFileCommand = new Command(Serialization);
-                                   
-
+            DatabaseToolbarCommand = new Command(async () => await OpenDatabase());
+            SaveListToDatabaseCommand = new Command(async () => await SaveListToDatabase());
+            AddSelectedWifiNetworkToDataBaseCommand = new Command(async () => await AddSelectedWifiNetworkToDataBase());
+            SaveFileToDatabaseCommand = new Command(async () => await SaveFileToDatabase());
             //for (int i = 0; i < 10; i++)
             //{
             //    WifiNetworks.Add(new Wifi() { SSID = "fsagsa", BSSID = "gasgdsagsa", Frequency = 231, Level = 12 });
@@ -175,7 +186,6 @@ namespace WlanAnalyzer.ViewModels
 
             if (!File.Exists(filePath))
             {
-
                 ToJson(filePath);
             }
             else
@@ -187,7 +197,32 @@ namespace WlanAnalyzer.ViewModels
                 ToJson(filePath);
             }
         }
+        private async Task SaveFileToDatabase()
+        {
+            var sdCardPath = Android.OS.Environment.ExternalStorageDirectory.Path;
+            string filePath = Path.Combine(sdCardPath, FileName + ".json");
 
+            if (File.Exists(filePath))
+            {
+                foreach (var wifiNetwork in FromJson(filePath))
+                {
+                    ListOfWifiNetworks.Add(wifiNetwork);
+                }
+                await App.Database.SaveCollectionOfWifiParameters(ListOfWifiNetworks);
+            }
+        }
+        private async Task OpenDatabase()
+        {
+             await _navigation.PushAsync(new WifiParametersDataBaseListPage());
+        }
+        private async Task SaveListToDatabase()
+        {
+            await App.Database.SaveCollectionOfWifiParameters(DetectedWifiNetworks);
+        }
+        private async Task AddSelectedWifiNetworkToDataBase()
+        {
+            await App.Database.SaveWifiParametersAsync(SelectedWifiNetwork);
+        }
         class WifiReceiver : BroadcastReceiver
         {
             public override void OnReceive(Context context, Intent intent)
@@ -230,16 +265,5 @@ namespace WlanAnalyzer.ViewModels
         {
             get { return $"Your new friend is named {Name}"; }
         }
-        #region INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void RaisePropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-        #endregion
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WlanAnalyzer.ViewModels;
 using Xamarin.Forms;
 
 namespace WlanAnalyzer
@@ -12,7 +13,7 @@ namespace WlanAnalyzer
         public MainPage()
         {
             InitializeComponent();
-            //BindingContext = new MainPageViewModel(this);
+            BindingContext = new MainPageViewModel(this.Navigation);
         }
     }
 }
