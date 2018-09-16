@@ -14,6 +14,8 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.IO;
 using Newtonsoft.Json;
+using Android.Widget;
+
 namespace WlanAnalyzer.ViewModels
 {
     public class MainPageViewModel : BaseViewModel
@@ -155,9 +157,12 @@ namespace WlanAnalyzer.ViewModels
         }
         private void ClearWifiNetworksCollection()
         {
-            DetectedWifiNetworks.Clear();
-            ListOfWifiNetworks.Clear();
-            NumberOfDetectedAccessPoints = 0;
+            if(NumberOfDetectedAccessPoints != 0) {
+                DetectedWifiNetworks.Clear();
+                ListOfWifiNetworks.Clear();
+                NumberOfDetectedAccessPoints = 0;
+                Toast.MakeText(Android.App.Application.Context, "List of wifi networks has been cleared successfully.", ToastLength.Short).Show();
+            }
         }
         private void ToJson(string filePath)
         {
@@ -167,6 +172,8 @@ namespace WlanAnalyzer.ViewModels
                 serializer.Serialize(file, ListOfWifiNetworks);
                 file.Dispose();
             }
+            if (NumberOfDetectedAccessPoints != 0)
+                Toast.MakeText(Android.App.Application.Context, "List of wifi networks has been saved to file successfully.", ToastLength.Short).Show();
         }
         private ObservableCollection<WifiParameters> FromJson(string filePath)
         {
@@ -180,6 +187,11 @@ namespace WlanAnalyzer.ViewModels
         }
         private void Serialization()
         {
+            if (NumberOfDetectedAccessPoints == 0) {
+                Toast.MakeText(Android.App.Application.Context, "There is nothing to be saved!", ToastLength.Short).Show();
+                return;
+            }
+
             var sdCardPath = Android.OS.Environment.ExternalStorageDirectory.Path;
             //var sdCardPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             string filePath = Path.Combine(sdCardPath, FileName + ".json");
@@ -209,7 +221,10 @@ namespace WlanAnalyzer.ViewModels
                     ListOfWifiNetworks.Add(wifiNetwork);
                 }
                 await App.Database.SaveCollectionOfWifiParameters(ListOfWifiNetworks);
+                Toast.MakeText(Android.App.Application.Context, "List of wifi networks from files has been added to database successfully.", ToastLength.Short).Show();
             }
+            else
+                Toast.MakeText(Android.App.Application.Context, "File with such name does not exist!", ToastLength.Short).Show();
         }
         private async Task OpenDatabase()
         {
@@ -217,11 +232,29 @@ namespace WlanAnalyzer.ViewModels
         }
         private async Task SaveListToDatabase()
         {
+            if (NumberOfDetectedAccessPoints == 0) {
+                Toast.MakeText(Android.App.Application.Context, "There is nothing to be added!", ToastLength.Short).Show();
+                return;
+            }
+
             await App.Database.SaveCollectionOfWifiParameters(DetectedWifiNetworks);
+            Toast.MakeText(Android.App.Application.Context, "List of wifi networks has been added to database successfully.", ToastLength.Short).Show();
         }
+            
         private async Task AddSelectedWifiNetworkToDataBase()
         {
-            await App.Database.SaveWifiParametersAsync(SelectedWifiNetwork);
+            if(SelectedWifiNetwork != null) {
+                if (SelectedWifiNetwork.WifiID == 0)
+                {
+                    await App.Database.SaveWifiParametersAsync(SelectedWifiNetwork);
+                    Toast.MakeText(Android.App.Application.Context, "Selected WifiNetwork has been added to database successfully.", ToastLength.Short).Show();
+                }
+                else
+                {
+                    await App.Database.UpdateWifiParametersAsync(SelectedWifiNetwork);
+                    Toast.MakeText(Android.App.Application.Context, "Selected WifiNetwork has been already added to database!", ToastLength.Short).Show();
+                }
+            }
         }
         class WifiReceiver : BroadcastReceiver
         {

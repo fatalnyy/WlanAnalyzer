@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿using Android.Widget;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -29,14 +30,11 @@ namespace WlanAnalyzer.DataBase
 
         public Task<int> SaveWifiParametersAsync(WifiParameters wifiParameters)
         {
-            if(wifiParameters.WifiID == 0)
-            {
-                return database.InsertAsync(wifiParameters);
-            }
-            else
-            {
-                return database.UpdateAsync(wifiParameters);
-            }
+            return database.InsertAsync(wifiParameters);
+        }
+        public Task<int> UpdateWifiParametersAsync(WifiParameters wifiParameters)
+        {
+            return database.UpdateAsync(wifiParameters);
         }
         public Task SaveCollectionOfWifiParameters(ObservableCollection<WifiParameters> collectionOfWifiParameters)
         {
@@ -46,9 +44,10 @@ namespace WlanAnalyzer.DataBase
         { 
             return database.DeleteAsync(wifiParameters);
         }
-        public Task<int> DeleteAllObjectsFromDatabase()
+        public void DeleteAllObjectsFromDatabase()
         {
-            return database.DropTableAsync<WifiParameters>();
+            database.DropTableAsync<WifiParameters>().Wait();
+            database.CreateTableAsync<WifiParameters>().Wait();
         }
     }
 }

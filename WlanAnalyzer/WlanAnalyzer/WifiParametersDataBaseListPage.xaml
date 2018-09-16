@@ -6,26 +6,59 @@
     <!--<ContentPage.BindingContext>
         <ViewModel:WifiParametersDataBaseListPageViewModel/>
     </ContentPage.BindingContext>-->
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="White"/>
+        </Style>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout BackgroundColor="#232628">
             <Button Text="Clear Database" Command="{Binding ClearDatabaseCommand}"/>
-            <ListView x:Name="WifiParametersDataBaseListView" 
-                  ItemsSource="{Binding CollectionOfWifiParameters}"
-                  SelectedItem="{Binding SelectedWifiNetwork}"
-                  SelectionMode="Single"
-                  HasUnevenRows="True">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Number of wifi networks in database:"/>
+                <Label Text="{Binding NumberOfWifiNetworksDB}"/>
+            </StackLayout>
+            <ListView 
+                x:Name="WifiParametersDataBaseListView"       
+                ItemsSource="{Binding CollectionOfWifiParameters}"
+                SelectedItem="{Binding SelectedWifiNetwork}"
+                SelectionMode="Single"
+                HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout>
-                                <Label Text="{Binding SSID}"/>
-                                <Label Text="{Binding BSSID}"/>
-                                <Label Text="{Binding Frequency}"/>
-                                <Label Text="{Binding Level}"/>
-                                <Label Text="{Binding Channel}"/>
-                                <Label Text="{Binding TimeStamp}"/>
-                                <Button Text="Remove" BindingContext="{Binding Source={x:Reference WifiParametersDataBaseListView}, Path=BindingContext}" Command="{Binding DeleteSelectedWifiNetworkCommand}"/>
-                            </StackLayout>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackLayout Grid.ColumnSpan="4">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label FontAttributes="Bold" FontSize="Medium" Text="{Binding SSID}"/>
+                                        <Label FontAttributes="Bold" FontSize="Medium" Text="("/>
+                                        <Label FontAttributes="Bold" FontSize="Medium" Text="{Binding BSSID}"/>
+                                        <Label FontAttributes="Bold" FontSize="Medium" Text=")"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Frequency:"/>
+                                        <Label Text="{Binding Frequency}"/>
+                                        <Label Text="MHz"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Level:"/>
+                                        <Label Text="{Binding Level}"/>
+                                        <Label Text="dBm"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Channel:"/>
+                                        <Label Text="{Binding Channel}"/>
+                                    </StackLayout>
+                                </StackLayout>
+                                <Button Grid.Column="4" Text="Remove" BackgroundColor="Red" BindingContext="{Binding Source={x:Reference WifiParametersDataBaseListView}, Path=BindingContext}" Command="{Binding DeleteSelectedWifiNetworkCommand}"/>
+                            </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
