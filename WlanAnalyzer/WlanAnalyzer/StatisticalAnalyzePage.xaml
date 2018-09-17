@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WlanAnalyzer.StatisticalAnalyzePage"
+             Title="Statistical Analyze">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Order="Secondary" Text="Sort by Level" Command="{Binding SortCollectionByLevelCommand}"/>
+        <ToolbarItem Order="Secondary" Text="Sort by Frequency" Command="{Binding SortCollectionByFrequencyCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#eaeef2">
+            <Label 
+                Text="Load your data: "
+                FontSize="Medium"
+                FontAttributes="Bold"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+
+                </Grid.RowDefinitions>
+
+                <Entry
+                    Grid.Row="0"
+                    Grid.ColumnSpan="3"
+                    Placeholder="Enter file name" 
+                    Text="{Binding FileNameToAnalyze}"/>
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="3"
+                    Grid.ColumnSpan="2"
+                    Text="From file"
+                    Command="{Binding LoadDataFromFileCommand}"/>
+                <Button
+                    Grid.Row="1"
+                    Grid.ColumnSpan="3"
+                    Text="From current scan list"
+                    Command="{Binding LoadDataFromCurrentScanListCommand}"/>
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    Grid.ColumnSpan="2"
+                    Text="From database"
+                    Command="{Binding LoadDataFromDatabaseCommand}"/>
+                <Label
+                    Grid.Row="2"
+                    Grid.ColumnSpan="3"
+                    Text="{Binding NumberOfWifiNetworksToAnalyzeText}"/>
+
+                <ActivityIndicator
+                    Grid.Row="3"
+                    Grid.Column="2"
+                    IsRunning="{Binding IsBusy}"/>
+
+                <ListView 
+                  x:Name="ScanResults"
+                  Grid.Row="3"
+                  Grid.ColumnSpan="5" 
+                  Grid.RowSpan="9"
+                  ItemsSource="{Binding CollectionOfWifiNetworksToAnalyze}"
+                  SelectedItem="{Binding SelectedWifiNetwork}"
+                  SelectionMode="Single"
+                  HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout Grid.ColumnSpan="4">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label FontAttributes="Bold" FontSize="Medium" Text="{Binding SSID}"/>
+                                            <Label FontAttributes="Bold" FontSize="Medium" Text="("/>
+                                            <Label FontAttributes="Bold" FontSize="Medium" Text="{Binding BSSID}"/>
+                                            <Label FontAttributes="Bold" FontSize="Medium" Text=")"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="Frequency:"/>
+                                            <Label Text="{Binding Frequency}"/>
+                                            <Label Text="MHz"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="Level:"/>
+                                            <Label Text="{Binding Level}"/>
+                                            <Label Text="dBm"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="Channel:"/>
+                                            <Label Text="{Binding Channel}"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

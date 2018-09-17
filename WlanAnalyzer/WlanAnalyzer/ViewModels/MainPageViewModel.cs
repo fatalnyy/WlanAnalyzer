@@ -48,6 +48,7 @@ namespace WlanAnalyzer.ViewModels
         public Command ClearCommand { get; set; }
         public Command WriteToJSONFileCommand { get; set; }
         public Command DatabaseToolbarCommand { get; set; }
+        public Command AnalyzeToolbarCommand { get; set; }
         public Command SaveListToDatabaseCommand { get; set; }
         public Command AddSelectedWifiNetworkToDataBaseCommand { get; set; }
         public Command SaveFileToDatabaseCommand { get; set; }
@@ -105,6 +106,7 @@ namespace WlanAnalyzer.ViewModels
             ClearCommand = new Command(ClearWifiNetworksCollection);
             WriteToJSONFileCommand = new Command(Serialization);
             DatabaseToolbarCommand = new Command(async () => await OpenDatabase());
+            AnalyzeToolbarCommand = new Command(async () => await OpenAnalyze());
             SaveListToDatabaseCommand = new Command(async () => await SaveListToDatabase());
             AddSelectedWifiNetworkToDataBaseCommand = new Command(async () => await AddSelectedWifiNetworkToDataBase());
             SaveFileToDatabaseCommand = new Command(async () => await SaveFileToDatabase());
@@ -128,17 +130,18 @@ namespace WlanAnalyzer.ViewModels
 
         public void GetWifiNetworks()
         {
-
             Task.Run(() =>
             {
-                ClearWifiNetworksCollection();
+                DetectedWifiNetworks.Clear();
+                ListOfWifiNetworks.Clear();
+                NumberOfDetectedAccessPoints = 0;
                 wifiManager = (WifiManager)context.GetSystemService(Context.WifiService);
 
                 wifiReceiver = new WifiReceiver();
                 context.RegisterReceiver(wifiReceiver, new IntentFilter(WifiManager.ScanResultsAvailableAction));
                 IsBusy = true;
                 wifiManager.StartScan();
-                Thread.Sleep(3000);
+                Thread.Sleep(2000);
                 CollectionofNetworksArrived.WaitOne();
                 context.UnregisterReceiver(wifiReceiver);
                 if (ListOfWifiNetworks.Count > 0)
@@ -153,38 +156,38 @@ namespace WlanAnalyzer.ViewModels
                 IsBusy = false;
                 NumberOfDetectedAccessPoints = DetectedWifiNetworks.Count;
             });
-
         }
         private void ClearWifiNetworksCollection()
         {
-            if(NumberOfDetectedAccessPoints != 0) {
+            if (NumberOfDetectedAccessPoints != 0)
+            {
                 DetectedWifiNetworks.Clear();
                 ListOfWifiNetworks.Clear();
                 NumberOfDetectedAccessPoints = 0;
                 Toast.MakeText(Android.App.Application.Context, "List of wifi networks has been cleared successfully.", ToastLength.Short).Show();
             }
         }
-        private void ToJson(string filePath)
-        {
-            using (StreamWriter file = File.CreateText(filePath))
-            {
-                JsonSerializer serializer = new JsonSerializer();
-                serializer.Serialize(file, ListOfWifiNetworks);
-                file.Dispose();
-            }
-            if (NumberOfDetectedAccessPoints != 0)
-                Toast.MakeText(Android.App.Application.Context, "List of wifi networks has been saved to file successfully.", ToastLength.Short).Show();
-        }
-        private ObservableCollection<WifiParameters> FromJson(string filePath)
-        {
-            using (StreamReader streamReader = File.OpenText(filePath))
-            {
-                JsonSerializer serializer = new JsonSerializer();
-                ObservableCollection<WifiParameters> DeserializedCollectionOfWifiNetworks = (ObservableCollection<WifiParameters>)serializer.Deserialize(streamReader, typeof(ObservableCollection<WifiParameters>));
-                streamReader.Dispose();
-                return DeserializedCollectionOfWifiNetworks;
-            }
-        }
+        //private void ToJson(string filePath)
+        //{
+        //    using (StreamWriter file = File.CreateText(filePath))
+        //    {
+        //        JsonSerializer serializer = new JsonSerializer();
+        //        serializer.Serialize(file, ListOfWifiNetworks);
+        //        file.Dispose();
+        //    }
+        //    if (NumberOfDetectedAccessPoints != 0)
+        //        Toast.MakeText(Android.App.Application.Context, "List of wifi networks has been saved to file successfully.", ToastLength.Short).Show();
+        //}
+        //private ObservableCollection<WifiParameters> FromJson(string filePath)
+        //{
+        //    using (StreamReader streamReader = File.OpenText(filePath))
+        //    {
+        //        JsonSerializer serializer = new JsonSerializer();
+        //        ObservableCollection<WifiParameters> DeserializedCollectionOfWifiNetworks = (ObservableCollection<WifiParameters>)serializer.Deserialize(streamReader, typeof(ObservableCollection<WifiParameters>));
+        //        streamReader.Dispose();
+        //        return DeserializedCollectionOfWifiNetworks;
+        //    }
+        //}
         private void Serialization()
         {
             if (NumberOfDetectedAccessPoints == 0) {
@@ -198,16 +201,19 @@ namespace WlanAnalyzer.ViewModels
 
             if (!File.Exists(filePath))
             {
-                ToJson(filePath);
+                WifiParametersJSON.ToJson(filePath, ListOfWifiNetworks);
+                Toast.MakeText(Android.App.Application.Context, "List of wifi networks has been saved to file successfully.", ToastLength.Short).Show();
             }
             else
             {
-                foreach (var wifiNetwork in FromJson(filePath))
+                foreach (var wifiNetwork in WifiParametersJSON.FromJson(filePath))
                 {
                     ListOfWifiNetworks.Add(wifiNetwork);
                 }
-                ToJson(filePath);
+                WifiParametersJSON.ToJson(filePath, ListOfWifiNetworks);
+                Toast.MakeText(Android.App.Application.Context, "List of wifi networks has been saved to file successfully.", ToastLength.Short).Show();
             }
+            ListOfWifiNetworks.Clear();
         }
         private async Task SaveFileToDatabase()
         {
@@ -216,7 +222,7 @@ namespace WlanAnalyzer.ViewModels
 
             if (File.Exists(filePath))
             {
-                foreach (var wifiNetwork in FromJson(filePath))
+                foreach (var wifiNetwork in WifiParametersJSON.FromJson(filePath))
                 {
                     ListOfWifiNetworks.Add(wifiNetwork);
                 }
@@ -229,6 +235,10 @@ namespace WlanAnalyzer.ViewModels
         private async Task OpenDatabase()
         {
              await _navigation.PushAsync(new WifiParametersDataBaseListPage());
+        }
+        private async Task OpenAnalyze()
+        {
+             await _navigation.PushAsync(new StatisticalAnalyzePage());
         }
         private async Task SaveListToDatabase()
         {
