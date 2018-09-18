@@ -15,7 +15,7 @@ namespace WlanAnalyzer
 		public ChannelTrafficPage ()
 		{
             InitializeComponent();
-            BindingContext = new StatisticalAnalyzePageViewModel(this.Navigation); ;
-		}
+            BindingContext = new ChannelTrafficPageViewModel();
+        }
 	}
 }

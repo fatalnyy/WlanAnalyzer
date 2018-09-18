@@ -13,9 +13,11 @@ namespace WlanAnalyzer
 
         public App()
         {
+
             InitializeComponent();
 
             MainPage = new NavigationPage(new MainPage());
+            
         }
 
         public static WifiParametersDataBase Database

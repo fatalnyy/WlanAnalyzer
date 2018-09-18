@@ -4,6 +4,7 @@
              x:Class="WlanAnalyzer.StatisticalAnalyzePage"
              Title="Statistical Analyze">
     <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Channel Traffic" Command="{Binding OpenChannelTrafficToolbarCommand}"/>
         <ToolbarItem Order="Secondary" Text="Sort by Level" Command="{Binding SortCollectionByLevelCommand}"/>
         <ToolbarItem Order="Secondary" Text="Sort by Frequency" Command="{Binding SortCollectionByFrequencyCommand}"/>
     </ContentPage.ToolbarItems>
