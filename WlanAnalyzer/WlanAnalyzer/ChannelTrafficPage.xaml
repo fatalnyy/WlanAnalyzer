@@ -7,6 +7,11 @@
     <!--<ContentPage.BindingContext>
         <vm:StatisticalAnalyzePageViewModel/>
     </ContentPage.BindingContext>-->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Sort by number of WLANs ascending" Order="Secondary" Command="{Binding SortNumberOfWLANsAscendingCommand}"/>
+        <ToolbarItem Text="Sort by number of WLANs descending" Order="Secondary" Command="{Binding SortNumberOfWLANsDescendingCommand}"/>
+        <ToolbarItem Text="Sort by channels" Order="Secondary" Command="{Binding SortByChannelsCommand}"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
             <Grid>
@@ -41,42 +46,62 @@
 
 
                 </Grid.RowDefinitions>
+                <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6">
+                    <Label Text="Free Channels:"/>
+                    <Label Text="{Binding FreeChannelsText}"/>
+
+                </StackLayout>
 
                 <Label
-                    Grid.Row="0"
+                    Grid.Row="1"
                     Grid.Column="1"
                     Grid.ColumnSpan="2"
                     Text="2.4 GHz"/>
                 <Label 
-                    Grid.Row="1"
+                    Grid.Row="2"
                     Grid.Column="0"
                     Grid.ColumnSpan="1"
                     Text="Channel number"
                     HorizontalTextAlignment="Center"/>
                 <Label
-                    Grid.Row="1"
+                    Grid.Row="2"
                     Grid.Column="1"
                     Grid.ColumnSpan="2"
                     Text="Number of WLANs"
                     HorizontalTextAlignment="Center"/>
                 <Label
-                    Grid.Row="0"
+                    Grid.Row="1"
                     Grid.Column="4"
                     Grid.ColumnSpan="1"
                     Text="5 GHz"/>
                 <Label 
-                    Grid.Row="1"
+                    Grid.Row="2"
                     Grid.Column="3"
                     Grid.ColumnSpan="1"
                     Text="Channel number"
                     HorizontalTextAlignment="Center"/>
                 <Label
-                    Grid.Row="1"
+                    Grid.Row="2"
                     Grid.Column="4"
                     Grid.ColumnSpan="2"
                     Text="Number of WLANs"
                     HorizontalTextAlignment="Center"/>
-
+                <ActivityIndicator
+                    Grid.Row="3"
+                    Grid.Column="3"
+                    IsRunning="{Binding IsBusy}"/>
+                <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="2">
+                    <Label 
+                           Text="2.4GHz average frequency: "/>
+                    <Label 
+                           Text="{Binding AverageFrequency2GHz}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2">
+                    <Label 
+                           Text="5Hz average frequency: "/>
+                    <Label 
+                           Text="{Binding AverageFrequency5GHz}"/>
+                </StackLayout>
                 <!--<ListBox 
                     --><!--ItemsSource="{Binding Path=Books}"
                     SelectedValuePath="Value"
@@ -94,24 +119,44 @@
                 </ListBox>-->
                 <ListView
                     Grid.Column="0"
-                    Grid.Row="3"
-                    Grid.ColumnSpan="5"
+                    Grid.Row="4"
+                    Grid.ColumnSpan="3"
                     Grid.RowSpan="8"
-                    ItemsSource="{Binding ChannelsDictionary}">
+                    ItemsSource="{Binding ChannelsDictionary2GHz}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal">
-                                    <Label Text="Channel: "/>
+                                    <Label Text="       "/>
                                     <Label Text="{Binding Key}"/>
-                                    <Label Text="  "/>
-                                    <Label Text="Number of WLANs:"/>
+                                    <Label Text="                         "/>
                                     <Label Text="{Binding Value}"/>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                <ListView
+                    Grid.Column="3"
+                    Grid.Row="4"
+                    Grid.ColumnSpan="3"
+                    Grid.RowSpan="8"
+                    ItemsSource="{Binding ChannelsDictionary5GHz}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="       "/>
+                                    <Label Text="{Binding Key}"/>
+                                    <Label Text="                         "/>
+                                    <Label Text="{Binding Value}"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+
 
 
 
