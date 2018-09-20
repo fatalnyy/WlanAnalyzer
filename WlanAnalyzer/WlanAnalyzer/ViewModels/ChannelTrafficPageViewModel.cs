@@ -30,8 +30,8 @@ namespace WlanAnalyzer.ViewModels
             GetChannels();
             GetFrequencies();
             UpdatingChannelsDictionary();
-            AverageFrequency5GHz = GetAverageFrequency5GHz();
-            AverageFrequency2GHz = GetAverageFrequency2GHz();
+            AverageFrequency5GHz = Math.Round(GetAverageFrequency5GHz(), 2);
+            AverageFrequency2GHz = Math.Round(GetAverageFrequency2GHz(), 2);
             //ChannelTrafficCalc();
         }
         public Command SortNumberOfWLANsAscendingCommand { get; set; }

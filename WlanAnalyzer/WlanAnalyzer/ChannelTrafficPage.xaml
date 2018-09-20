@@ -14,14 +14,79 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <Grid>
+            <StackLayout HorizontalOptions="Center">
+                <Label FontSize="Medium" FontAttributes="Bold" Text="Free Channels" VerticalTextAlignment="Center"/>
+            </StackLayout>
+            <Label Text="{Binding FreeChannelsText}"/>
+            <BoxView HeightRequest="1" WidthRequest="1" Color="Gray"/>
+            <StackLayout Orientation="Horizontal">
+                <Label FontAttributes="Bold" Text="2.4GHz average frequency:"/>
+                <Label Text="{Binding AverageFrequency2GHz}"/>
+                <Label Text="MHz"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label FontAttributes="Bold" Text="5Hz average frequency:"/>
+                <Label Text="{Binding AverageFrequency5GHz}"/>
+                <Label Text="MHz"/>
+            </StackLayout>
+            <BoxView HeightRequest="1" WidthRequest="1" Color="Gray"/>
+            <StackLayout Orientation="Horizontal">
+                <Label FontAttributes="Bold" FontSize="Medium" Text="                  2.4GHz"/>
+                <Label FontAttributes="Bold" FontSize="Medium" Text="                                                5GHz"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <ListView
+                    Header="  Channel        Number of WLANs"
+                    Grid.Column="0"
+                    Grid.Row="4"
+                    Grid.ColumnSpan="3"
+                    Grid.RowSpan="8"
+                    ItemsSource="{Binding ChannelsDictionary2GHz}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="       "/>
+                                    <Label Text="{Binding Key}"/>
+                                    <Label Text="                       "/>
+                                    <Label Text="{Binding Value}"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <ListView
+                    Header="  Channel        Number of WLANs"
+                    Grid.Column="3"
+                    Grid.Row="4"
+                    Grid.ColumnSpan="3"
+                    Grid.RowSpan="8"
+                    ItemsSource="{Binding ChannelsDictionary5GHz}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="       "/>
+                                    <Label Text="{Binding Key}"/>
+                                    <Label Text="                         "/>
+                                    <Label Text="{Binding Value}"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+
+            <!--<Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+ 
+
+
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -35,62 +100,14 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-
-
 
                 </Grid.RowDefinitions>
-                <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6">
+                <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="2">
                     <Label Text="Free Channels:"/>
                     <Label Text="{Binding FreeChannelsText}"/>
-
                 </StackLayout>
 
-                <Label
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Grid.ColumnSpan="2"
-                    Text="2.4 GHz"/>
-                <Label 
-                    Grid.Row="2"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="1"
-                    Text="Channel number"
-                    HorizontalTextAlignment="Center"/>
-                <Label
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    Grid.ColumnSpan="2"
-                    Text="Number of WLANs"
-                    HorizontalTextAlignment="Center"/>
-                <Label
-                    Grid.Row="1"
-                    Grid.Column="4"
-                    Grid.ColumnSpan="1"
-                    Text="5 GHz"/>
-                <Label 
-                    Grid.Row="2"
-                    Grid.Column="3"
-                    Grid.ColumnSpan="1"
-                    Text="Channel number"
-                    HorizontalTextAlignment="Center"/>
-                <Label
-                    Grid.Row="2"
-                    Grid.Column="4"
-                    Grid.ColumnSpan="2"
-                    Text="Number of WLANs"
-                    HorizontalTextAlignment="Center"/>
-                <ActivityIndicator
-                    Grid.Row="3"
-                    Grid.Column="3"
-                    IsRunning="{Binding IsBusy}"/>
-                <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="2">
+                <StackLayout Grid.Row="2" Grid.ColumnSpan="5">
                     <Label 
                            Text="2.4GHz average frequency: "/>
                     <Label 
@@ -102,22 +119,26 @@
                     <Label 
                            Text="{Binding AverageFrequency5GHz}"/>
                 </StackLayout>
-                <!--<ListBox 
-                    --><!--ItemsSource="{Binding Path=Books}"
-                    SelectedValuePath="Value"
-                    SelectedValue="{Binding Path=SelectedBookIndex}">       
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Border BorderBrush="Black" BorderThickness="2">
-                                <StackPanel>
-                                    <TextBlock Text="{Binding Path=Value}" />
-                                    <TextBlock Text="{Binding Path=Key.Name}" />
-                                </StackPanel>
-                            </Border>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>-->
+                
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="1"
+                    Text="2.4 GHz"/>
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="3"
+                    Grid.ColumnSpan="1"
+                    Text="5 GHz"/>
+
+                <ActivityIndicator
+                    Grid.Row="3"
+                    Grid.Column="2"
+                    IsRunning="{Binding IsBusy}"/>
+
+
                 <ListView
+                    Header="  Channel number        Number of WLANs"
                     Grid.Column="0"
                     Grid.Row="4"
                     Grid.ColumnSpan="3"
@@ -137,6 +158,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
                 <ListView
+                    Header="  Channel number        Number of WLANs"
                     Grid.Column="3"
                     Grid.Row="4"
                     Grid.ColumnSpan="3"
@@ -157,192 +179,7 @@
                 </ListView>
 
 
-
-
-
-                <!--<ScrollView
-                    Grid.Row="2"
-                    Grid.Column="2"
-                    Grid.RowSpan="12">
-                    <StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="1" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel1}"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="2" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel2}"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="3" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel3}"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="4" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel4}"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="5" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel5}"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="6" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel6}"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="7" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel7}"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="8" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel8}"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="9" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel9}"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="10" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel10}"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="11" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel11}"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="12" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel12}"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="13" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel13}"/>
-                        </StackLayout>
-                    </StackLayout>
-                </ScrollView>
-
-
-                <ScrollView
-                    Grid.Row="2"
-                    Grid.Column="3"
-                    Grid.RowSpan="16">
-                    <StackLayout>
-                        <StackLayout>
-                            <Label Text="36" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel36}"/>
-                        </StackLayout>
-                        <StackLayout>
-                            <Label Text="40" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel36}"/>
-                        </StackLayout>
-                        <StackLayout>
-                            <Label Text="44" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel36}"/>
-                        </StackLayout>
-                        <StackLayout>
-                            <Label Text="48" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel36}"/>
-                        </StackLayout>
-                        <StackLayout>
-                            <Label Text="52" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel36}"/>
-                        </StackLayout>
-                        <StackLayout>
-                            <Label Text="56" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel36}"/>
-                        </StackLayout>
-                        <StackLayout>
-                            <Label Text="60" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel36}"/>
-                        </StackLayout>
-                        <StackLayout>
-                            <Label Text="64" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel36}"/>
-                        </StackLayout>
-                        <StackLayout>
-                            <Label Text="100" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel36}"/>
-                        </StackLayout>
-                        <StackLayout>
-                            <Label Text="104" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel36}"/>
-                        </StackLayout>
-                        <StackLayout>
-                            <Label Text="108" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel36}"/>
-                        </StackLayout>
-                        <StackLayout>
-                            <Label Text="112" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel36}"/>
-                        </StackLayout>
-                        <StackLayout>
-                            <Label Text="116" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel36}"/>
-                        </StackLayout>
-                        <StackLayout>
-                            <Label Text="120" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel36}"/>
-                        </StackLayout>
-                        <StackLayout>
-                            <Label Text="124" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel36}"/>
-                        </StackLayout>
-                        <StackLayout>
-                            <Label Text="128" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel36}"/>
-                        </StackLayout>
-                        <StackLayout>
-                            <Label Text="132" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel36}"/>
-                        </StackLayout>
-                        <StackLayout>
-                            <Label Text="136" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel36}"/>
-                        </StackLayout>
-                        <StackLayout>
-                            <Label Text="140" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel36}"/>
-                        </StackLayout>
-                        <StackLayout>
-                            <Label Text="144" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel36}"/>
-                        </StackLayout>
-                        <StackLayout>
-                            <Label Text="148" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel36}"/>
-                        </StackLayout>
-                        <StackLayout>
-                            <Label Text="152" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding NumberOfWifiNetworksChannel36}"/>
-                        </StackLayout>
-                        <Label Text="140" HorizontalTextAlignment="Center"/>
-                        <Label Text="40" HorizontalTextAlignment="Center"/>
-                        <Label Text="44" HorizontalTextAlignment="Center"/>
-                        <Label Text="48" HorizontalTextAlignment="Center"/>
-                        <Label Text="52" HorizontalTextAlignment="Center"/>
-                        <Label Text="56" HorizontalTextAlignment="Center"/>
-                        <Label Text="60" HorizontalTextAlignment="Center"/>
-                        <Label Text="64" HorizontalTextAlignment="Center"/>
-                        <Label Text="100" HorizontalTextAlignment="Center"/>
-                        <Label Text="104" HorizontalTextAlignment="Center"/>
-                        <Label Text="108" HorizontalTextAlignment="Center"/>
-                        <Label Text="112" HorizontalTextAlignment="Center"/>
-                        <Label Text="116" HorizontalTextAlignment="Center"/>
-                        <Label Text="120" HorizontalTextAlignment="Center"/>
-                        <Label Text="124" HorizontalTextAlignment="Center"/>
-                        <Label Text="128" HorizontalTextAlignment="Center"/>
-                        <Label Text="132" HorizontalTextAlignment="Center"/>
-                        <Label Text="136" HorizontalTextAlignment="Center"/>
-                        <Label Text="140" HorizontalTextAlignment="Center"/>
-                        <Label Text="144" HorizontalTextAlignment="Center"/>
-                        <Label Text="149" HorizontalTextAlignment="Center"/>
-                        <Label Text="153" HorizontalTextAlignment="Center"/>
-                        <Label Text="157" HorizontalTextAlignment="Center"/>
-                        <Label Text="161" HorizontalTextAlignment="Center"/>
-                        <Label Text="165" HorizontalTextAlignment="Center"/>
-                    </StackLayout>
-                </ScrollView>-->
-
-            </Grid>
+            </Grid>-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
