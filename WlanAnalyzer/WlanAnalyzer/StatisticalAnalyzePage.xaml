@@ -92,10 +92,10 @@
                                     </Grid.ColumnDefinitions>
                                     <StackLayout Grid.ColumnSpan="4">
                                         <StackLayout Orientation="Horizontal">
-                                            <Label FontAttributes="Bold" FontSize="Medium" Text="{Binding SSID}"/>
-                                            <Label FontAttributes="Bold" FontSize="Medium" Text="("/>
-                                            <Label FontAttributes="Bold" FontSize="Medium" Text="{Binding BSSID}"/>
-                                            <Label FontAttributes="Bold" FontSize="Medium" Text=")"/>
+                                            <Label FontAttributes="Bold" Text="{Binding SSID}"/>
+                                            <Label FontAttributes="Bold" Text="("/>
+                                            <Label FontAttributes="Bold" Text="{Binding BSSID}"/>
+                                            <Label FontAttributes="Bold" Text=")"/>
                                         </StackLayout>
                                         <StackLayout Orientation="Horizontal">
                                             <Label Text="Frequency:"/>

@@ -61,19 +61,36 @@
                 Grid.ColumnSpan="3"
                 Text="Save list to txt file"
                 Command="{Binding WriteToJSONFileCommand}"/>
+            <StackLayout 
+                Grid.Row="2"
+                Grid.RowSpan="2"
+                Grid.ColumnSpan="5">
+                <Label Text="{Binding NumberOfDetectedAccessPointsText}"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Currently conntected to:"/>
+                    <Label FontAttributes="Bold" Text="{Binding CurrentWifiNetworkName}"/>
+                    <Label Text="Speed:"/>
+                    <Label FontAttributes="Bold" Text="{Binding CurrentWifiNetworkSpeed}"/>
+                    <Label FontAttributes="Bold" Text="Mbps"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="IP address:"/>
+                    <Label FontAttributes="Bold" Text="{Binding CurrentWifiNetworkIPText}"/>
+                </StackLayout>
+            </StackLayout>
 
-            <Label
+            <!--<Label
                 Grid.Row="2"
                 Grid.ColumnSpan="4"
-                Text="{Binding NumberOfDetectedAccessPointsText}"/>
+                Text="{Binding NumberOfDetectedAccessPointsText}"/>-->
             <ActivityIndicator
-                Grid.Row="3"
+                Grid.Row="4"
                 Grid.Column="2"
                 IsRunning="{Binding IsBusy}"/>
 
             <ListView 
                   x:Name="ScanResults"
-                  Grid.Row="3"
+                  Grid.Row="4"
                   Grid.ColumnSpan="5" 
                   Grid.RowSpan="9"
                   ItemsSource="{Binding DetectedWifiNetworks}"
@@ -93,10 +110,10 @@
                                 </Grid.ColumnDefinitions>
                                 <StackLayout Grid.ColumnSpan="4">
                                     <StackLayout Orientation="Horizontal">
-                                        <Label FontAttributes="Bold" FontSize="Medium" Text="{Binding SSID}"/>
-                                        <Label FontAttributes="Bold" FontSize="Medium" Text="("/>
-                                        <Label FontAttributes="Bold" FontSize="Medium" Text="{Binding BSSID}"/>
-                                        <Label FontAttributes="Bold" FontSize="Medium" Text=")"/>
+                                        <Label FontAttributes="Bold" Text="{Binding SSID}"/>
+                                        <Label FontAttributes="Bold" Text="("/>
+                                        <Label FontAttributes="Bold" Text="{Binding BSSID}"/>
+                                        <Label FontAttributes="Bold" Text=")"/>
                                     </StackLayout>
                                     <StackLayout Orientation="Horizontal">
                                         <Label Text="Frequency:"/>

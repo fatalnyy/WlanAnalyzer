@@ -27,6 +27,10 @@ namespace WlanAnalyzer.ViewModels
         private WifiReceiver wifiReceiver;
         private int _numberOfDetectedAccessPoints;
         private string _fileName;
+        private string _currentWifiNetworkName;
+        private int _currentWifiNetworkIP;
+        private string _currentWifiNetworkIPText;
+        private int _currentWifiNetworkSpeed;
         public static ObservableCollection<WifiParameters> ListOfWifiNetworks;
         //public ObservableCollection<WifiParameters> ListOfWifiNetworks1 { get; set; }
         private ObservableCollection<WifiParameters> _detectedWifiNetworks;
@@ -93,6 +97,54 @@ namespace WlanAnalyzer.ViewModels
                 _fileName = value;
             }
         }
+        public string CurrentWifiNetworkName
+        {
+            get
+            {
+                return _currentWifiNetworkName;
+            }
+            set
+            {
+                _currentWifiNetworkName = value;
+                RaisePropertyChanged(nameof(CurrentWifiNetworkName));
+            }
+        }
+        public string CurrentWifiNetworkIPText
+        {
+            get
+            {
+                return _currentWifiNetworkIPText;
+            }
+            set
+            {
+                _currentWifiNetworkIPText = value;
+                RaisePropertyChanged(nameof(CurrentWifiNetworkIPText));
+            }
+        }
+        public int CurrentWifiNetworkIP
+        {
+            get
+            {
+                return _currentWifiNetworkIP;
+            }
+            set
+            {
+                _currentWifiNetworkIP = value;
+                RaisePropertyChanged(nameof(CurrentWifiNetworkIP));
+            }
+        }
+        public int CurrentWifiNetworkSpeed
+        {
+            get
+            {
+                return _currentWifiNetworkSpeed;
+            }
+            set
+            {
+                _currentWifiNetworkSpeed = value;
+                RaisePropertyChanged(nameof(CurrentWifiNetworkSpeed));
+            }
+        }
         public WifiParameters SelectedWifiNetwork { get; set; }
 
         public MainPageViewModel(INavigation navigation)
@@ -100,6 +152,9 @@ namespace WlanAnalyzer.ViewModels
             _navigation = navigation;
             DetectedWifiNetworks = new ObservableCollection<WifiParameters>();
             ListOfWifiNetworks = new ObservableCollection<WifiParameters>();
+            CurrentWifiNetworkName = "-";
+            CurrentWifiNetworkSpeed = 0;
+            CurrentWifiNetworkIPText = "-";
 
             context = Android.App.Application.Context;
             StartScanningCommand = new Command(GetWifiNetworks);
@@ -137,11 +192,16 @@ namespace WlanAnalyzer.ViewModels
                 NumberOfDetectedAccessPoints = 0;
                 wifiManager = (WifiManager)context.GetSystemService(Context.WifiService);
 
+                CurrentWifiNetworkName = wifiManager.ConnectionInfo.SSID;
+                CurrentWifiNetworkIP = wifiManager.ConnectionInfo.IpAddress;
+                CurrentWifiNetworkIPText = Android.Text.Format.Formatter.FormatIpAddress(CurrentWifiNetworkIP);
+                CurrentWifiNetworkSpeed = wifiManager.ConnectionInfo.LinkSpeed;
+
                 wifiReceiver = new WifiReceiver();
                 context.RegisterReceiver(wifiReceiver, new IntentFilter(WifiManager.ScanResultsAvailableAction));
                 IsBusy = true;
                 wifiManager.StartScan();
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
                 CollectionofNetworksArrived.WaitOne();
                 context.UnregisterReceiver(wifiReceiver);
                 if (ListOfWifiNetworks.Count > 0)
@@ -164,6 +224,10 @@ namespace WlanAnalyzer.ViewModels
                 DetectedWifiNetworks.Clear();
                 ListOfWifiNetworks.Clear();
                 NumberOfDetectedAccessPoints = 0;
+                CurrentWifiNetworkName = "-";
+                CurrentWifiNetworkSpeed = 0;
+                CurrentWifiNetworkIP = 0;
+                CurrentWifiNetworkIPText = "-";
                 Toast.MakeText(Android.App.Application.Context, "List of wifi networks has been cleared successfully.", ToastLength.Short).Show();
             }
         }

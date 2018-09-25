@@ -201,6 +201,7 @@ namespace WlanAnalyzer.ViewModels
             else
             {
                 Toast.MakeText(Android.App.Application.Context, "File with such name does not exist!", ToastLength.Short).Show();
+                NumberOfWifiNetworksToAnalyze = 0;
             }
             IsBusy = false;
         }
@@ -224,6 +225,7 @@ namespace WlanAnalyzer.ViewModels
             else
             {
                 Toast.MakeText(Android.App.Application.Context, "You have to scan wifi networks first!.", ToastLength.Short).Show();
+                NumberOfWifiNetworksToAnalyze = 0;
             }
             IsBusy = false;
         }
@@ -248,6 +250,7 @@ namespace WlanAnalyzer.ViewModels
             else
             {
                 Toast.MakeText(Android.App.Application.Context, "Your database is empty!", ToastLength.Short).Show();
+                NumberOfWifiNetworksToAnalyze = 0;
             }
             IsBusy = false;
         }
@@ -283,8 +286,10 @@ namespace WlanAnalyzer.ViewModels
 
         private async Task OpenChannelTraffic()
         {
-            await _navigation.PushAsync(new ChannelTrafficPage());
+            if(CollectionOfWifiNetworksToAnalyze.Count != 0)
+                await _navigation.PushAsync(new ChannelTrafficPage());
+            else
+                Toast.MakeText(Android.App.Application.Context, "You have to load your data first!", ToastLength.Short).Show();
         }
-
     }
 }
