@@ -52,7 +52,7 @@
                 Grid.ColumnSpan="2"
                 Command="{Binding StartScanningCommand}"/>
             <Button 
-                Text="Stop Scanning"
+                Text="Stop"
                 Grid.Row="0"
                 Grid.Column="4"
             
@@ -146,6 +146,8 @@
                                     <StackLayout Orientation="Horizontal">
                                         <Label Text="Latitude:"/>
                                         <Label Text="{Binding Latitude}"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
                                         <Label Text="Longitude:"/>
                                         <Label Text="{Binding Longitude}"/>
                                     </StackLayout>
