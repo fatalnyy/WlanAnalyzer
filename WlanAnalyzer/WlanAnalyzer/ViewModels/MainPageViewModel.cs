@@ -29,6 +29,8 @@ namespace WlanAnalyzer.ViewModels
         private WifiReceiver wifiReceiver;
         private int _numberOfDetectedAccessPoints;
         private string _fileName;
+        private int _refreshTime;
+        private Timer timer;
         private string _currentWifiNetworkName;
         private int _currentWifiNetworkIP;
         private string _currentWifiNetworkIPText;
@@ -37,6 +39,7 @@ namespace WlanAnalyzer.ViewModels
         //public ObservableCollection<WifiParameters> ListOfWifiNetworks1 { get; set; }
         private ObservableCollection<WifiParameters> _detectedWifiNetworks;
         public static AutoResetEvent CollectionofNetworksArrived = new AutoResetEvent(false);
+        public static AutoResetEvent GPSArrived = new AutoResetEvent(false);
        // private WifiParametersJSON _wifiParametersJSON =  new WifiParametersJSON() { CollectionOfSavedWifiNetworks = DetectedWifiNetworks };
         public ObservableCollection<WifiParameters> DetectedWifiNetworks
         {
@@ -51,6 +54,7 @@ namespace WlanAnalyzer.ViewModels
             }
         }
         public Command StartScanningCommand { get; set; }
+        public Command StopScanningCommand { get; set; }
         public Command ClearCommand { get; set; }
         public Command WriteToJSONFileCommand { get; set; }
         public Command DatabaseToolbarCommand { get; set; }
@@ -62,6 +66,19 @@ namespace WlanAnalyzer.ViewModels
 
         public static double Latitude { get; set; }
         public static double Longitude { get; set; }
+        public bool IsScanning { get; set; }
+        public int RefreshTime
+        {
+            get
+            {
+                return _refreshTime;
+            }
+            set
+            {
+                _refreshTime = value;
+                RaisePropertyChanged(nameof(RefreshTime));
+            }
+        }
 
         public bool IsBusy
         {
@@ -101,6 +118,7 @@ namespace WlanAnalyzer.ViewModels
             set
             {
                 _fileName = value;
+                RaisePropertyChanged(nameof(FileName));
             }
         }
         public string CurrentWifiNetworkName
@@ -164,6 +182,7 @@ namespace WlanAnalyzer.ViewModels
 
             context = Android.App.Application.Context;
             StartScanningCommand = new Command(GetWifiNetworks);
+            StopScanningCommand = new Command(StopScanning);
             ClearCommand = new Command(ClearWifiNetworksCollection);
             WriteToJSONFileCommand = new Command(Serialization);
             DatabaseToolbarCommand = new Command(async () => await OpenDatabase());
@@ -187,25 +206,35 @@ namespace WlanAnalyzer.ViewModels
 
 
         }
-        //public string Name { get; set; }
-        //public int Age { get; set; }
 
-        public void GetWifiNetworks()
+
+        public async void GetWifiNetworks()
         {
-            var startTimeSpan = TimeSpan.Zero;
-            var periodTimeSpan = TimeSpan.FromSeconds(10);
+            IsScanning = true;
 
-            var timer = new Timer((e) =>
+            var locator = CrossGeolocator.Current;
+            await locator.StartListeningAsync(TimeSpan.FromSeconds(1), 0.01, false, null);
+            //locator.DesiredAccuracy = 10;
+
+            var startTimeSpan = TimeSpan.Zero;
+            var periodTimeSpan = TimeSpan.FromSeconds(RefreshTime);
+
+            timer = new Timer(async (e) =>
             {
                 //DetectedWifiNetworks.Clear();
                 ListOfWifiNetworks.Clear();
                 //NumberOfDetectedAccessPoints = 0;
                 wifiManager = (WifiManager)context.GetSystemService(Context.WifiService);
 
+
+                var position = await locator.GetPositionAsync(TimeSpan.FromSeconds(20), null, true);
+
                 CurrentWifiNetworkName = wifiManager.ConnectionInfo.SSID;
                 CurrentWifiNetworkIP = wifiManager.ConnectionInfo.IpAddress;
                 CurrentWifiNetworkIPText = Android.Text.Format.Formatter.FormatIpAddress(CurrentWifiNetworkIP);
                 CurrentWifiNetworkSpeed = wifiManager.ConnectionInfo.LinkSpeed;
+                Latitude = position.Latitude;
+                Longitude = position.Longitude;
 
                 wifiReceiver = new WifiReceiver();
                 context.RegisterReceiver(wifiReceiver, new IntentFilter(WifiManager.ScanResultsAvailableAction));
@@ -217,6 +246,15 @@ namespace WlanAnalyzer.ViewModels
                 context.UnregisterReceiver(wifiReceiver);
                 if (ListOfWifiNetworks.Count > 0)
                 {
+                    //GPSArrived.WaitOne();
+                    //while (true)
+                    //{
+                    //    if(Latitude != 0 && Longitude !=0)
+                    //    {
+                    //        break;
+                    //    }
+                    //}
+
                     //DetectedWifiNetworks = ListOfWifiNetworks;
                     var newWifiNetworks = ListOfWifiNetworks.Where(x => !DetectedWifiNetworks.Any(y => x.SSID == y.SSID || x.BSSID == y.BSSID));
                     if (newWifiNetworks != null)
@@ -250,10 +288,12 @@ namespace WlanAnalyzer.ViewModels
                     //    if (!ListOfWifiNetworks.Contains(wifiNetwork))
                     //        DetectedWifiNetworks.Remove(wifiNetwork);
                     //}
-                    CollectionofNetworksArrived.Reset();
+                    //CollectionofNetworksArrived.Reset();
                 }
+                CollectionofNetworksArrived.Reset();
                 IsBusy = false;
                 NumberOfDetectedAccessPoints = DetectedWifiNetworks.Count;
+                await locator.StopListeningAsync();
             }, null, startTimeSpan, periodTimeSpan);
             //Task.Run(() =>
             //{
@@ -405,14 +445,21 @@ namespace WlanAnalyzer.ViewModels
                 }
             }
         }
-        private async Task GetCurrentLocation()
+        private async void GetCurrentLocation()
         {
             var locator = CrossGeolocator.Current;
-            locator.DesiredAccuracy = 10;
+            await locator.StartListeningAsync(TimeSpan.FromSeconds(1), 1, false, null);
             var position = await locator.GetPositionAsync(TimeSpan.FromSeconds(20), null, true);
+            //locator.DesiredAccuracy = 50;
+            //var position = await locator.GetPositionAsync(TimeSpan.FromSeconds(20), null, true);
+            //var position = await locator.GetPositionAsync(10000);
 
             Latitude = position.Latitude;
             Longitude = position.Longitude;
+        }
+        private void StopScanning()
+        {
+            timer.Change(Timeout.Infinite, Timeout.Infinite);
         }
         class WifiReceiver : BroadcastReceiver
         {

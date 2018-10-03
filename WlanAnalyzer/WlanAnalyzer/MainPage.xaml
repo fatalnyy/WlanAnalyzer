@@ -14,6 +14,7 @@
         <ToolbarItem x:Name="Map" Text="Database"  Command="{Binding WifiGPSToolbarCommand}"/>
         <ToolbarItem Text="Save list to database" Order="Secondary" Command="{Binding SaveListToDatabaseCommand}"/>
         <ToolbarItem Text="Save file to database" Order="Secondary" Command="{Binding SaveFileToDatabaseCommand}"/>
+        <ToolbarItem Text="Clear list" Order="Secondary" Command="{Binding ClearCommand}"/>
     </ContentPage.ToolbarItems>
     <StackLayout BackgroundColor="#eaeef2">
         <Grid>
@@ -39,23 +40,35 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
+            <Entry
+                Grid.Row="0"
+                Grid.ColumnSpan="2"
+                Text="{Binding RefreshTime}"
+                Placeholder="Refresh time"/>
             <Button 
                 Text="Start Scanning"
                 Grid.Row="0" 
-                Grid.ColumnSpan="3"
+                Grid.Column="2"
+                Grid.ColumnSpan="2"
                 Command="{Binding StartScanningCommand}"/>
             <Button 
+                Text="Stop Scanning"
+                Grid.Row="0"
+                Grid.Column="4"
+            
+                Command="{Binding StopScanningCommand}"/>
+            <!--<Button 
                 Text="Clear list"
                 Grid.Row="0"
                 Grid.Column="3"
                 Grid.ColumnSpan="2"
-                Command="{Binding ClearCommand}"/>
+                Command="{Binding ClearCommand}"/>-->
 
             <Entry
                 Grid.Row="1"
                 Grid.ColumnSpan="2"
                 Text="{Binding FileName}"
-                Placeholder="Enter file name"/>
+                Placeholder="File name"/>
             <Button
                 Grid.Row="1"
                 Grid.Column="2"
@@ -85,7 +98,7 @@
                 Grid.ColumnSpan="4"
                 Text="{Binding NumberOfDetectedAccessPointsText}"/>-->
             <ActivityIndicator
-                Grid.Row="4"
+                Grid.Row="3"
                 Grid.Column="2"
                 IsRunning="{Binding IsBusy}"/>
 
@@ -129,6 +142,12 @@
                                     <StackLayout Orientation="Horizontal">
                                         <Label Text="Channel:"/>
                                         <Label Text="{Binding Channel}"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Latitude:"/>
+                                        <Label Text="{Binding Latitude}"/>
+                                        <Label Text="Longitude:"/>
+                                        <Label Text="{Binding Longitude}"/>
                                     </StackLayout>
                                 </StackLayout>
                                 <Button Grid.Column="4" Grid.ColumnSpan="1"  Text="Add" BindingContext="{Binding Source={x:Reference ScanResults}, Path=BindingContext}" Command="{Binding AddSelectedWifiNetworkToDataBaseCommand}"/>
