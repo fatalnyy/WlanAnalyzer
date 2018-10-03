@@ -1,5 +1,8 @@
 FormsViewGroup
 Newtonsoft.Json
+Plugin.CurrentActivity
+Plugin.Geolocator
+Plugin.Permissions
 SQLite-net
 SQLitePCLRaw.batteries_green
 SQLitePCLRaw.batteries_v2

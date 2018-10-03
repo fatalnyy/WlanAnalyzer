@@ -15,6 +15,8 @@ using System.Runtime.Serialization.Json;
 using System.IO;
 using Newtonsoft.Json;
 using Android.Widget;
+using Plugin.Geolocator;
+using System.Linq;
 
 namespace WlanAnalyzer.ViewModels
 {
@@ -53,9 +55,13 @@ namespace WlanAnalyzer.ViewModels
         public Command WriteToJSONFileCommand { get; set; }
         public Command DatabaseToolbarCommand { get; set; }
         public Command AnalyzeToolbarCommand { get; set; }
+        public Command WifiGPSToolbarCommand { get; set; }
         public Command SaveListToDatabaseCommand { get; set; }
         public Command AddSelectedWifiNetworkToDataBaseCommand { get; set; }
         public Command SaveFileToDatabaseCommand { get; set; }
+
+        public static double Latitude { get; set; }
+        public static double Longitude { get; set; }
 
         public bool IsBusy
         {
@@ -162,6 +168,7 @@ namespace WlanAnalyzer.ViewModels
             WriteToJSONFileCommand = new Command(Serialization);
             DatabaseToolbarCommand = new Command(async () => await OpenDatabase());
             AnalyzeToolbarCommand = new Command(async () => await OpenAnalyze());
+            WifiGPSToolbarCommand = new Command(async () => await OpenWifiGPS());
             SaveListToDatabaseCommand = new Command(async () => await SaveListToDatabase());
             AddSelectedWifiNetworkToDataBaseCommand = new Command(async () => await AddSelectedWifiNetworkToDataBase());
             SaveFileToDatabaseCommand = new Command(async () => await SaveFileToDatabase());
@@ -185,11 +192,14 @@ namespace WlanAnalyzer.ViewModels
 
         public void GetWifiNetworks()
         {
-            Task.Run(() =>
+            var startTimeSpan = TimeSpan.Zero;
+            var periodTimeSpan = TimeSpan.FromSeconds(10);
+
+            var timer = new Timer((e) =>
             {
-                DetectedWifiNetworks.Clear();
+                //DetectedWifiNetworks.Clear();
                 ListOfWifiNetworks.Clear();
-                NumberOfDetectedAccessPoints = 0;
+                //NumberOfDetectedAccessPoints = 0;
                 wifiManager = (WifiManager)context.GetSystemService(Context.WifiService);
 
                 CurrentWifiNetworkName = wifiManager.ConnectionInfo.SSID;
@@ -200,22 +210,83 @@ namespace WlanAnalyzer.ViewModels
                 wifiReceiver = new WifiReceiver();
                 context.RegisterReceiver(wifiReceiver, new IntentFilter(WifiManager.ScanResultsAvailableAction));
                 IsBusy = true;
+
                 wifiManager.StartScan();
-                Thread.Sleep(1000);
+                //Thread.Sleep(1000);
                 CollectionofNetworksArrived.WaitOne();
                 context.UnregisterReceiver(wifiReceiver);
                 if (ListOfWifiNetworks.Count > 0)
                 {
                     //DetectedWifiNetworks = ListOfWifiNetworks;
-                    foreach(var wifiNetwork in ListOfWifiNetworks)
+                    var newWifiNetworks = ListOfWifiNetworks.Where(x => !DetectedWifiNetworks.Any(y => x.SSID == y.SSID || x.BSSID == y.BSSID));
+                    if (newWifiNetworks != null)
                     {
-                        DetectedWifiNetworks.Add(wifiNetwork);
+                        foreach (var wifiNewtork in newWifiNetworks.ToList())
+                        {
+                            DetectedWifiNetworks.Add(wifiNewtork);
+                        }
                     }
+
+                    foreach (var wifiNetwork in ListOfWifiNetworks)
+                    {
+                        var found = DetectedWifiNetworks.FirstOrDefault(x => x.SSID == wifiNetwork.SSID || x.BSSID == wifiNetwork.BSSID);
+                        if (found != null)
+                        {
+                            int i = DetectedWifiNetworks.IndexOf(found);
+                            DetectedWifiNetworks[i] = wifiNetwork;
+                        }
+                    }
+
+                    var wifiNetworksToDelete = DetectedWifiNetworks.Where(x => !ListOfWifiNetworks.Any(y => x.SSID == y.SSID || x.BSSID == y.BSSID));
+                    if (wifiNetworksToDelete != null)
+                    {
+                        foreach (var wifiNetwork in wifiNetworksToDelete.ToList())
+                        {
+                            DetectedWifiNetworks.Remove(wifiNetwork);
+                        }
+                    }
+                    //foreach (var wifiNetwork in DetectedWifiNetworks)
+                    //{
+                    //    if (!ListOfWifiNetworks.Contains(wifiNetwork))
+                    //        DetectedWifiNetworks.Remove(wifiNetwork);
+                    //}
                     CollectionofNetworksArrived.Reset();
                 }
                 IsBusy = false;
                 NumberOfDetectedAccessPoints = DetectedWifiNetworks.Count;
-            });
+            }, null, startTimeSpan, periodTimeSpan);
+            //Task.Run(() =>
+            //{
+            //    DetectedWifiNetworks.Clear();
+            //    ListOfWifiNetworks.Clear();
+            //    NumberOfDetectedAccessPoints = 0;
+            //    wifiManager = (WifiManager)context.GetSystemService(Context.WifiService);
+
+            //    CurrentWifiNetworkName = wifiManager.ConnectionInfo.SSID;
+            //    CurrentWifiNetworkIP = wifiManager.ConnectionInfo.IpAddress;
+            //    CurrentWifiNetworkIPText = Android.Text.Format.Formatter.FormatIpAddress(CurrentWifiNetworkIP);
+            //    CurrentWifiNetworkSpeed = wifiManager.ConnectionInfo.LinkSpeed;
+
+            //    wifiReceiver = new WifiReceiver();
+            //    context.RegisterReceiver(wifiReceiver, new IntentFilter(WifiManager.ScanResultsAvailableAction));
+            //    IsBusy = true;
+                
+            //    wifiManager.StartScan();
+            //    Thread.Sleep(1000);
+            //    CollectionofNetworksArrived.WaitOne();
+            //    context.UnregisterReceiver(wifiReceiver);
+            //    if (ListOfWifiNetworks.Count > 0)
+            //    {
+            //        //DetectedWifiNetworks = ListOfWifiNetworks;
+            //        foreach(var wifiNetwork in ListOfWifiNetworks)
+            //        {
+            //            DetectedWifiNetworks.Add(wifiNetwork);
+            //        }
+            //        CollectionofNetworksArrived.Reset();
+            //    }
+            //    IsBusy = false;
+            //    NumberOfDetectedAccessPoints = DetectedWifiNetworks.Count;
+            //});
         }
         private void ClearWifiNetworksCollection()
         {
@@ -304,6 +375,10 @@ namespace WlanAnalyzer.ViewModels
         {
              await _navigation.PushAsync(new StatisticalAnalyzePage());
         }
+        private async Task OpenWifiGPS()
+        {
+            await _navigation.PushAsync(new WifiGPSPage());
+        }
         private async Task SaveListToDatabase()
         {
             if (NumberOfDetectedAccessPoints == 0) {
@@ -330,6 +405,15 @@ namespace WlanAnalyzer.ViewModels
                 }
             }
         }
+        private async Task GetCurrentLocation()
+        {
+            var locator = CrossGeolocator.Current;
+            locator.DesiredAccuracy = 10;
+            var position = await locator.GetPositionAsync(TimeSpan.FromSeconds(20), null, true);
+
+            Latitude = position.Latitude;
+            Longitude = position.Longitude;
+        }
         class WifiReceiver : BroadcastReceiver
         {
             public override void OnReceive(Context context, Intent intent)
@@ -337,7 +421,7 @@ namespace WlanAnalyzer.ViewModels
                 IList<ScanResult> scanWifiNetworks = wifiManager.ScanResults;
                 foreach (ScanResult wifiNetwork in scanWifiNetworks)
                 {
-                    ListOfWifiNetworks.Add(new WifiParameters() { SSID = wifiNetwork.Ssid, BSSID = wifiNetwork.Bssid, Frequency = wifiNetwork.Frequency, Level = wifiNetwork.Level, Channel = WifiParameters.GetChannel(wifiNetwork.Frequency), TimeStamp = wifiNetwork.Timestamp });
+                    ListOfWifiNetworks.Add(new WifiParameters() { SSID = wifiNetwork.Ssid, BSSID = wifiNetwork.Bssid, Frequency = wifiNetwork.Frequency, Level = wifiNetwork.Level, Channel = WifiParameters.GetChannel(wifiNetwork.Frequency), Latitude = Latitude, Longitude = Longitude });
                    // ListOfWifiNetworks.Add(new WifiParameters(wifiNetwork.Ssid, wifiNetwork.Bssid, wifiNetwork.Frequency, wifiNetwork.Level, WifiParameters.GetChannel(wifiNetwork.Frequency), wifiNetwork.Timestamp));
                 }
                 CollectionofNetworksArrived.Set(); 

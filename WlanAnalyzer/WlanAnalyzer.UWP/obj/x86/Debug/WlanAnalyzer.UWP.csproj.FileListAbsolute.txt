@@ -611,3 +611,5 @@ C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.UWP\obj\x86\Debug\qualifiers.tx
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.UWP\obj\x86\Debug\MultipleQualifiersPerDimensionFound.txt
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.UWP\obj\x86\Debug\Xamarin.Forms.Platform.UAP.pri.xml
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.UWP\obj\x86\Debug\ProjectArchitectures.txt
+C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.UWP\bin\x86\Debug\Plugin.Geolocator.dll
+C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.UWP\obj\x86\Debug\Plugin.Geolocator.pri.xml

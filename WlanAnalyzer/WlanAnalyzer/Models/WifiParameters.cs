@@ -14,7 +14,9 @@ namespace WlanAnalyzer.Models
         public double Frequency { get; set; }
         public int Level { get; set; }
         public int Channel { get; set; }
-        public long TimeStamp { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+        //public long TimeStamp { get; set; }
 
         //public WifiParameters(string ssid, string bssid, int frequency, int level, int channel, long timeStamp)
         //{

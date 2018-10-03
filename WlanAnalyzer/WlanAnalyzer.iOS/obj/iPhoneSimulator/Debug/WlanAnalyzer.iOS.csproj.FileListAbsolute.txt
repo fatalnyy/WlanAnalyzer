@@ -126,3 +126,5 @@ C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.iOS\obj\iPhoneSimulator\Debug\X
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.iOS\obj\iPhoneSimulator\Debug\WlanAnalyzer.iOS.csproj.CopyComplete
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.iOS\obj\iPhoneSimulator\Debug\WlanAnalyzer.iOS.exe
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.iOS\obj\iPhoneSimulator\Debug\WlanAnalyzer.iOS.pdb
+C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.iOS\bin\iPhoneSimulator\Debug\Plugin.Permissions.dll
+C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.iOS\bin\iPhoneSimulator\Debug\Plugin.Geolocator.dll

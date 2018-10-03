@@ -46,6 +46,7 @@ C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer\obj\Debug\netstandard2.0\WlanAn
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer\obj\Debug\netstandard2.0\WlanAnalyzer.dll
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer\obj\Debug\netstandard2.0\WlanAnalyzer.pdb
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer\obj\Debug\netstandard2.0\WifiParametersDataBaseListPage.xaml.g.cs
-C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer\obj\Debug\netstandard2.0\XamlC.stamp
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer\obj\Debug\netstandard2.0\StatisticalAnalyzePage.xaml.g.cs
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer\obj\Debug\netstandard2.0\ChannelTrafficPage.xaml.g.cs
+C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer\obj\Debug\netstandard2.0\WifiGPSPage.xaml.g.cs
+C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer\obj\Debug\netstandard2.0\XamlC.stamp
