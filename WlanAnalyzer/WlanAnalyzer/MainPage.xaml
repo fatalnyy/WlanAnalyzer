@@ -14,6 +14,7 @@
         <ToolbarItem x:Name="Map" Text="Database"  Command="{Binding WifiGPSToolbarCommand}"/>
         <ToolbarItem Text="Save list to database" Order="Secondary" Command="{Binding SaveListToDatabaseCommand}"/>
         <ToolbarItem Text="Save file to database" Order="Secondary" Command="{Binding SaveFileToDatabaseCommand}"/>
+        <ToolbarItem Text="Save list to database automatically" Order="Secondary" Command="{Binding SaveListToDatabaseAutoCommand}"/>
         <ToolbarItem Text="Clear list" Order="Secondary" Command="{Binding ClearCommand}"/>
     </ContentPage.ToolbarItems>
     <StackLayout BackgroundColor="#eaeef2">
@@ -40,11 +41,17 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Entry
+            <!--<Entry
                 Grid.Row="0"
                 Grid.ColumnSpan="2"
                 Text="{Binding RefreshTime}"
-                Placeholder="Refresh time"/>
+                Placeholder="Refresh time"/>-->
+            <Picker
+                Grid.Row="0"
+                Grid.ColumnSpan="2"
+                Title="Refresh time"
+                ItemsSource="{Binding RefreshTimeList}"
+                SelectedItem="{Binding RefreshTime}"/>
             <Button 
                 Text="Start Scanning"
                 Grid.Row="0" 

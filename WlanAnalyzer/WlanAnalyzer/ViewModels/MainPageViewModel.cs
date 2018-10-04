@@ -29,7 +29,7 @@ namespace WlanAnalyzer.ViewModels
         private WifiReceiver wifiReceiver;
         private int _numberOfDetectedAccessPoints;
         private string _fileName;
-        private int _refreshTime;
+        private double _refreshTime;
         private Timer timer;
         private string _currentWifiNetworkName;
         private int _currentWifiNetworkIP;
@@ -37,9 +37,10 @@ namespace WlanAnalyzer.ViewModels
         private int _currentWifiNetworkSpeed;
         public static ObservableCollection<WifiParameters> ListOfWifiNetworks;
         //public ObservableCollection<WifiParameters> ListOfWifiNetworks1 { get; set; }
+        private List<double> _refreshTimeList;
         private ObservableCollection<WifiParameters> _detectedWifiNetworks;
         public static AutoResetEvent CollectionofNetworksArrived = new AutoResetEvent(false);
-        public static AutoResetEvent GPSArrived = new AutoResetEvent(false);
+        public static ManualResetEvent SaveToDatabaseAuto = new ManualResetEvent(false);
        // private WifiParametersJSON _wifiParametersJSON =  new WifiParametersJSON() { CollectionOfSavedWifiNetworks = DetectedWifiNetworks };
         public ObservableCollection<WifiParameters> DetectedWifiNetworks
         {
@@ -61,13 +62,26 @@ namespace WlanAnalyzer.ViewModels
         public Command AnalyzeToolbarCommand { get; set; }
         public Command WifiGPSToolbarCommand { get; set; }
         public Command SaveListToDatabaseCommand { get; set; }
+        public Command SaveListToDatabaseAutoCommand { get; set; }
         public Command AddSelectedWifiNetworkToDataBaseCommand { get; set; }
         public Command SaveFileToDatabaseCommand { get; set; }
 
         public static double Latitude { get; set; }
         public static double Longitude { get; set; }
 
-        public int RefreshTime
+        public List<double> RefreshTimeList
+        {
+            get
+            {
+                return _refreshTimeList;
+            }
+            set
+            {
+                _refreshTimeList = value;
+                RaisePropertyChanged(nameof(RefreshTimeList));
+            }
+        }
+        public double RefreshTime
         {
             get
             {
@@ -75,8 +89,13 @@ namespace WlanAnalyzer.ViewModels
             }
             set
             {
-                _refreshTime = value;
-                RaisePropertyChanged(nameof(RefreshTime));
+                if(!IsScanning)
+                {
+                    _refreshTime = value;
+                    RaisePropertyChanged(nameof(RefreshTime));
+                }
+                else
+                    Toast.MakeText(Android.App.Application.Context, "You have to stop scanning first!", ToastLength.Short).Show();
             }
         }
 
@@ -174,12 +193,15 @@ namespace WlanAnalyzer.ViewModels
         public MainPageViewModel(INavigation navigation)
         {
             _navigation = navigation;
+            RefreshTimeList = new List<double>();
             DetectedWifiNetworks = new ObservableCollection<WifiParameters>();
             ListOfWifiNetworks = new ObservableCollection<WifiParameters>();
             CurrentWifiNetworkName = "-";
             CurrentWifiNetworkSpeed = 0;
             CurrentWifiNetworkIPText = "-";
-            RefreshTime = 15;
+            //RefreshTime = 15;
+            FillRefreshTimeList();
+            //timer = new Timer();
 
             context = Android.App.Application.Context;
             StartScanningCommand = new Command(GetWifiNetworks);
@@ -190,37 +212,26 @@ namespace WlanAnalyzer.ViewModels
             AnalyzeToolbarCommand = new Command(async () => await OpenAnalyze());
             WifiGPSToolbarCommand = new Command(async () => await OpenWifiGPS());
             SaveListToDatabaseCommand = new Command(async () => await SaveListToDatabase());
+            SaveListToDatabaseAutoCommand = new Command(SaveListToDatabaseAuto);
             AddSelectedWifiNetworkToDataBaseCommand = new Command(async () => await AddSelectedWifiNetworkToDataBase());
             SaveFileToDatabaseCommand = new Command(async () => await SaveFileToDatabase());
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    WifiNetworks.Add(new Wifi() { SSID = "fsagsa", BSSID = "gasgdsagsa", Frequency = 231, Level = 12 });
-            //}
-
-
-            //GetWifiNetworks();
-            //PersonList = new ObservableCollection<Person>();
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    PersonList.Add(new Person() { Name = "adam", Age = 12 });
-            //}
-
-
         }
 
 
-        public async void GetWifiNetworks()
+        public void GetWifiNetworks()
         {
             if (!IsScanning)
             {
-                if (RefreshTime < 8 || RefreshTime == null)
-                    Toast.MakeText(Android.App.Application.Context, "Refresh time should be set at 8 seconds at least!", ToastLength.Short).Show();
+                if(RefreshTime < 10)
+                {
+                    Toast.MakeText(Android.App.Application.Context, "You have to set refresh time first!", ToastLength.Short).Show();
+                }
                 else
                 {
                     IsScanning = true;
+                    Toast.MakeText(Android.App.Application.Context, "Scanning has been started!", ToastLength.Short).Show();
 
-                    var locator = CrossGeolocator.Current;
-                    await locator.StartListeningAsync(TimeSpan.FromSeconds(1), 0.01, false, null);
+                    var locator = CrossGeolocator.Current;           
                     locator.DesiredAccuracy = 10;
 
                     var startTimeSpan = TimeSpan.Zero;
@@ -232,14 +243,22 @@ namespace WlanAnalyzer.ViewModels
                         ListOfWifiNetworks.Clear();
                         //NumberOfDetectedAccessPoints = 0;
                         wifiManager = (WifiManager)context.GetSystemService(Context.WifiService);
-
+                        await locator.StartListeningAsync(TimeSpan.FromSeconds(1), 0.01, false, null);
                         //locator.DesiredAccuracy = 10;
                         var position = await locator.GetPositionAsync(TimeSpan.FromSeconds(20), null, true);
 
-                        CurrentWifiNetworkName = wifiManager.ConnectionInfo.SSID;
-                        CurrentWifiNetworkIP = wifiManager.ConnectionInfo.IpAddress;
-                        CurrentWifiNetworkIPText = Android.Text.Format.Formatter.FormatIpAddress(CurrentWifiNetworkIP);
-                        CurrentWifiNetworkSpeed = wifiManager.ConnectionInfo.LinkSpeed;
+                        if(wifiManager.ConnectionInfo.NetworkId != -1 && wifiManager.ConnectionInfo.SSID != "UNKNOWNSSID") {
+                            CurrentWifiNetworkName = wifiManager.ConnectionInfo.SSID;
+                            CurrentWifiNetworkIP = wifiManager.ConnectionInfo.IpAddress;
+                            CurrentWifiNetworkIPText = Android.Text.Format.Formatter.FormatIpAddress(CurrentWifiNetworkIP);
+                            CurrentWifiNetworkSpeed = wifiManager.ConnectionInfo.LinkSpeed;
+                        }
+                        else {
+                            CurrentWifiNetworkName = "-";
+                            CurrentWifiNetworkIPText = "-";
+                            CurrentWifiNetworkSpeed = 0;
+                        }
+
                         Latitude = position.Latitude;
                         Longitude = position.Longitude;
 
@@ -253,16 +272,6 @@ namespace WlanAnalyzer.ViewModels
                         context.UnregisterReceiver(wifiReceiver);
                         if (ListOfWifiNetworks.Count > 0)
                         {
-                            //GPSArrived.WaitOne();
-                            //while (true)
-                            //{
-                            //    if(Latitude != 0 && Longitude !=0)
-                            //    {
-                            //        break;
-                            //    }
-                            //}
-
-                            //DetectedWifiNetworks = ListOfWifiNetworks;
                             var newWifiNetworks = ListOfWifiNetworks.Where(x => !DetectedWifiNetworks.Any(y => x.SSID == y.SSID || x.BSSID == y.BSSID));
                             if (newWifiNetworks != null)
                             {
@@ -290,55 +299,21 @@ namespace WlanAnalyzer.ViewModels
                                     DetectedWifiNetworks.Remove(wifiNetwork);
                                 }
                             }
-                            //foreach (var wifiNetwork in DetectedWifiNetworks)
-                            //{
-                            //    if (!ListOfWifiNetworks.Contains(wifiNetwork))
-                            //        DetectedWifiNetworks.Remove(wifiNetwork);
-                            //}
-                            //CollectionofNetworksArrived.Reset();
                         }
                         CollectionofNetworksArrived.Reset();
                         IsBusy = false;
+                        if (SaveToDatabaseAuto.WaitOne(0))
+                        {
+                            await SaveListToDatabase();
+                            SaveToDatabaseAuto.Reset();
+                        }
                         NumberOfDetectedAccessPoints = DetectedWifiNetworks.Count;
                         await locator.StopListeningAsync();
                     }, null, startTimeSpan, periodTimeSpan);
-                }
+                }              
             }
             else
                 Toast.MakeText(Android.App.Application.Context, "Scanning has already started!", ToastLength.Short).Show();
-            
-            //Task.Run(() =>
-            //{
-            //    DetectedWifiNetworks.Clear();
-            //    ListOfWifiNetworks.Clear();
-            //    NumberOfDetectedAccessPoints = 0;
-            //    wifiManager = (WifiManager)context.GetSystemService(Context.WifiService);
-
-            //    CurrentWifiNetworkName = wifiManager.ConnectionInfo.SSID;
-            //    CurrentWifiNetworkIP = wifiManager.ConnectionInfo.IpAddress;
-            //    CurrentWifiNetworkIPText = Android.Text.Format.Formatter.FormatIpAddress(CurrentWifiNetworkIP);
-            //    CurrentWifiNetworkSpeed = wifiManager.ConnectionInfo.LinkSpeed;
-
-            //    wifiReceiver = new WifiReceiver();
-            //    context.RegisterReceiver(wifiReceiver, new IntentFilter(WifiManager.ScanResultsAvailableAction));
-            //    IsBusy = true;
-                
-            //    wifiManager.StartScan();
-            //    Thread.Sleep(1000);
-            //    CollectionofNetworksArrived.WaitOne();
-            //    context.UnregisterReceiver(wifiReceiver);
-            //    if (ListOfWifiNetworks.Count > 0)
-            //    {
-            //        //DetectedWifiNetworks = ListOfWifiNetworks;
-            //        foreach(var wifiNetwork in ListOfWifiNetworks)
-            //        {
-            //            DetectedWifiNetworks.Add(wifiNetwork);
-            //        }
-            //        CollectionofNetworksArrived.Reset();
-            //    }
-            //    IsBusy = false;
-            //    NumberOfDetectedAccessPoints = DetectedWifiNetworks.Count;
-            //});
         }
         private void ClearWifiNetworksCollection()
         {
@@ -441,6 +416,10 @@ namespace WlanAnalyzer.ViewModels
             await App.Database.SaveCollectionOfWifiParameters(DetectedWifiNetworks);
             Toast.MakeText(Android.App.Application.Context, "List of wifi networks has been added to database successfully.", ToastLength.Short).Show();
         }
+        private void SaveListToDatabaseAuto()
+        {
+            SaveToDatabaseAuto.Set();
+        }
             
         private async Task AddSelectedWifiNetworkToDataBase()
         {
@@ -473,12 +452,21 @@ namespace WlanAnalyzer.ViewModels
         {
             if(timer != null) {
                 timer.Change(Timeout.Infinite, Timeout.Infinite);
+                timer.Dispose();
                 IsScanning = false;
+                Toast.MakeText(Android.App.Application.Context, "Scanning has been stopped!", ToastLength.Short).Show();
             }
 
             else
                 Toast.MakeText(Android.App.Application.Context, "You have to start scanning first!", ToastLength.Short).Show();
 
+        }
+        private void FillRefreshTimeList()
+        {
+            RefreshTimeList.AddRange(new List<double>
+            {
+                10,15,20,30,60
+            });
         }
         class WifiReceiver : BroadcastReceiver
         {
