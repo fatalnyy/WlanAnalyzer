@@ -40,7 +40,7 @@ namespace WlanAnalyzer.ViewModels
         private List<double> _refreshTimeList;
         private ObservableCollection<WifiParameters> _detectedWifiNetworks;
         public static AutoResetEvent CollectionofNetworksArrived = new AutoResetEvent(false);
-        public static ManualResetEvent SaveToDatabaseAuto = new ManualResetEvent(false);
+        public static AutoResetEvent SaveToDatabaseAuto = new AutoResetEvent(false);
        // private WifiParametersJSON _wifiParametersJSON =  new WifiParametersJSON() { CollectionOfSavedWifiNetworks = DetectedWifiNetworks };
         public ObservableCollection<WifiParameters> DetectedWifiNetworks
         {
@@ -190,6 +190,8 @@ namespace WlanAnalyzer.ViewModels
         }
         public WifiParameters SelectedWifiNetwork { get; set; }
         public bool IsScanning { get; set; }
+        public bool AutoSaveToDatabase { get; set; }
+
         public MainPageViewModel(INavigation navigation)
         {
             _navigation = navigation;
@@ -212,7 +214,7 @@ namespace WlanAnalyzer.ViewModels
             AnalyzeToolbarCommand = new Command(async () => await OpenAnalyze());
             WifiGPSToolbarCommand = new Command(async () => await OpenWifiGPS());
             SaveListToDatabaseCommand = new Command(async () => await SaveListToDatabase());
-            SaveListToDatabaseAutoCommand = new Command(SaveListToDatabaseAuto);
+            SaveListToDatabaseAutoCommand = new Command(async () => await SaveListToDatabaseAuto());
             AddSelectedWifiNetworkToDataBaseCommand = new Command(async () => await AddSelectedWifiNetworkToDataBase());
             SaveFileToDatabaseCommand = new Command(async () => await SaveFileToDatabase());
         }
@@ -302,19 +304,23 @@ namespace WlanAnalyzer.ViewModels
                         }
                         CollectionofNetworksArrived.Reset();
                         IsBusy = false;
-                        if (SaveToDatabaseAuto.WaitOne(0))
+                        if (AutoSaveToDatabase)
                         {
-                            await SaveListToDatabase();
-                            SaveToDatabaseAuto.Reset();
+                            Device.BeginInvokeOnMainThread(async () =>
+                            {
+                                await SaveListToDatabase();
+                            });
                         }
                         NumberOfDetectedAccessPoints = DetectedWifiNetworks.Count;
                         await locator.StopListeningAsync();
+          
                     }, null, startTimeSpan, periodTimeSpan);
                 }              
             }
             else
                 Toast.MakeText(Android.App.Application.Context, "Scanning has already started!", ToastLength.Short).Show();
         }
+        
         private void ClearWifiNetworksCollection()
         {
             if (NumberOfDetectedAccessPoints != 0)
@@ -416,9 +422,11 @@ namespace WlanAnalyzer.ViewModels
             await App.Database.SaveCollectionOfWifiParameters(DetectedWifiNetworks);
             Toast.MakeText(Android.App.Application.Context, "List of wifi networks has been added to database successfully.", ToastLength.Short).Show();
         }
-        private void SaveListToDatabaseAuto()
+        private async Task SaveListToDatabaseAuto()
         {
-            SaveToDatabaseAuto.Set();
+            AutoSaveToDatabase = true;
+            await Task.Delay(1);
+            Toast.MakeText(Android.App.Application.Context, "Autosave to database is turned on!", ToastLength.Short).Show();
         }
             
         private async Task AddSelectedWifiNetworkToDataBase()
@@ -454,6 +462,7 @@ namespace WlanAnalyzer.ViewModels
                 timer.Change(Timeout.Infinite, Timeout.Infinite);
                 timer.Dispose();
                 IsScanning = false;
+                AutoSaveToDatabase = true;
                 Toast.MakeText(Android.App.Application.Context, "Scanning has been stopped!", ToastLength.Short).Show();
             }
 
