@@ -13,7 +13,7 @@ namespace WlanAnalyzer
 
         public App()
         {
-
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzMxODVAMzEzNjJlMzMyZTMwQndzQlhRRmRMcE11ZTFzMlVuYlJhVW83YXJZd3NiaGswUDlMZk9UdFRqMD0=");
             InitializeComponent();
 
             MainPage = new NavigationPage(new MainPage());

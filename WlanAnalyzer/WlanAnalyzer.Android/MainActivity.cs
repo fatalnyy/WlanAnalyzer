@@ -8,6 +8,7 @@ using Android.Widget;
 using Android.OS;
 using Android;
 using System.Threading.Tasks;
+using Com.Syncfusion.Charts;
 
 namespace WlanAnalyzer.Droid
 {
@@ -19,6 +20,8 @@ namespace WlanAnalyzer.Droid
             await TryToGetPermissions();
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
+
+            Xamarin.Forms.Forms.ViewInitialized += Forms_ViewInitialized;
 
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
@@ -105,5 +108,19 @@ namespace WlanAnalyzer.Droid
         //    }
         //    //base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         //}
+        void Forms_ViewInitialized(object sender, Xamarin.Forms.ViewInitializedEventArgs e)
+        {
+            if (e.NativeView is SfChart)
+            {
+                SfChart chart = e.NativeView as SfChart;
+                chart.Touch += chart_Touch;
+            }
+        }
+
+        void chart_Touch(object sender, View.TouchEventArgs e)
+        {
+            (sender as SfChart).Parent.RequestDisallowInterceptTouchEvent(true);
+            e.Handled = false;
+        }
     }
 }

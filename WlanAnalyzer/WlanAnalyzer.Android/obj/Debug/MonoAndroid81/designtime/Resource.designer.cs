@@ -26,6 +26,48 @@ namespace WlanAnalyzer.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.inputlayout_togglecollapseicon = global::WlanAnalyzer.Droid.Resource.Drawable.inputlayout_togglecollapseicon;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.inputlayout_togglevisibleicon = global::WlanAnalyzer.Droid.Resource.Drawable.inputlayout_togglevisibleicon;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Animation.Fadein = global::WlanAnalyzer.Droid.Resource.Animation.Fadein;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Animation.Fadeout = global::WlanAnalyzer.Droid.Resource.Animation.Fadeout;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Animation.Scale_in = global::WlanAnalyzer.Droid.Resource.Animation.Scale_in;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Animation.Scale_out = global::WlanAnalyzer.Droid.Resource.Animation.Scale_out;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Id.annotationLayout = global::WlanAnalyzer.Droid.Resource.Id.annotationLayout;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Id.axisLayout = global::WlanAnalyzer.Droid.Resource.Id.axisLayout;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Id.bottom_labels = global::WlanAnalyzer.Droid.Resource.Id.bottom_labels;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Id.chartBehaviorLayout = global::WlanAnalyzer.Droid.Resource.Id.chartBehaviorLayout;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Id.chartLegendScrollView = global::WlanAnalyzer.Droid.Resource.Id.chartLegendScrollView;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Id.content = global::WlanAnalyzer.Droid.Resource.Id.content;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Id.dataMarkerLayout = global::WlanAnalyzer.Droid.Resource.Id.dataMarkerLayout;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Id.gridLineLayout = global::WlanAnalyzer.Droid.Resource.Id.gridLineLayout;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Id.gridLinesLayout = global::WlanAnalyzer.Droid.Resource.Id.gridLinesLayout;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Id.iconView = global::WlanAnalyzer.Droid.Resource.Id.iconView;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Id.label = global::WlanAnalyzer.Droid.Resource.Id.label;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Id.legendHeader = global::WlanAnalyzer.Droid.Resource.Id.legendHeader;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Id.legendItemsLayout = global::WlanAnalyzer.Droid.Resource.Id.legendItemsLayout;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Id.legendLayout = global::WlanAnalyzer.Droid.Resource.Id.legendLayout;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Id.legendScrollView = global::WlanAnalyzer.Droid.Resource.Id.legendScrollView;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Id.legendViewGroup = global::WlanAnalyzer.Droid.Resource.Id.legendViewGroup;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Id.rootLayout = global::WlanAnalyzer.Droid.Resource.Id.rootLayout;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Id.seriesLayout = global::WlanAnalyzer.Droid.Resource.Id.seriesLayout;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Id.stripLinesLayout = global::WlanAnalyzer.Droid.Resource.Id.stripLinesLayout;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Id.technicalIndicatorLayout = global::WlanAnalyzer.Droid.Resource.Id.technicalIndicatorLayout;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Id.thumbLayout = global::WlanAnalyzer.Droid.Resource.Id.thumbLayout;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Id.titleLayout = global::WlanAnalyzer.Droid.Resource.Id.titleLayout;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Id.top_labels = global::WlanAnalyzer.Droid.Resource.Id.top_labels;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Layout.chart_layout = global::WlanAnalyzer.Droid.Resource.Layout.chart_layout;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Layout.chart_legend = global::WlanAnalyzer.Droid.Resource.Layout.chart_legend;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Layout.chart_legend_item = global::WlanAnalyzer.Droid.Resource.Layout.chart_legend_item;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Layout.range_navigator_layout = global::WlanAnalyzer.Droid.Resource.Layout.range_navigator_layout;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.String.q = global::WlanAnalyzer.Droid.Resource.String.q;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.String.quarter = global::WlanAnalyzer.Droid.Resource.String.quarter;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.String.sfchart_close_label = global::WlanAnalyzer.Droid.Resource.String.sfchart_close_label;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.String.sfchart_high_label = global::WlanAnalyzer.Droid.Resource.String.sfchart_high_label;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.String.sfchart_low_label = global::WlanAnalyzer.Droid.Resource.String.sfchart_low_label;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.String.sfchart_open_label = global::WlanAnalyzer.Droid.Resource.String.sfchart_open_label;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.String.sfchart_others_label = global::WlanAnalyzer.Droid.Resource.String.sfchart_others_label;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.String.w = global::WlanAnalyzer.Droid.Resource.String.w;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.String.week = global::WlanAnalyzer.Droid.Resource.String.week;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::WlanAnalyzer.Droid.Resource.Attribute.actionBarSize;
 		}
 		
@@ -73,6 +115,18 @@ namespace WlanAnalyzer.Droid
 			
 			// aapt resource value: 0x7F01000E
 			public const int design_snackbar_out = 2130771982;
+			
+			// aapt resource value: 0x7F070002
+			public const int Fadein = 2131165186;
+			
+			// aapt resource value: 0x7F070003
+			public const int Fadeout = 2131165187;
+			
+			// aapt resource value: 0x7F070004
+			public const int Scale_in = 2131165188;
+			
+			// aapt resource value: 0x7F070005
+			public const int Scale_out = 2131165189;
 			
 			// aapt resource value: 0x7F01000F
 			public const int tooltip_enter = 2130771983;
@@ -2894,6 +2948,12 @@ namespace WlanAnalyzer.Droid
 			// aapt resource value: 0x7F090104
 			public const int ic_vol_type_tv_light = 2131296516;
 			
+			// aapt resource value: 0x7F060002
+			public const int inputlayout_togglecollapseicon = 2131099650;
+			
+			// aapt resource value: 0x7F060003
+			public const int inputlayout_togglevisibleicon = 2131099651;
+			
 			// aapt resource value: 0x7F090105
 			public const int mr_button_connected_dark = 2131296517;
 			
@@ -3078,17 +3138,26 @@ namespace WlanAnalyzer.Droid
 			// aapt resource value: 0x7F0C0016
 			public const int alertTitle = 2131492886;
 			
+			// aapt resource value: 0x7F010014
+			public const int annotationLayout = 2130771988;
+			
 			// aapt resource value: 0x7F0C0006
 			public const int async = 2131492870;
 			
 			// aapt resource value: 0x7F0C0018
 			public const int auto = 2131492888;
 			
+			// aapt resource value: 0x7F010011
+			public const int axisLayout = 2130771985;
+			
 			// aapt resource value: 0x7F0C0007
 			public const int blocking = 2131492871;
 			
 			// aapt resource value: 0x7F0C001A
 			public const int bottom = 2131492890;
+			
+			// aapt resource value: 0x7F010023
+			public const int bottom_labels = 2130772003;
 			
 			// aapt resource value: 0x7F0C001B
 			public const int buttonPanel = 2131492891;
@@ -3099,6 +3168,12 @@ namespace WlanAnalyzer.Droid
 			// aapt resource value: 0x7F0C001D
 			public const int center = 2131492893;
 			
+			// aapt resource value: 0x7F010013
+			public const int chartBehaviorLayout = 2130771987;
+			
+			// aapt resource value: 0x7F010017
+			public const int chartLegendScrollView = 2130771991;
+			
 			// aapt resource value: 0x7F0C001E
 			public const int checkbox = 2131492894;
 			
@@ -3107,6 +3182,9 @@ namespace WlanAnalyzer.Droid
 			
 			// aapt resource value: 0x7F0C0020
 			public const int container = 2131492896;
+			
+			// aapt resource value: 0x7F010024
+			public const int content = 2130772004;
 			
 			// aapt resource value: 0x7F0C0021
 			public const int contentPanel = 2131492897;
@@ -3119,6 +3197,9 @@ namespace WlanAnalyzer.Droid
 			
 			// aapt resource value: 0x7F0C0024
 			public const int customPanel = 2131492900;
+			
+			// aapt resource value: 0x7F010009
+			public const int dataMarkerLayout = 2130771977;
 			
 			// aapt resource value: 0x7F0C0025
 			public const int decor_content_parent = 2131492901;
@@ -3168,11 +3249,20 @@ namespace WlanAnalyzer.Droid
 			// aapt resource value: 0x7F0C0034
 			public const int ghost_view = 2131492916;
 			
+			// aapt resource value: 0x7F010006
+			public const int gridLineLayout = 2130771974;
+			
+			// aapt resource value: 0x7F010025
+			public const int gridLinesLayout = 2130772005;
+			
 			// aapt resource value: 0x7F0C0035
 			public const int home = 2131492917;
 			
 			// aapt resource value: 0x7F0C000A
 			public const int icon = 2131492874;
+			
+			// aapt resource value: 0x7F010020
+			public const int iconView = 2130772000;
 			
 			// aapt resource value: 0x7F0C000B
 			public const int icon_group = 2131492875;
@@ -3189,11 +3279,29 @@ namespace WlanAnalyzer.Droid
 			// aapt resource value: 0x7F0C003B
 			public const int item_touch_helper_previous_elevation = 2131492923;
 			
+			// aapt resource value: 0x7F010021
+			public const int label = 2130772001;
+			
 			// aapt resource value: 0x7F0C003C
 			public const int largeLabel = 2131492924;
 			
 			// aapt resource value: 0x7F0C003D
 			public const int left = 2131492925;
+			
+			// aapt resource value: 0x7F010016
+			public const int legendHeader = 2130771990;
+			
+			// aapt resource value: 0x7F010019
+			public const int legendItemsLayout = 2130771993;
+			
+			// aapt resource value: 0x7F010012
+			public const int legendLayout = 2130771986;
+			
+			// aapt resource value: 0x7F010018
+			public const int legendScrollView = 2130771992;
+			
+			// aapt resource value: 0x7F010015
+			public const int legendViewGroup = 2130771989;
 			
 			// aapt resource value: 0x7F0C000E
 			public const int line1 = 2131492878;
@@ -3345,6 +3453,9 @@ namespace WlanAnalyzer.Droid
 			// aapt resource value: 0x7F0C0015
 			public const int right_side = 2131492885;
 			
+			// aapt resource value: 0x7F010004
+			public const int rootLayout = 2130771972;
+			
 			// aapt resource value: 0x7F0C0057
 			public const int save_image_matrix = 2131492951;
 			
@@ -3402,6 +3513,9 @@ namespace WlanAnalyzer.Droid
 			// aapt resource value: 0x7F0C0069
 			public const int select_dialog_listview = 2131492969;
 			
+			// aapt resource value: 0x7F010008
+			public const int seriesLayout = 2130771976;
+			
 			// aapt resource value: 0x7F0C006A
 			public const int shortcut = 2131492970;
 			
@@ -3438,6 +3552,9 @@ namespace WlanAnalyzer.Droid
 			// aapt resource value: 0x7F0C0074
 			public const int status_bar_latest_event_content = 2131492980;
 			
+			// aapt resource value: 0x7F010007
+			public const int stripLinesLayout = 2130771975;
+			
 			// aapt resource value: 0x7F0C0075
 			public const int submenuarrow = 2131492981;
 			
@@ -3449,6 +3566,9 @@ namespace WlanAnalyzer.Droid
 			
 			// aapt resource value: 0x7F0C0016
 			public const int tag_transition_group = 2131492886;
+			
+			// aapt resource value: 0x7F010010
+			public const int technicalIndicatorLayout = 2130771984;
 			
 			// aapt resource value: 0x7F0C0017
 			public const int text = 2131492887;
@@ -3471,6 +3591,9 @@ namespace WlanAnalyzer.Droid
 			// aapt resource value: 0x7F0C007D
 			public const int text_input_password_toggle = 2131492989;
 			
+			// aapt resource value: 0x7F010026
+			public const int thumbLayout = 2130772006;
+			
 			// aapt resource value: 0x7F0C0019
 			public const int time = 2131492889;
 			
@@ -3479,6 +3602,9 @@ namespace WlanAnalyzer.Droid
 			
 			// aapt resource value: 0x7F0C0082
 			public const int titleDividerNoCustom = 2131492994;
+			
+			// aapt resource value: 0x7F010005
+			public const int titleLayout = 2130771973;
 			
 			// aapt resource value: 0x7F0C0083
 			public const int title_template = 2131492995;
@@ -3491,6 +3617,9 @@ namespace WlanAnalyzer.Droid
 			
 			// aapt resource value: 0x7F0C0085
 			public const int topPanel = 2131492997;
+			
+			// aapt resource value: 0x7F010022
+			public const int top_labels = 2130772002;
 			
 			// aapt resource value: 0x7F0C0086
 			public const int touch_outside = 2131492998;
@@ -3690,6 +3819,15 @@ namespace WlanAnalyzer.Droid
 			// aapt resource value: 0x7F0F001A
 			public const int abc_select_dialog_material = 2131689498;
 			
+			// aapt resource value: 0x7F020004
+			public const int chart_layout = 2130837508;
+			
+			// aapt resource value: 0x7F020005
+			public const int chart_legend = 2130837509;
+			
+			// aapt resource value: 0x7F020006
+			public const int chart_legend_item = 2130837510;
+			
 			// aapt resource value: 0x7F0F001B
 			public const int design_bottom_navigation_item = 2131689499;
 			
@@ -3794,6 +3932,9 @@ namespace WlanAnalyzer.Droid
 			
 			// aapt resource value: 0x7F0F0006
 			public const int notification_template_part_time = 2131689478;
+			
+			// aapt resource value: 0x7F020007
+			public const int range_navigator_layout = 2130837511;
 			
 			// aapt resource value: 0x7F0F0038
 			public const int select_dialog_item_material = 2131689528;
@@ -4025,11 +4166,38 @@ namespace WlanAnalyzer.Droid
 			// aapt resource value: 0x7F150025
 			public const int path_password_strike_through = 2132082725;
 			
+			// aapt resource value: 0x7F080003
+			public const int q = 2131230723;
+			
+			// aapt resource value: 0x7F080002
+			public const int quarter = 2131230722;
+			
 			// aapt resource value: 0x7F150026
 			public const int search_menu_title = 2132082726;
 			
+			// aapt resource value: 0x7F080009
+			public const int sfchart_close_label = 2131230729;
+			
+			// aapt resource value: 0x7F080006
+			public const int sfchart_high_label = 2131230726;
+			
+			// aapt resource value: 0x7F080007
+			public const int sfchart_low_label = 2131230727;
+			
+			// aapt resource value: 0x7F080008
+			public const int sfchart_open_label = 2131230728;
+			
+			// aapt resource value: 0x7F080010
+			public const int sfchart_others_label = 2131230736;
+			
 			// aapt resource value: 0x7F150001
 			public const int status_bar_notification_info_overflow = 2132082689;
+			
+			// aapt resource value: 0x7F080005
+			public const int w = 2131230725;
+			
+			// aapt resource value: 0x7F080004
+			public const int week = 2131230724;
 			
 			static String()
 			{
@@ -5297,11 +5465,11 @@ namespace WlanAnalyzer.Droid
 			public static int[] ActionBarLayout = new int[] {
 					16842931};
 			
-			// aapt resource value: 0x7F060047
-			public const int ActionBarLayout_android_layout_gravity = 2131099719;
+			// aapt resource value: 0x7F090047
+			public const int ActionBarLayout_android_layout_gravity = 2131296327;
 			
-			// aapt resource value: 0x7F060017
-			public const int ActionBar_background = 2131099671;
+			// aapt resource value: 0x7F090017
+			public const int ActionBar_background = 2131296279;
 			
 			// aapt resource value: 0x1
 			public const int ActionBar_backgroundSplit = 1;
@@ -5390,8 +5558,8 @@ namespace WlanAnalyzer.Droid
 			public static int[] ActionMenuItemView = new int[] {
 					16843071};
 			
-			// aapt resource value: 0x7F060049
-			public const int ActionMenuItemView_android_minWidth = 2131099721;
+			// aapt resource value: 0x7F090049
+			public const int ActionMenuItemView_android_minWidth = 2131296329;
 			
 			public static int[] ActionMode = new int[] {
 					2130968626,
@@ -5401,8 +5569,8 @@ namespace WlanAnalyzer.Droid
 					2130968847,
 					2130968901};
 			
-			// aapt resource value: 0x7F060051
-			public const int ActionMode_background = 2131099729;
+			// aapt resource value: 0x7F090051
+			public const int ActionMode_background = 2131296337;
 			
 			// aapt resource value: 0x1
 			public const int ActionMode_backgroundSplit = 1;
@@ -5423,8 +5591,8 @@ namespace WlanAnalyzer.Droid
 					2130968704,
 					2130968746};
 			
-			// aapt resource value: 0x7F060058
-			public const int ActivityChooserView_expandActivityOverflowButtonDrawable = 2131099736;
+			// aapt resource value: 0x7F090058
+			public const int ActivityChooserView_expandActivityOverflowButtonDrawable = 2131296344;
 			
 			// aapt resource value: 0x1
 			public const int ActivityChooserView_initialActivityCount = 1;
@@ -5438,8 +5606,8 @@ namespace WlanAnalyzer.Droid
 					2130968828,
 					2130968829};
 			
-			// aapt resource value: 0x7F060061
-			public const int AlertDialog_android_layout = 2131099745;
+			// aapt resource value: 0x7F090061
+			public const int AlertDialog_android_layout = 2131296353;
 			
 			// aapt resource value: 0x1
 			public const int AlertDialog_buttonPanelSideLayout = 1;
@@ -5470,14 +5638,14 @@ namespace WlanAnalyzer.Droid
 					2130968838,
 					2130968839};
 			
-			// aapt resource value: 0x7F060075
-			public const int AppBarLayoutStates_state_collapsed = 2131099765;
+			// aapt resource value: 0x7F090075
+			public const int AppBarLayoutStates_state_collapsed = 2131296373;
 			
 			// aapt resource value: 0x1
 			public const int AppBarLayoutStates_state_collapsible = 1;
 			
-			// aapt resource value: 0x7F060069
-			public const int AppBarLayout_android_background = 2131099753;
+			// aapt resource value: 0x7F090069
+			public const int AppBarLayout_android_background = 2131296361;
 			
 			// aapt resource value: 0x1
 			public const int AppBarLayout_android_keyboardNavigationCluster = 1;
@@ -5495,8 +5663,8 @@ namespace WlanAnalyzer.Droid
 					2130968765,
 					2130968766};
 			
-			// aapt resource value: 0x7F060078
-			public const int AppBarLayout_Layout_layout_scrollFlags = 2131099768;
+			// aapt resource value: 0x7F090078
+			public const int AppBarLayout_Layout_layout_scrollFlags = 2131296376;
 			
 			// aapt resource value: 0x1
 			public const int AppBarLayout_Layout_layout_scrollInterpolator = 1;
@@ -5507,8 +5675,8 @@ namespace WlanAnalyzer.Droid
 					2130968889,
 					2130968890};
 			
-			// aapt resource value: 0x7F060081
-			public const int AppCompatImageView_android_src = 2131099777;
+			// aapt resource value: 0x7F090081
+			public const int AppCompatImageView_android_src = 2131296385;
 			
 			// aapt resource value: 0x1
 			public const int AppCompatImageView_srcCompat = 1;
@@ -5525,8 +5693,8 @@ namespace WlanAnalyzer.Droid
 					2130968887,
 					2130968888};
 			
-			// aapt resource value: 0x7F060086
-			public const int AppCompatSeekBar_android_thumb = 2131099782;
+			// aapt resource value: 0x7F090086
+			public const int AppCompatSeekBar_android_thumb = 2131296390;
 			
 			// aapt resource value: 0x1
 			public const int AppCompatSeekBar_tickMark = 1;
@@ -5546,8 +5714,8 @@ namespace WlanAnalyzer.Droid
 					16843117,
 					16842804};
 			
-			// aapt resource value: 0x7F060091
-			public const int AppCompatTextHelper_android_drawableBottom = 2131099793;
+			// aapt resource value: 0x7F090091
+			public const int AppCompatTextHelper_android_drawableBottom = 2131296401;
 			
 			// aapt resource value: 0x1
 			public const int AppCompatTextHelper_android_drawableEnd = 1;
@@ -5577,8 +5745,8 @@ namespace WlanAnalyzer.Droid
 					2130968720,
 					2130968869};
 			
-			// aapt resource value: 0x7F060099
-			public const int AppCompatTextView_android_textAppearance = 2131099801;
+			// aapt resource value: 0x7F090099
+			public const int AppCompatTextView_android_textAppearance = 2131296409;
 			
 			// aapt resource value: 0x1
 			public const int AppCompatTextView_autoSizeMaxTextSize = 1;
@@ -5722,8 +5890,8 @@ namespace WlanAnalyzer.Droid
 					2130968921,
 					2130968922};
 			
-			// aapt resource value: 0x7F060108
-			public const int AppCompatTheme_actionBarDivider = 2131099912;
+			// aapt resource value: 0x7F090108
+			public const int AppCompatTheme_actionBarDivider = 2131296520;
 			
 			// aapt resource value: 0x1
 			public const int AppCompatTheme_actionBarItemBackground = 1;
@@ -6086,8 +6254,8 @@ namespace WlanAnalyzer.Droid
 					2130968753,
 					2130968783};
 			
-			// aapt resource value: 0x7F060228
-			public const int BottomNavigationView_elevation = 2131100200;
+			// aapt resource value: 0x7F090228
+			public const int BottomNavigationView_elevation = 2131296808;
 			
 			// aapt resource value: 0x1
 			public const int BottomNavigationView_itemBackground = 1;
@@ -6106,8 +6274,8 @@ namespace WlanAnalyzer.Droid
 					2130968635,
 					2130968636};
 			
-			// aapt resource value: 0x7F060234
-			public const int BottomSheetBehavior_Layout_behavior_hideable = 2131100212;
+			// aapt resource value: 0x7F090234
+			public const int BottomSheetBehavior_Layout_behavior_hideable = 2131296820;
 			
 			// aapt resource value: 0x1
 			public const int BottomSheetBehavior_Layout_behavior_peekHeight = 1;
@@ -6118,8 +6286,8 @@ namespace WlanAnalyzer.Droid
 			public static int[] ButtonBarLayout = new int[] {
 					2130968615};
 			
-			// aapt resource value: 0x7F060238
-			public const int ButtonBarLayout_allowStacking = 2131100216;
+			// aapt resource value: 0x7F090238
+			public const int ButtonBarLayout_allowStacking = 2131296824;
 			
 			public static int[] CardView = new int[] {
 					16843072,
@@ -6136,8 +6304,8 @@ namespace WlanAnalyzer.Droid
 					2130968586,
 					2130968587};
 			
-			// aapt resource value: 0x7F060541
-			public const int CardView_android_minHeight = 2131100993;
+			// aapt resource value: 0x7F090541
+			public const int CardView_android_minHeight = 2131297601;
 			
 			// aapt resource value: 0x1
 			public const int CardView_android_minWidth = 1;
@@ -6193,8 +6361,8 @@ namespace WlanAnalyzer.Droid
 					2130968892,
 					2130968902};
 			
-			// aapt resource value: 0x7F060240
-			public const int CollapsingToolbarLayout_collapsedTitleGravity = 2131100224;
+			// aapt resource value: 0x7F090240
+			public const int CollapsingToolbarLayout_collapsedTitleGravity = 2131296832;
 			
 			// aapt resource value: 0x1
 			public const int CollapsingToolbarLayout_collapsedTitleTextAppearance = 1;
@@ -6227,8 +6395,8 @@ namespace WlanAnalyzer.Droid
 					2130968760,
 					2130968761};
 			
-			// aapt resource value: 0x7F060257
-			public const int CollapsingToolbarLayout_Layout_layout_collapseMode = 2131100247;
+			// aapt resource value: 0x7F090257
+			public const int CollapsingToolbarLayout_Layout_layout_collapseMode = 2131296855;
 			
 			// aapt resource value: 0x1
 			public const int CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier = 1;
@@ -6256,8 +6424,8 @@ namespace WlanAnalyzer.Droid
 					16843551,
 					16843173};
 			
-			// aapt resource value: 0x7F060260
-			public const int ColorStateListItem_alpha = 2131100256;
+			// aapt resource value: 0x7F090260
+			public const int ColorStateListItem_alpha = 2131296864;
 			
 			// aapt resource value: 0x1
 			public const int ColorStateListItem_android_alpha = 1;
@@ -6270,8 +6438,8 @@ namespace WlanAnalyzer.Droid
 					2130968650,
 					2130968651};
 			
-			// aapt resource value: 0x7F060264
-			public const int CompoundButton_android_button = 2131100260;
+			// aapt resource value: 0x7F090264
+			public const int CompoundButton_android_button = 2131296868;
 			
 			// aapt resource value: 0x1
 			public const int CompoundButton_buttonTint = 1;
@@ -6283,8 +6451,8 @@ namespace WlanAnalyzer.Droid
 					2130968754,
 					2130968840};
 			
-			// aapt resource value: 0x7F060268
-			public const int CoordinatorLayout_keylines = 2131100264;
+			// aapt resource value: 0x7F090268
+			public const int CoordinatorLayout_keylines = 2131296872;
 			
 			public static int[] CoordinatorLayout_Layout = new int[] {
 					16842931,
@@ -6295,8 +6463,8 @@ namespace WlanAnalyzer.Droid
 					2130968763,
 					2130968764};
 			
-			// aapt resource value: 0x7F060271
-			public const int CoordinatorLayout_Layout_android_layout_gravity = 2131100273;
+			// aapt resource value: 0x7F090271
+			public const int CoordinatorLayout_Layout_android_layout_gravity = 2131296881;
 			
 			// aapt resource value: 0x1
 			public const int CoordinatorLayout_Layout_layout_anchor = 1;
@@ -6324,8 +6492,8 @@ namespace WlanAnalyzer.Droid
 					2130968640,
 					2130968879};
 			
-			// aapt resource value: 0x7F060279
-			public const int DesignTheme_bottomSheetDialogTheme = 2131100281;
+			// aapt resource value: 0x7F090279
+			public const int DesignTheme_bottomSheetDialogTheme = 2131296889;
 			
 			// aapt resource value: 0x1
 			public const int DesignTheme_bottomSheetStyle = 1;
@@ -6343,8 +6511,8 @@ namespace WlanAnalyzer.Droid
 					2130968831,
 					2130968882};
 			
-			// aapt resource value: 0x7F060283
-			public const int DrawerArrowToggle_arrowHeadLength = 2131100291;
+			// aapt resource value: 0x7F090283
+			public const int DrawerArrowToggle_arrowHeadLength = 2131296899;
 			
 			// aapt resource value: 0x1
 			public const int DrawerArrowToggle_arrowShaftLength = 1;
@@ -6377,8 +6545,8 @@ namespace WlanAnalyzer.Droid
 					2130968816,
 					2130968911};
 			
-			// aapt resource value: 0x7F060292
-			public const int FloatingActionButton_backgroundTint = 2131100306;
+			// aapt resource value: 0x7F090292
+			public const int FloatingActionButton_backgroundTint = 2131296914;
 			
 			// aapt resource value: 0x1
 			public const int FloatingActionButton_backgroundTintMode = 1;
@@ -6386,8 +6554,8 @@ namespace WlanAnalyzer.Droid
 			public static int[] FloatingActionButton_Behavior_Layout = new int[] {
 					2130968632};
 			
-			// aapt resource value: 0x7F060301
-			public const int FloatingActionButton_Behavior_Layout_behavior_autoHide = 2131100417;
+			// aapt resource value: 0x7F090301
+			public const int FloatingActionButton_Behavior_Layout_behavior_autoHide = 2131297025;
 			
 			// aapt resource value: 0x2
 			public const int FloatingActionButton_borderWidth = 2;
@@ -6423,8 +6591,8 @@ namespace WlanAnalyzer.Droid
 					2130968584,
 					2130968585};
 			
-			// aapt resource value: 0x7F060010
-			public const int FontFamilyFont_android_font = 2131099664;
+			// aapt resource value: 0x7F090010
+			public const int FontFamilyFont_android_font = 2131296272;
 			
 			// aapt resource value: 0x1
 			public const int FontFamilyFont_android_fontStyle = 1;
@@ -6441,8 +6609,8 @@ namespace WlanAnalyzer.Droid
 			// aapt resource value: 0x5
 			public const int FontFamilyFont_fontWeight = 5;
 			
-			// aapt resource value: 0x7F060003
-			public const int FontFamily_fontProviderAuthority = 2131099651;
+			// aapt resource value: 0x7F090003
+			public const int FontFamily_fontProviderAuthority = 2131296259;
 			
 			// aapt resource value: 0x1
 			public const int FontFamily_fontProviderCerts = 1;
@@ -6464,8 +6632,8 @@ namespace WlanAnalyzer.Droid
 					16843264,
 					2130968729};
 			
-			// aapt resource value: 0x7F060303
-			public const int ForegroundLinearLayout_android_foreground = 2131100419;
+			// aapt resource value: 0x7F090303
+			public const int ForegroundLinearLayout_android_foreground = 2131297027;
 			
 			// aapt resource value: 0x1
 			public const int ForegroundLinearLayout_android_foregroundGravity = 1;
@@ -6484,8 +6652,8 @@ namespace WlanAnalyzer.Droid
 					2130968782,
 					2130968826};
 			
-			// aapt resource value: 0x7F060307
-			public const int LinearLayoutCompat_android_baselineAligned = 2131100423;
+			// aapt resource value: 0x7F090307
+			public const int LinearLayoutCompat_android_baselineAligned = 2131297031;
 			
 			// aapt resource value: 0x1
 			public const int LinearLayoutCompat_android_baselineAlignedChildIndex = 1;
@@ -6511,8 +6679,8 @@ namespace WlanAnalyzer.Droid
 					16843137,
 					16842996};
 			
-			// aapt resource value: 0x7F060317
-			public const int LinearLayoutCompat_Layout_android_layout_gravity = 2131100439;
+			// aapt resource value: 0x7F090317
+			public const int LinearLayoutCompat_Layout_android_layout_gravity = 2131297047;
 			
 			// aapt resource value: 0x1
 			public const int LinearLayoutCompat_Layout_android_layout_height = 1;
@@ -6533,8 +6701,8 @@ namespace WlanAnalyzer.Droid
 					16843436,
 					16843437};
 			
-			// aapt resource value: 0x7F060322
-			public const int ListPopupWindow_android_dropDownHorizontalOffset = 2131100450;
+			// aapt resource value: 0x7F090322
+			public const int ListPopupWindow_android_dropDownHorizontalOffset = 2131297058;
 			
 			// aapt resource value: 0x1
 			public const int ListPopupWindow_android_dropDownVerticalOffset = 1;
@@ -6545,8 +6713,8 @@ namespace WlanAnalyzer.Droid
 					2130968688,
 					2130968732};
 			
-			// aapt resource value: 0x7F060555
-			public const int MediaRouteButton_android_minHeight = 2131101013;
+			// aapt resource value: 0x7F090555
+			public const int MediaRouteButton_android_minHeight = 2131297621;
 			
 			// aapt resource value: 0x1
 			public const int MediaRouteButton_android_minWidth = 1;
@@ -6565,8 +6733,8 @@ namespace WlanAnalyzer.Droid
 					16843231,
 					16843156};
 			
-			// aapt resource value: 0x7F060325
-			public const int MenuGroup_android_checkableBehavior = 2131100453;
+			// aapt resource value: 0x7F090325
+			public const int MenuGroup_android_checkableBehavior = 2131297061;
 			
 			// aapt resource value: 0x1
 			public const int MenuGroup_android_enabled = 1;
@@ -6608,8 +6776,8 @@ namespace WlanAnalyzer.Droid
 					2130968825,
 					2130968907};
 			
-			// aapt resource value: 0x7F060332
-			public const int MenuItem_actionLayout = 2131100466;
+			// aapt resource value: 0x7F090332
+			public const int MenuItem_actionLayout = 2131297074;
 			
 			// aapt resource value: 0x1
 			public const int MenuItem_actionProviderClass = 1;
@@ -6688,8 +6856,8 @@ namespace WlanAnalyzer.Droid
 					2130968805,
 					2130968842};
 			
-			// aapt resource value: 0x7F060356
-			public const int MenuView_android_headerBackground = 2131100502;
+			// aapt resource value: 0x7F090356
+			public const int MenuView_android_headerBackground = 2131297110;
 			
 			// aapt resource value: 0x1
 			public const int MenuView_android_horizontalDivider = 1;
@@ -6727,8 +6895,8 @@ namespace WlanAnalyzer.Droid
 					2130968753,
 					2130968783};
 			
-			// aapt resource value: 0x7F060366
-			public const int NavigationView_android_background = 2131100518;
+			// aapt resource value: 0x7F090366
+			public const int NavigationView_android_background = 2131297126;
 			
 			// aapt resource value: 0x1
 			public const int NavigationView_android_fitsSystemWindows = 1;
@@ -6765,11 +6933,11 @@ namespace WlanAnalyzer.Droid
 			public static int[] PopupWindowBackgroundState = new int[] {
 					2130968837};
 			
-			// aapt resource value: 0x7F060381
-			public const int PopupWindowBackgroundState_state_above_anchor = 2131100545;
+			// aapt resource value: 0x7F090381
+			public const int PopupWindowBackgroundState_state_above_anchor = 2131297153;
 			
-			// aapt resource value: 0x7F060377
-			public const int PopupWindow_android_popupAnimationStyle = 2131100535;
+			// aapt resource value: 0x7F090377
+			public const int PopupWindow_android_popupAnimationStyle = 2131297143;
 			
 			// aapt resource value: 0x1
 			public const int PopupWindow_android_popupBackground = 1;
@@ -6781,8 +6949,8 @@ namespace WlanAnalyzer.Droid
 					2130968790,
 					2130968793};
 			
-			// aapt resource value: 0x7F060383
-			public const int RecycleListView_paddingBottomNoButtons = 2131100547;
+			// aapt resource value: 0x7F090383
+			public const int RecycleListView_paddingBottomNoButtons = 2131297155;
 			
 			// aapt resource value: 0x1
 			public const int RecycleListView_paddingTopNoTitle = 1;
@@ -6800,8 +6968,8 @@ namespace WlanAnalyzer.Droid
 					2130968830,
 					2130968836};
 			
-			// aapt resource value: 0x7F060386
-			public const int RecyclerView_android_descendantFocusability = 2131100550;
+			// aapt resource value: 0x7F090386
+			public const int RecyclerView_android_descendantFocusability = 2131297158;
 			
 			// aapt resource value: 0x1
 			public const int RecyclerView_android_orientation = 1;
@@ -6836,14 +7004,14 @@ namespace WlanAnalyzer.Droid
 			public static int[] ScrimInsetsFrameLayout = new int[] {
 					2130968747};
 			
-			// aapt resource value: 0x7F060398
-			public const int ScrimInsetsFrameLayout_insetForeground = 2131100568;
+			// aapt resource value: 0x7F090398
+			public const int ScrimInsetsFrameLayout_insetForeground = 2131297176;
 			
 			public static int[] ScrollingViewBehavior_Layout = new int[] {
 					2130968634};
 			
-			// aapt resource value: 0x7F060400
-			public const int ScrollingViewBehavior_Layout_behavior_overlapTop = 2131100672;
+			// aapt resource value: 0x7F090400
+			public const int ScrollingViewBehavior_Layout_behavior_overlapTop = 2131297280;
 			
 			public static int[] SearchView = new int[] {
 					16842970,
@@ -6864,8 +7032,8 @@ namespace WlanAnalyzer.Droid
 					2130968848,
 					2130968912};
 			
-			// aapt resource value: 0x7F060402
-			public const int SearchView_android_focusable = 2131100674;
+			// aapt resource value: 0x7F090402
+			public const int SearchView_android_focusable = 2131297282;
 			
 			// aapt resource value: 0x1
 			public const int SearchView_android_imeOptions = 1;
@@ -6920,8 +7088,8 @@ namespace WlanAnalyzer.Droid
 					2130968701,
 					2130968780};
 			
-			// aapt resource value: 0x7F060420
-			public const int SnackbarLayout_android_maxWidth = 2131100704;
+			// aapt resource value: 0x7F090420
+			public const int SnackbarLayout_android_maxWidth = 2131297312;
 			
 			// aapt resource value: 0x1
 			public const int SnackbarLayout_elevation = 1;
@@ -6936,8 +7104,8 @@ namespace WlanAnalyzer.Droid
 					16843131,
 					2130968803};
 			
-			// aapt resource value: 0x7F060424
-			public const int Spinner_android_dropDownWidth = 2131100708;
+			// aapt resource value: 0x7F090424
+			public const int Spinner_android_dropDownWidth = 2131297316;
 			
 			// aapt resource value: 0x1
 			public const int Spinner_android_entries = 1;
@@ -6967,8 +7135,8 @@ namespace WlanAnalyzer.Droid
 					2130968909,
 					2130968910};
 			
-			// aapt resource value: 0x7F060430
-			public const int SwitchCompat_android_textOff = 2131100720;
+			// aapt resource value: 0x7F090430
+			public const int SwitchCompat_android_textOff = 2131297328;
 			
 			// aapt resource value: 0x1
 			public const int SwitchCompat_android_textOn = 1;
@@ -7014,8 +7182,8 @@ namespace WlanAnalyzer.Droid
 					16842994,
 					16843087};
 			
-			// aapt resource value: 0x7F060445
-			public const int TabItem_android_icon = 2131100741;
+			// aapt resource value: 0x7F090445
+			public const int TabItem_android_icon = 2131297349;
 			
 			// aapt resource value: 0x1
 			public const int TabItem_android_layout = 1;
@@ -7041,8 +7209,8 @@ namespace WlanAnalyzer.Droid
 					2130968867,
 					2130968868};
 			
-			// aapt resource value: 0x7F060449
-			public const int TabLayout_tabBackground = 2131100745;
+			// aapt resource value: 0x7F090449
+			public const int TabLayout_tabBackground = 2131297353;
 			
 			// aapt resource value: 0x1
 			public const int TabLayout_tabContentStart = 1;
@@ -7104,8 +7272,8 @@ namespace WlanAnalyzer.Droid
 					2130968720,
 					2130968869};
 			
-			// aapt resource value: 0x7F060466
-			public const int TextAppearance_android_fontFamily = 2131100774;
+			// aapt resource value: 0x7F090466
+			public const int TextAppearance_android_fontFamily = 2131297382;
 			
 			// aapt resource value: 0x1
 			public const int TextAppearance_android_shadowColor = 1;
@@ -7161,8 +7329,8 @@ namespace WlanAnalyzer.Droid
 					2130968800,
 					2130968801};
 			
-			// aapt resource value: 0x7F060480
-			public const int TextInputLayout_android_hint = 2131100800;
+			// aapt resource value: 0x7F090480
+			public const int TextInputLayout_android_hint = 2131297408;
 			
 			// aapt resource value: 0x1
 			public const int TextInputLayout_android_textColorHint = 1;
@@ -7240,8 +7408,8 @@ namespace WlanAnalyzer.Droid
 					2130968899,
 					2130968900};
 			
-			// aapt resource value: 0x7F060497
-			public const int Toolbar_android_gravity = 2131100823;
+			// aapt resource value: 0x7F090497
+			public const int Toolbar_android_gravity = 2131297431;
 			
 			// aapt resource value: 0x1
 			public const int Toolbar_android_minHeight = 1;
@@ -7339,8 +7507,8 @@ namespace WlanAnalyzer.Droid
 					2130968629,
 					2130968630};
 			
-			// aapt resource value: 0x7F060533
-			public const int ViewBackgroundHelper_android_background = 2131100979;
+			// aapt resource value: 0x7F090533
+			public const int ViewBackgroundHelper_android_background = 2131297587;
 			
 			// aapt resource value: 0x1
 			public const int ViewBackgroundHelper_backgroundTint = 1;
@@ -7353,8 +7521,8 @@ namespace WlanAnalyzer.Droid
 					16842995,
 					16842994};
 			
-			// aapt resource value: 0x7F060537
-			public const int ViewStubCompat_android_id = 2131100983;
+			// aapt resource value: 0x7F090537
+			public const int ViewStubCompat_android_id = 2131297591;
 			
 			// aapt resource value: 0x1
 			public const int ViewStubCompat_android_inflatedId = 1;
@@ -7362,8 +7530,8 @@ namespace WlanAnalyzer.Droid
 			// aapt resource value: 0x2
 			public const int ViewStubCompat_android_layout = 2;
 			
-			// aapt resource value: 0x7F060527
-			public const int View_android_focusable = 2131100967;
+			// aapt resource value: 0x7F090527
+			public const int View_android_focusable = 2131297575;
 			
 			// aapt resource value: 0x1
 			public const int View_android_theme = 1;

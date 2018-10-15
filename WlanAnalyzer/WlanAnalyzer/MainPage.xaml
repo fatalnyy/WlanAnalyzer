@@ -11,7 +11,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="StatisticalAnalyze" Text="Analyze"  Command="{Binding AnalyzeToolbarCommand}"/>
         <ToolbarItem x:Name="Database" Text="Database"  Command="{Binding DatabaseToolbarCommand}"/>
-        <ToolbarItem x:Name="Map" Text="Database"  Command="{Binding WifiGPSToolbarCommand}"/>
+        <ToolbarItem x:Name="Charts" Text="Charts"  Command="{Binding ChartsPageToolbarCommand}"/>
         <ToolbarItem Text="Save list to database" Order="Secondary" Command="{Binding SaveListToDatabaseCommand}"/>
         <ToolbarItem Text="Save file to database" Order="Secondary" Command="{Binding SaveFileToDatabaseCommand}"/>
         <ToolbarItem Text="Save list to database automatically" Order="Secondary" Command="{Binding SaveListToDatabaseAutoCommand}"/>

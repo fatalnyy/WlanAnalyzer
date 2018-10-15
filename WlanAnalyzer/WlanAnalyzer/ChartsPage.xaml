@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             x:Class="WlanAnalyzer.ChartsPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Sort ascending" Order="Secondary" Command="{Binding SortCollectionByLevelDescendingCommand}"/>
+        <ToolbarItem Text="Sort descending" Order="Secondary" Command="{Binding SortCollectionByLevelAscendingCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+
+   
+            <!--<chart:SfChart Series="{Binding SeriesCollection}">-->
+        <chart:SfChart>
+
+
+            <chart:SfChart.ChartBehaviors>
+                <chart:ChartZoomPanBehavior/>
+            </chart:SfChart.ChartBehaviors>
+                
+               
+
+
+                <!--<chart:SfChart.Legend>
+                    <chart:ChartLegend/>
+                </chart:SfChart.Legend>-->
+
+            <chart:SfChart.PrimaryAxis>
+                <chart:CategoryAxis AutoScrollingDelta="20"
+                                     >
+                    <!--<chart:NumericalAxis.AxisLineStyle>
+                        <chart:ChartLineStyle StrokeColor="Blue" StrokeWidth="1"/>
+                    </chart:NumericalAxis.AxisLineStyle>-->
+
+         
+
+                        <chart:CategoryAxis.Title>
+                            <chart:ChartAxisTitle Text="SSID"></chart:ChartAxisTitle>
+                        </chart:CategoryAxis.Title>
+                    </chart:CategoryAxis>
+                </chart:SfChart.PrimaryAxis>
+                <chart:SfChart.SecondaryAxis>
+                    <chart:NumericalAxis>
+                    <!--<chart:NumericalAxis.AxisLineStyle>
+                        <chart:ChartLineStyle StrokeColor="Blue" StrokeWidth="1"/>
+                    </chart:NumericalAxis.AxisLineStyle>-->
+                    <chart:NumericalAxis.Title>
+                            <chart:ChartAxisTitle Text="Level"></chart:ChartAxisTitle>
+                        </chart:NumericalAxis.Title>
+                    </chart:NumericalAxis>
+                </chart:SfChart.SecondaryAxis>
+
+            <chart:SfChart.Series>
+                <chart:BarSeries ItemsSource="{Binding CollectionOfWifiNetworksChart}"
+                                 XBindingPath="SSID"
+                                 YBindingPath="Level"
+                                 Color="DarkOrange"
+                                 EnableTooltip="True">
+                    <chart:BarSeries.DataMarker>
+                        <chart:ChartDataMarker/>
+                    </chart:BarSeries.DataMarker>
+                </chart:BarSeries>
+            </chart:SfChart.Series>
+
+      
+               
+
+
+            <!--<chart:SfChart.Series ItemsSource ="{Binding DataCollection}">
+                <chart:LineSeries ItemsSource="{Binding DataCollection}"
+                                  XBindingPath="Channel"
+                                  YBindingPath="Level"                               
+                                  EnableTooltip="True">
+                    </chart:LineSeries>
+                </chart:SfChart.Series>-->
+            </chart:SfChart>
+
+           
+
+
+    </ContentPage.Content>
+</ContentPage>

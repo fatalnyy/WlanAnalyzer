@@ -60,7 +60,7 @@ namespace WlanAnalyzer.ViewModels
         public Command WriteToJSONFileCommand { get; set; }
         public Command DatabaseToolbarCommand { get; set; }
         public Command AnalyzeToolbarCommand { get; set; }
-        public Command WifiGPSToolbarCommand { get; set; }
+        public Command ChartsPageToolbarCommand { get; set; }
         public Command SaveListToDatabaseCommand { get; set; }
         public Command SaveListToDatabaseAutoCommand { get; set; }
         public Command AddSelectedWifiNetworkToDataBaseCommand { get; set; }
@@ -212,7 +212,7 @@ namespace WlanAnalyzer.ViewModels
             WriteToJSONFileCommand = new Command(Serialization);
             DatabaseToolbarCommand = new Command(async () => await OpenDatabase());
             AnalyzeToolbarCommand = new Command(async () => await OpenAnalyze());
-            WifiGPSToolbarCommand = new Command(async () => await OpenWifiGPS());
+            ChartsPageToolbarCommand = new Command(async () => await OpenChartsPage());
             SaveListToDatabaseCommand = new Command(async () => await SaveListToDatabase());
             SaveListToDatabaseAutoCommand = new Command(async () => await SaveListToDatabaseAuto());
             AddSelectedWifiNetworkToDataBaseCommand = new Command(async () => await AddSelectedWifiNetworkToDataBase());
@@ -408,9 +408,9 @@ namespace WlanAnalyzer.ViewModels
         {
              await _navigation.PushAsync(new StatisticalAnalyzePage());
         }
-        private async Task OpenWifiGPS()
+        private async Task OpenChartsPage()
         {
-            await _navigation.PushAsync(new WifiGPSPage());
+            await _navigation.PushAsync(new ChartsPage());
         }
         private async Task SaveListToDatabase()
         {

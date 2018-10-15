@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETStandard,Version=v2.0/",
-    "signature": "975efe0cf2b8e59b91b3f9ba98ae9c61fd47ec20"
+    "signature": "d1c0d847501b54d5d43de311391a5c6a583f3bd0"
   },
   "compilationOptions": {},
   "targets": {
@@ -11,6 +11,7 @@
         "dependencies": {
           "NETStandard.Library": "2.0.3",
           "Newtonsoft.Json": "11.0.2",
+          "Syncfusion.Xamarin.SfChart": "16.3.0.21",
           "Xam.Plugin.Geolocator": "4.5.0.6",
           "Xamarin.Forms": "3.1.0.697729",
           "sqlite-net-pcl": "1.5.231",
@@ -70,6 +71,38 @@
           "lib/netstandard1.1/SQLitePCLRaw.core.dll": {
             "assemblyVersion": "1.1.11.121",
             "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Syncfusion.Licensing/16.3.0.21": {
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.Licensing.dll": {
+            "assemblyVersion": "16.3.0.21",
+            "fileVersion": "16.3.0.21"
+          }
+        }
+      },
+      "Syncfusion.Xamarin.Core/16.3.0.21": {
+        "dependencies": {
+          "Syncfusion.Licensing": "16.3.0.21"
+        },
+        "runtime": {
+          "lib/netstandard1.0/Syncfusion.Core.XForms.dll": {
+            "assemblyVersion": "16.3451.0.21",
+            "fileVersion": "16.3451.0.21"
+          }
+        }
+      },
+      "Syncfusion.Xamarin.SfChart/16.3.0.21": {
+        "dependencies": {
+          "Syncfusion.Licensing": "16.3.0.21",
+          "Syncfusion.Xamarin.Core": "16.3.0.21",
+          "Xamarin.Forms": "3.1.0.697729"
+        },
+        "runtime": {
+          "lib/netstandard1.0/Syncfusion.SfChart.XForms.dll": {
+            "assemblyVersion": "16.3451.0.21",
+            "fileVersion": "16.3451.0.21"
           }
         }
       },
@@ -154,6 +187,27 @@
       "sha512": "sha512-QT17CyQAQIbTCu6pW5+uVA8BXqRzquiDI1tr5Un6c1YZcQydPmGPuYYng9xMs2UHUDYHbTu+JDkp55WR+qo9bQ==",
       "path": "sqlitepclraw.core/1.1.11",
       "hashPath": "sqlitepclraw.core.1.1.11.nupkg.sha512"
+    },
+    "Syncfusion.Licensing/16.3.0.21": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3eUgJfio0CJDZfelQcZPKe6jpC670ysA6tbDda3ZjvnqYr7rDnMlRlOFWeyXgKrc4X0UZpS8eitIlBrb3F6SaA==",
+      "path": "syncfusion.licensing/16.3.0.21",
+      "hashPath": "syncfusion.licensing.16.3.0.21.nupkg.sha512"
+    },
+    "Syncfusion.Xamarin.Core/16.3.0.21": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-EFLv200KESWBR9HhsOvh6Vaa9BirzZ0YPL/gmwiuAHx4QWWn/D2h+g5C/pi6zA+25heZx2fSbQWpkG/23ca3rA==",
+      "path": "syncfusion.xamarin.core/16.3.0.21",
+      "hashPath": "syncfusion.xamarin.core.16.3.0.21.nupkg.sha512"
+    },
+    "Syncfusion.Xamarin.SfChart/16.3.0.21": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3osHicvjImITbOidbNlltsb2gujLQTWXSOkHfS5lUIuIjgGZqbpRT79wpdvYZ/lLDMMywQmqq0kwxWQCqd2/qg==",
+      "path": "syncfusion.xamarin.sfchart/16.3.0.21",
+      "hashPath": "syncfusion.xamarin.sfchart.16.3.0.21.nupkg.sha512"
     },
     "Xam.Plugin.Geolocator/4.5.0.6": {
       "type": "package",

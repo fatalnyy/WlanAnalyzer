@@ -1,4 +1,4 @@
-# Copyright (C) 2017 The Android Open Source Project
+# Copyright (C) 2016 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,11 +12,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# FragmentTransitionSupport is instantiated in support-fragment via reflection.
--keep public class android.support.transition.FragmentTransitionSupport {
-}
-
-# Keep a field in transition that is used to keep a reference to weakly-referenced object
--keepclassmembers class android.support.transition.ChangeBounds$* extends android.animation.AnimatorListenerAdapter {
-  android.support.transition.ChangeBounds$ViewBounds mViewBounds;
-}
+# Make sure we keep annotations for ViewPager's DecorView
+-keepattributes *Annotation*

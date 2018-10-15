@@ -367,6 +367,47 @@
           "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
+      "Syncfusion.Licensing/16.3.0.21": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.Core/16.3.0.21": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "16.3.0.21"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfChart/16.3.0.21": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "16.3.0.21",
+          "Syncfusion.Xamarin.Core": "16.3.0.21",
+          "Xamarin.Forms": "2.4.0.280"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        }
+      },
       "Xam.Plugin.Geolocator/4.5.0.6": {
         "type": "package",
         "dependencies": {
@@ -407,6 +448,7 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Newtonsoft.Json": "11.0.2",
+          "Syncfusion.Xamarin.SfChart": "16.3.0.21",
           "Xam.Plugin.Geolocator": "4.5.0.6",
           "Xamarin.Forms": "3.1.0.697729",
           "sqlite-net-pcl": "1.5.231"
@@ -949,6 +991,47 @@
           "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
+      "Syncfusion.Licensing/16.3.0.21": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.Core/16.3.0.21": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "16.3.0.21"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfChart/16.3.0.21": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "16.3.0.21",
+          "Syncfusion.Xamarin.Core": "16.3.0.21",
+          "Xamarin.Forms": "2.4.0.280"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        }
+      },
       "Xam.Plugin.Geolocator/4.5.0.6": {
         "type": "package",
         "dependencies": {
@@ -989,6 +1072,7 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Newtonsoft.Json": "11.0.2",
+          "Syncfusion.Xamarin.SfChart": "16.3.0.21",
           "Xam.Plugin.Geolocator": "4.5.0.6",
           "Xamarin.Forms": "3.1.0.697729",
           "sqlite-net-pcl": "1.5.231"
@@ -1532,6 +1616,47 @@
           "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
+      "Syncfusion.Licensing/16.3.0.21": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.Core/16.3.0.21": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "16.3.0.21"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfChart/16.3.0.21": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "16.3.0.21",
+          "Syncfusion.Xamarin.Core": "16.3.0.21",
+          "Xamarin.Forms": "2.4.0.280"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        }
+      },
       "Xam.Plugin.Geolocator/4.5.0.6": {
         "type": "package",
         "dependencies": {
@@ -1572,6 +1697,7 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Newtonsoft.Json": "11.0.2",
+          "Syncfusion.Xamarin.SfChart": "16.3.0.21",
           "Xam.Plugin.Geolocator": "4.5.0.6",
           "Xamarin.Forms": "3.1.0.697729",
           "sqlite-net-pcl": "1.5.231"
@@ -1936,6 +2062,47 @@
           "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
+      "Syncfusion.Licensing/16.3.0.21": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.Core/16.3.0.21": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "16.3.0.21"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfChart/16.3.0.21": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "16.3.0.21",
+          "Syncfusion.Xamarin.Core": "16.3.0.21",
+          "Xamarin.Forms": "2.4.0.280"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        }
+      },
       "Xam.Plugin.Geolocator/4.5.0.6": {
         "type": "package",
         "dependencies": {
@@ -1976,6 +2143,7 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Newtonsoft.Json": "11.0.2",
+          "Syncfusion.Xamarin.SfChart": "16.3.0.21",
           "Xam.Plugin.Geolocator": "4.5.0.6",
           "Xamarin.Forms": "3.1.0.697729",
           "sqlite-net-pcl": "1.5.231"
@@ -2518,6 +2686,47 @@
           "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
+      "Syncfusion.Licensing/16.3.0.21": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.Core/16.3.0.21": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "16.3.0.21"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfChart/16.3.0.21": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "16.3.0.21",
+          "Syncfusion.Xamarin.Core": "16.3.0.21",
+          "Xamarin.Forms": "2.4.0.280"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        }
+      },
       "Xam.Plugin.Geolocator/4.5.0.6": {
         "type": "package",
         "dependencies": {
@@ -2558,6 +2767,7 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Newtonsoft.Json": "11.0.2",
+          "Syncfusion.Xamarin.SfChart": "16.3.0.21",
           "Xam.Plugin.Geolocator": "4.5.0.6",
           "Xamarin.Forms": "3.1.0.697729",
           "sqlite-net-pcl": "1.5.231"
@@ -3101,6 +3311,47 @@
           "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
+      "Syncfusion.Licensing/16.3.0.21": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.Core/16.3.0.21": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "16.3.0.21"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfChart/16.3.0.21": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "16.3.0.21",
+          "Syncfusion.Xamarin.Core": "16.3.0.21",
+          "Xamarin.Forms": "2.4.0.280"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        }
+      },
       "Xam.Plugin.Geolocator/4.5.0.6": {
         "type": "package",
         "dependencies": {
@@ -3141,6 +3392,7 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Newtonsoft.Json": "11.0.2",
+          "Syncfusion.Xamarin.SfChart": "16.3.0.21",
           "Xam.Plugin.Geolocator": "4.5.0.6",
           "Xamarin.Forms": "3.1.0.697729",
           "sqlite-net-pcl": "1.5.231"
@@ -3683,6 +3935,47 @@
           "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
+      "Syncfusion.Licensing/16.3.0.21": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.Core/16.3.0.21": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "16.3.0.21"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfChart/16.3.0.21": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "16.3.0.21",
+          "Syncfusion.Xamarin.Core": "16.3.0.21",
+          "Xamarin.Forms": "2.4.0.280"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        }
+      },
       "Xam.Plugin.Geolocator/4.5.0.6": {
         "type": "package",
         "dependencies": {
@@ -3723,6 +4016,7 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Newtonsoft.Json": "11.0.2",
+          "Syncfusion.Xamarin.SfChart": "16.3.0.21",
           "Xam.Plugin.Geolocator": "4.5.0.6",
           "Xamarin.Forms": "3.1.0.697729",
           "sqlite-net-pcl": "1.5.231"
@@ -4266,6 +4560,47 @@
           "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
+      "Syncfusion.Licensing/16.3.0.21": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.Core/16.3.0.21": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "16.3.0.21"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.Core.XForms.dll": {}
+        }
+      },
+      "Syncfusion.Xamarin.SfChart/16.3.0.21": {
+        "type": "package",
+        "dependencies": {
+          "Syncfusion.Licensing": "16.3.0.21",
+          "Syncfusion.Xamarin.Core": "16.3.0.21",
+          "Xamarin.Forms": "2.4.0.280"
+        },
+        "compile": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.SfChart.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll": {},
+          "lib/uap10.0/Syncfusion.SfChart.XForms.dll": {}
+        }
+      },
       "Xam.Plugin.Geolocator/4.5.0.6": {
         "type": "package",
         "dependencies": {
@@ -4306,6 +4641,7 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Newtonsoft.Json": "11.0.2",
+          "Syncfusion.Xamarin.SfChart": "16.3.0.21",
           "Xam.Plugin.Geolocator": "4.5.0.6",
           "Xamarin.Forms": "3.1.0.697729",
           "sqlite-net-pcl": "1.5.231"
@@ -8116,6 +8452,123 @@
         "sqlitepclraw.provider.e_sqlite3.uwp10.nuspec"
       ]
     },
+    "Syncfusion.Licensing/16.3.0.21": {
+      "sha512": "3eUgJfio0CJDZfelQcZPKe6jpC670ysA6tbDda3ZjvnqYr7rDnMlRlOFWeyXgKrc4X0UZpS8eitIlBrb3F6SaA==",
+      "type": "package",
+      "path": "syncfusion.licensing/16.3.0.21",
+      "files": [
+        ".signature.p7s",
+        "lib/MonoAndroid10/Syncfusion.Licensing.dll",
+        "lib/Xamarin.Mac/Syncfusion.Licensing.dll",
+        "lib/Xamarin.iOS10/Syncfusion.Licensing.dll",
+        "lib/net20/Syncfusion.Licensing.dll",
+        "lib/net35/Syncfusion.Licensing.dll",
+        "lib/net40/Syncfusion.Licensing.dll",
+        "lib/net45/Syncfusion.Licensing.dll",
+        "lib/net451/Syncfusion.Licensing.dll",
+        "lib/net46/Syncfusion.Licensing.dll",
+        "lib/netstandard1.0/Syncfusion.Licensing.dll",
+        "lib/netstandard1.2/Syncfusion.Licensing.dll",
+        "lib/netstandard1.4/Syncfusion.Licensing.dll",
+        "lib/netstandard2.0/Syncfusion.Licensing.dll",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.Licensing.dll",
+        "lib/uap10.0/Syncfusion.Licensing.dll",
+        "syncfusion.licensing.16.3.0.21.nupkg.sha512",
+        "syncfusion.licensing.nuspec"
+      ]
+    },
+    "Syncfusion.Xamarin.Core/16.3.0.21": {
+      "sha512": "EFLv200KESWBR9HhsOvh6Vaa9BirzZ0YPL/gmwiuAHx4QWWn/D2h+g5C/pi6zA+25heZx2fSbQWpkG/23ca3rA==",
+      "type": "package",
+      "path": "syncfusion.xamarin.core/16.3.0.21",
+      "files": [
+        ".signature.p7s",
+        "lib/MonoAndroid10/Syncfusion.Core.XForms.Android.dll",
+        "lib/MonoAndroid10/Syncfusion.Core.XForms.dll",
+        "lib/MonoAndroid10/Syncfusion.Core.XForms.xml",
+        "lib/Xamarin.Mac/Syncfusion.Core.XForms.dll",
+        "lib/Xamarin.Mac/Syncfusion.Core.XForms.macOS.dll",
+        "lib/Xamarin.Mac/Syncfusion.Core.XForms.xml",
+        "lib/Xamarin.iOS10/Syncfusion.Core.XForms.dll",
+        "lib/Xamarin.iOS10/Syncfusion.Core.XForms.iOS.dll",
+        "lib/Xamarin.iOS10/Syncfusion.Core.XForms.xml",
+        "lib/netstandard1.0/Syncfusion.Core.XForms.dll",
+        "lib/netstandard1.0/Syncfusion.Core.XForms.xml",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.Core.XForms.dll",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.Core.XForms.xml",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP.dll",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP.pri",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP/Syncfusion.Core.XForms.UWP.xr.xml",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP/ToggleIcons/ToggleCollapsedIcon.xaml",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP/ToggleIcons/ToggleCollapsedIcon.xbf",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP/ToggleIcons/ToggleVisibleIcon.xaml",
+        "lib/uap10.0/Syncfusion.Core.XForms.UWP/ToggleIcons/ToggleVisibleIcon.xbf",
+        "lib/uap10.0/Syncfusion.Core.XForms.dll",
+        "lib/uap10.0/Syncfusion.Core.XForms.xml",
+        "syncfusion.xamarin.core.16.3.0.21.nupkg.sha512",
+        "syncfusion.xamarin.core.nuspec"
+      ]
+    },
+    "Syncfusion.Xamarin.SfChart/16.3.0.21": {
+      "sha512": "3osHicvjImITbOidbNlltsb2gujLQTWXSOkHfS5lUIuIjgGZqbpRT79wpdvYZ/lLDMMywQmqq0kwxWQCqd2/qg==",
+      "type": "package",
+      "path": "syncfusion.xamarin.sfchart/16.3.0.21",
+      "files": [
+        ".signature.p7s",
+        "lib/MonoAndroid10/Syncfusion.SfChart.XForms.Android.dll",
+        "lib/MonoAndroid10/Syncfusion.SfChart.XForms.dll",
+        "lib/MonoAndroid10/Syncfusion.SfChart.XForms.xml",
+        "lib/Xamarin.Mac/Syncfusion.SfChart.XForms.dll",
+        "lib/Xamarin.Mac/Syncfusion.SfChart.XForms.macOS.dll",
+        "lib/Xamarin.Mac/Syncfusion.SfChart.XForms.xml",
+        "lib/Xamarin.iOS10/Syncfusion.SfChart.XForms.dll",
+        "lib/Xamarin.iOS10/Syncfusion.SfChart.XForms.iOS.dll",
+        "lib/Xamarin.iOS10/Syncfusion.SfChart.XForms.xml",
+        "lib/netstandard1.0/Syncfusion.SfChart.XForms.dll",
+        "lib/netstandard1.0/Syncfusion.SfChart.XForms.xml",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.SfChart.XForms.dll",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.SfChart.XForms.xml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP.dll",
+        "lib/uap10.0/Syncfusion.SfChart.UWP.pri",
+        "lib/uap10.0/Syncfusion.SfChart.UWP.xml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/3D/ChartArea/Themes/SfChart3D.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/3D/ChartArea/Themes/SfChart3D.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/3D/ChartSeries/Themes/ChartSeries.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/3D/ChartSeries/Themes/ChartSeries.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/ChartArea/Themes/ChartArea.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/ChartArea/Themes/ChartArea.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/ChartAxis/Themes/ChartAxis.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/ChartAxis/Themes/ChartAxis.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/ChartSeries/Themes/ChartSeries.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/ChartSeries/Themes/ChartSeries.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Controls/Themes/ChartToolBar.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Controls/Themes/ChartToolBar.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Controls/Themes/ResizableScrollBar.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Controls/Themes/ResizableScrollBar.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Controls/Themes/Resizer.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Controls/Themes/Resizer.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Controls/Themes/SfRangeNavigator.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Controls/Themes/SfRangeNavigator.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Properties/Syncfusion.SfChart.UWP_2015.rd.xml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Sparkline/Themes/Sparkline.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Sparkline/Themes/Sparkline.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Syncfusion.SfChart.UWP.xml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Syncfusion.SfChart.UWP.xr.xml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Themes/Generic.Common.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Themes/Generic.Common.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Themes/Generic.Legend.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Themes/Generic.Legend.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Themes/Generic.Symbol.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Themes/Generic.Symbol.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Themes/generic.xaml",
+        "lib/uap10.0/Syncfusion.SfChart.UWP/Themes/generic.xbf",
+        "lib/uap10.0/Syncfusion.SfChart.XForms.UWP.dll",
+        "lib/uap10.0/Syncfusion.SfChart.XForms.dll",
+        "lib/uap10.0/Syncfusion.SfChart.XForms.xml",
+        "syncfusion.xamarin.sfchart.16.3.0.21.nupkg.sha512",
+        "syncfusion.xamarin.sfchart.nuspec"
+      ]
+    },
     "Xam.Plugin.Geolocator/4.5.0.6": {
       "sha512": "Ro7peBDxsDXPc7J7yLx0ekAcXIfVTAXj/rXiBKiTgZ4Lm7KZJIU8PXOCcI4JztzT3MQrL8Rmka48il/ix0pwoA==",
       "type": "package",
@@ -8301,6 +8754,7 @@
   "projectFileDependencyGroups": {
     "UAP,Version=v10.0.16299": [
       "Microsoft.NETCore.UniversalWindowsPlatform >= 6.1.5",
+      "Syncfusion.Xamarin.SfChart >= 16.3.0.21",
       "WlanAnalyzer >= 1.0.0",
       "Xam.Plugin.Geolocator >= 4.5.0.6",
       "Xamarin.Forms >= 3.1.0.697729"
@@ -8351,6 +8805,10 @@
           "Microsoft.NETCore.UniversalWindowsPlatform": {
             "target": "Package",
             "version": "[6.1.5, )"
+          },
+          "Syncfusion.Xamarin.SfChart": {
+            "target": "Package",
+            "version": "[16.3.0.21, )"
           },
           "Xam.Plugin.Geolocator": {
             "target": "Package",
