@@ -12,11 +12,11 @@ namespace WlanAnalyzer.Models
         public string SSID { get; set; }
         public string BSSID { get; set; }
         public double Frequency { get; set; }
-        public int Level { get; set; }
+        public double Level { get; set; }
         public int Channel { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
-        public static double AverageLevel { get; set; }
+        public double AverageLevel  { get; set; }
         //public long TimeStamp { get; set; }
 
         //public WifiParameters(string ssid, string bssid, int frequency, int level, int channel, long timeStamp)

@@ -2,38 +2,35 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             xmlns:chartEx="clr-namespace:WlanAnalyzer.Models"
              x:Class="WlanAnalyzer.ChartsPage">
     <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Switch chart" Order="Primary" Command="{Binding SwitchChartsCommand}"/>
         <ToolbarItem Text="Sort ascending" Order="Secondary" Command="{Binding SortCollectionByLevelDescendingCommand}"/>
         <ToolbarItem Text="Sort descending" Order="Secondary" Command="{Binding SortCollectionByLevelAscendingCommand}"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
 
-   
-            <!--<chart:SfChart Series="{Binding SeriesCollection}">-->
-        <chart:SfChart>
+            <chart:SfChart>
 
 
-            <chart:SfChart.ChartBehaviors>
-                <chart:ChartZoomPanBehavior/>
-            </chart:SfChart.ChartBehaviors>
-                
-               
+                <chart:SfChart.ChartBehaviors>
+                    <chart:ChartZoomPanBehavior/>
+                </chart:SfChart.ChartBehaviors>
 
 
-                <!--<chart:SfChart.Legend>
-                    <chart:ChartLegend/>
-                </chart:SfChart.Legend>-->
 
-            <chart:SfChart.PrimaryAxis>
-                <chart:CategoryAxis AutoScrollingDelta="20"
+
+
+                <chart:SfChart.PrimaryAxis>
+                    <chart:CategoryAxis AutoScrollingDelta="20"
                                      >
-                    <!--<chart:NumericalAxis.AxisLineStyle>
+                        <!--<chart:NumericalAxis.AxisLineStyle>
                         <chart:ChartLineStyle StrokeColor="Blue" StrokeWidth="1"/>
                     </chart:NumericalAxis.AxisLineStyle>-->
 
-         
+
 
                         <chart:CategoryAxis.Title>
                             <chart:ChartAxisTitle Text="SSID"></chart:ChartAxisTitle>
@@ -42,39 +39,77 @@
                 </chart:SfChart.PrimaryAxis>
                 <chart:SfChart.SecondaryAxis>
                     <chart:NumericalAxis>
-                    <!--<chart:NumericalAxis.AxisLineStyle>
+                        <!--<chart:NumericalAxis.AxisLineStyle>
                         <chart:ChartLineStyle StrokeColor="Blue" StrokeWidth="1"/>
                     </chart:NumericalAxis.AxisLineStyle>-->
-                    <chart:NumericalAxis.Title>
+                        <chart:NumericalAxis.Title>
                             <chart:ChartAxisTitle Text="Level"></chart:ChartAxisTitle>
                         </chart:NumericalAxis.Title>
                     </chart:NumericalAxis>
                 </chart:SfChart.SecondaryAxis>
 
-            <chart:SfChart.Series>
-                <chart:BarSeries ItemsSource="{Binding CollectionOfWifiNetworksChart}"
+                <chart:SfChart.Series>
+                    <chart:BarSeries ItemsSource="{Binding CollectionOfWifiNetworksChart}"
                                  XBindingPath="SSID"
                                  YBindingPath="Level"
                                  Color="DarkOrange"
                                  EnableTooltip="True">
-                    <chart:BarSeries.DataMarker>
-                        <chart:ChartDataMarker/>
-                    </chart:BarSeries.DataMarker>
-                </chart:BarSeries>
-            </chart:SfChart.Series>
+                        <chart:BarSeries.DataMarker>
+                            <chart:ChartDataMarker/>
+                        </chart:BarSeries.DataMarker>
+                    </chart:BarSeries>
+                </chart:SfChart.Series>
 
-      
-               
+            </chart:SfChart>
+
+        <!--<chart:SfChart Series="{Binding SeriesCollection}">-->
+       
 
 
-            <!--<chart:SfChart.Series ItemsSource ="{Binding DataCollection}">
+
+        <!--<chart:SfChart.Series ItemsSource ="{Binding DataCollection}">
                 <chart:LineSeries ItemsSource="{Binding DataCollection}"
                                   XBindingPath="Channel"
                                   YBindingPath="Level"                               
                                   EnableTooltip="True">
                     </chart:LineSeries>
-                </chart:SfChart.Series>-->
-            </chart:SfChart>
+                </chart:SfChart.Series>--><!--
+            </chart:SfChart>-->
+
+        <!--<chartEx:SfChartExt Source="{Binding CollectionOfWifiNetworksChartAverage}">
+            <chartEx:SfChartExt.PrimaryAxis>
+                <chart:CategoryAxis AutoScrollingDelta="20">
+                    <chart:CategoryAxis.Title>
+                        <chart:ChartAxisTitle Text="SSID"></chart:ChartAxisTitle>
+                    </chart:CategoryAxis.Title>
+                </chart:CategoryAxis>
+            </chartEx:SfChartExt.PrimaryAxis>
+            <chartEx:SfChartExt.SecondaryAxis>
+                <chart:NumericalAxis>
+                    <chart:NumericalAxis.Title>
+                        <chart:ChartAxisTitle Text="Level"></chart:ChartAxisTitle>
+                    </chart:NumericalAxis.Title>
+                </chart:NumericalAxis>
+            </chartEx:SfChartExt.SecondaryAxis>-->
+
+            <!--<chart:SfChart.Series>
+                <chart:ColumnSeries ItemsSource="{Binding CollectionOfWifiParameters}"
+                                 XBindingPath="SSID"
+                                 YBindingPath="Level"
+                                 Label="{Binding AverageLevel}"
+                                 Color="DarkOrange">
+                </chart:ColumnSeries>
+            </chart:SfChart.Series>-->
+            <!--<chartEx:SfChartExt.SeriesTemplate>
+                <DataTemplate>
+                    <chart:BarSeries    XBindingPath="SSID"
+                                        YBindingPath="Level"
+                                        ItemsSource="{Binding CollectionOfWifiNetworksChart}"
+                                        />
+                </DataTemplate>
+            </chartEx:SfChartExt.SeriesTemplate>-->
+            
+            
 
            
 
