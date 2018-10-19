@@ -25,7 +25,7 @@
                 <Label Text="MHz"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal">
-                <Label FontAttributes="Bold" Text="5Hz average frequency:"/>
+                <Label FontAttributes="Bold" Text="5GHz average frequency:"/>
                 <Label Text="{Binding AverageFrequency5GHz}"/>
                 <Label Text="MHz"/>
             </StackLayout>

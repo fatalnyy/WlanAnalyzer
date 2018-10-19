@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Android.Widget;
 using Syncfusion.SfChart.XForms;
@@ -20,6 +21,7 @@ namespace WlanAnalyzer.ViewModels
         private ObservableCollection<WifiParameters> _allWifiNetworksCollection;
         private List<WifiParameters> _allWifiNetworksCollection1;
         private double _averageLevel;
+        private INavigation _navigation;
         public ChartsPageViewModel()
         {
             AllWifiNetworksCollection = new ObservableCollection<WifiParameters>();
@@ -40,7 +42,18 @@ namespace WlanAnalyzer.ViewModels
         public Command SwitchChartsCommand { get; set; }
 
         public bool IsSwitched { get; set; }
-        public bool IsBusy { get; set; }
+        public bool IsBusy
+        {
+            get
+            {
+                return _isBusy;
+            }
+            set
+            {
+                _isBusy = value;
+                RaisePropertyChanged(nameof(IsBusy));
+            }
+        }
         public double AverageLevel
         {
             get
@@ -126,13 +139,112 @@ namespace WlanAnalyzer.ViewModels
             }
         }
         public int ScanCount { get; set; }
+        private Timer _chartTimer;
+        private bool _isBusy;
 
         private void LoadData()
         {
             //await Task.Delay(200);
-          
+            var startTimeSpan = TimeSpan.Zero;
+            var periodTimeSpan = TimeSpan.FromSeconds(10);
 
-            Device.StartTimer(new TimeSpan(0, 0, 0, 10), () =>
+
+            //_chartTimer = new Timer(async (e) =>
+            //{
+            //    await Task.Delay(1);
+            //    //var newWifiNetworks = MainPageViewModel.ListOfWifiNetworks.Where(x => !CollectionOfWifiNetworksChart.Any(y => x.SSID == y.SSID || x.BSSID == y.BSSID)).ToList();
+            //    //if (newWifiNetworks != null)
+            //    //{
+            //    //    foreach (var wifiNetwork in newWifiNetworks)
+            //    //    {
+            //    //        CollectionOfWifiNetworksChart.Add(wifiNetwork);
+            //    //        //TestCollection = CollectionOfWifiNetworksChart.Where(x => x.SSID == wifiNetwork.SSID).ToList();
+            //    //        //foreach (var wifi in TestCollection)
+            //    //        //{
+            //    //        //    CollectionOfWifiNetworksChart1.Add(wifi);
+            //    //        //}
+            //    //        //SeriesCollection.Add(new LineSeries() { ItemsSource = CollectionOfWifiNetworksChart, XBindingPath = "SSID", YBindingPath = "Level", StrokeWidth = 4, Label = wifiNetwork.SSID });
+            //    //    }
+            //    //}
+
+            //    foreach (var wifiNetwork in MainPageViewModel.ListOfWifiNetworks)
+            //    {
+            //        AllWifiNetworksCollection.Add(wifiNetwork);
+
+            //        var found = CollectionOfWifiNetworksChart.FirstOrDefault(x => x.SSID == wifiNetwork.SSID || x.BSSID == wifiNetwork.BSSID);
+            //        if (found != null)
+            //        {
+            //            int i = CollectionOfWifiNetworksChart.IndexOf(found);
+            //            if (IsSwitched)
+            //            {
+            //                var specificWifiNetworkCollection = AllWifiNetworksCollection.Where(x => x.SSID == wifiNetwork.SSID && x.BSSID == wifiNetwork.BSSID).ToList();
+            //                wifiNetwork.Level = specificWifiNetworkCollection.Select(y => y.Level).ToList().Average();
+            //            }
+            //            CollectionOfWifiNetworksChart[i] = wifiNetwork;
+            //        }
+            //    }
+            //    var wifiNetworksToDelete = CollectionOfWifiNetworksChart.Where(x => !MainPageViewModel.ListOfWifiNetworks.Any(y => x.SSID == y.SSID || x.BSSID == y.BSSID));
+            //    if (wifiNetworksToDelete != null)
+            //    {
+            //        foreach (var wifiNetwork in wifiNetworksToDelete.ToList())
+            //        {
+            //            CollectionOfWifiNetworksChart.Remove(wifiNetwork);
+            //        }
+            //    }
+
+
+            //    //SeriesCollection.Add(new BarSeries() { ItemsSource = CollectionOfWifiNetworksChart, XBindingPath = "Channel", YBindingPath = "Level", StrokeWidth = 4, Label = "SSID"});
+
+            //    //foreach (var wifiNetwork in AllWifiNetworksCollection)
+            //    //{
+            //    //    foreach (var specificWifiNetwork in AllWifiNetworksCollection.Where(x => x.SSID == wifiNetwork.SSID).ToList())
+            //    //    {
+            //    //        CollectionOfWifiNetworksChartAverage.Add(new WifiParametersCollection()
+            //    //        {
+            //    //            CollectionOfWifiParameters = new ObservableCollection<WifiParameters>()
+            //    //            {
+            //    //                new WifiParameters(){SSID = specificWifiNetwork.SSID, BSSID = specificWifiNetwork.BSSID, Level = specificWifiNetwork.Level}
+            //    //            },
+            //    //            //AverageLevel = AllWifiNetworksCollection.Where(x => x.SSID == wifiNetwork.SSID).Average(y => y.Level)
+            //    //            AverageLevel = 15
+            //    //        });
+            //    //    }
+            //    //}
+            //    var newWifiNetworks = MainPageViewModel.ListOfWifiNetworks.Where(x => !CollectionOfWifiNetworksChart.Any(y => x.SSID == y.SSID || x.BSSID == y.BSSID)).ToList();
+            //    foreach (var wifiNetwork in newWifiNetworks)
+            //    {
+            //        if (IsSwitched)
+            //        {
+            //            var specificWifiNetworkCollection = AllWifiNetworksCollection.Where(x => x.SSID == wifiNetwork.SSID && x.BSSID == wifiNetwork.BSSID).ToList();
+            //            wifiNetwork.Level = specificWifiNetworkCollection.Select(y => y.Level).ToList().Average();
+            //        }
+            //        //wifiNetwork.AverageLevel = 15;
+            //        //wifiNetwork.AverageLevel = AllWifiNetworksCollection.Where(x => x.SSID == wifiNetwork.SSID).Select(y => y.Level).Average();
+            //        CollectionOfWifiNetworksChart.Insert(0, wifiNetwork);
+            //        //SeriesCollection.Add(new ColumnSeries() { ItemsSource = CollectionOfWifiNetworksChart, XBindingPath = "SSID", YBindingPath = "Level", StrokeWidth = 4, Label = wifiNetwork.Level.ToString() });
+            //        //AverageLevel = CollectionOfWifiNetworksChart.Where(x => x.SSID == wifiNetwork.SSID).Average(y => y.Level);
+            //        //TestCollection = CollectionOfWifiNetworksChart.Where(x => x.SSID == wifiNetwork.SSID).ToList();
+            //        //foreach (var wifi in TestCollection)
+            //        //{
+            //        //    CollectionOfWifiNetworksChart1.Add(wifi);
+            //        //}
+
+            //        //var found = CollectionOfWifiNetworksChart.FirstOrDefault(x => x.SSID == wifiNetwork.SSID || x.BSSID == wifiNetwork.BSSID);
+            //        //if (found != null)
+            //        //{
+            //        //    int i = CollectionOfWifiNetworksChart.IndexOf(found);
+            //        //    CollectionOfWifiNetworksChart[i] = wifiNetwork;
+            //        //    SeriesCollection.Add(new LineSeries() { ItemsSource = CollectionOfWifiNetworksChart.Where(x => x.SSID == wifiNetwork.SSID && x.BSSID == wifiNetwork.BSSID), XBindingPath = "Channel", YBindingPath = "Level" });
+            //        //}
+            //    }
+            //}, null, startTimeSpan, periodTimeSpan);
+            Task.Run(async () =>
+            {
+                IsBusy = true;
+                await Task.Delay(10000);
+                IsBusy = false;
+            });
+            Device.StartTimer(TimeSpan.FromSeconds(10), () =>
             {
                 //var newWifiNetworks = MainPageViewModel.ListOfWifiNetworks.Where(x => !CollectionOfWifiNetworksChart.Any(y => x.SSID == y.SSID || x.BSSID == y.BSSID)).ToList();
                 //if (newWifiNetworks != null)
@@ -148,7 +260,6 @@ namespace WlanAnalyzer.ViewModels
                 //        //SeriesCollection.Add(new LineSeries() { ItemsSource = CollectionOfWifiNetworksChart, XBindingPath = "SSID", YBindingPath = "Level", StrokeWidth = 4, Label = wifiNetwork.SSID });
                 //    }
                 //}
-
                 foreach (var wifiNetwork in MainPageViewModel.ListOfWifiNetworks)
                 {
                     AllWifiNetworksCollection.Add(wifiNetwork);
@@ -157,9 +268,10 @@ namespace WlanAnalyzer.ViewModels
                     if (found != null)
                     {
                         int i = CollectionOfWifiNetworksChart.IndexOf(found);
-                        if (IsSwitched) {
-                            var specificWifiNetworkCollection = AllWifiNetworksCollection.Where(x => x.SSID == wifiNetwork.SSID && x.BSSID == wifiNetwork.BSSID).ToList();
-                            wifiNetwork.Level = specificWifiNetworkCollection.Select(y => y.Level).ToList().Average();
+                        if (IsSwitched)
+                        {
+                            AllWifiNetworksCollection1 = AllWifiNetworksCollection.Where(x => x.SSID == wifiNetwork.SSID && x.BSSID == wifiNetwork.BSSID).ToList();
+                            wifiNetwork.Level = AllWifiNetworksCollection1.Select(y => y.Level).ToList().Average();
                         }
                         CollectionOfWifiNetworksChart[i] = wifiNetwork;
                     }
@@ -194,7 +306,8 @@ namespace WlanAnalyzer.ViewModels
                 var newWifiNetworks = MainPageViewModel.ListOfWifiNetworks.Where(x => !CollectionOfWifiNetworksChart.Any(y => x.SSID == y.SSID || x.BSSID == y.BSSID)).ToList();
                 foreach (var wifiNetwork in newWifiNetworks)
                 {
-                    if (IsSwitched) {
+                    if (IsSwitched)
+                    {
                         var specificWifiNetworkCollection = AllWifiNetworksCollection.Where(x => x.SSID == wifiNetwork.SSID && x.BSSID == wifiNetwork.BSSID).ToList();
                         wifiNetwork.Level = specificWifiNetworkCollection.Select(y => y.Level).ToList().Average();
                     }

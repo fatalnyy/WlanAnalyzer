@@ -11,8 +11,30 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
+        <Grid BackgroundColor="#eaeef2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
 
-            <chart:SfChart>
+
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="*"/>
+
+
+            </Grid.RowDefinitions>
+            <ActivityIndicator  
+                Grid.Row="0" 
+                Grid.Column="1" 
+                IsRunning="{Binding IsBusy}"/>
+            <chart:SfChart 
+                Grid.Row="1" 
+                Grid.Column="0" 
+                Grid.ColumnSpan="3"
+                BackgroundColor="#eaeef2">
 
 
                 <chart:SfChart.ChartBehaviors>
@@ -43,7 +65,7 @@
                         <chart:ChartLineStyle StrokeColor="Blue" StrokeWidth="1"/>
                     </chart:NumericalAxis.AxisLineStyle>-->
                         <chart:NumericalAxis.Title>
-                            <chart:ChartAxisTitle Text="Level"></chart:ChartAxisTitle>
+                            <chart:ChartAxisTitle Text="Level [dBm]"></chart:ChartAxisTitle>
                         </chart:NumericalAxis.Title>
                     </chart:NumericalAxis>
                 </chart:SfChart.SecondaryAxis>
@@ -61,6 +83,9 @@
                 </chart:SfChart.Series>
 
             </chart:SfChart>
+        </Grid>
+
+           
 
         <!--<chart:SfChart Series="{Binding SeriesCollection}">-->
        

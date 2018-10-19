@@ -29,7 +29,7 @@ namespace WlanAnalyzer.ViewModels
         private WifiReceiver wifiReceiver;
         private int _numberOfDetectedAccessPoints;
         private string _fileName;
-        private double _refreshTime;
+        private int _refreshTime;
         private Timer timer;
         private string _currentWifiNetworkName;
         private int _currentWifiNetworkIP;
@@ -37,7 +37,7 @@ namespace WlanAnalyzer.ViewModels
         private int _currentWifiNetworkSpeed;
         public static ObservableCollection<WifiParameters> ListOfWifiNetworks;
         //public ObservableCollection<WifiParameters> ListOfWifiNetworks1 { get; set; }
-        private List<double> _refreshTimeList;
+        private List<int> _refreshTimeList;
         private ObservableCollection<WifiParameters> _detectedWifiNetworks;
         public static AutoResetEvent CollectionofNetworksArrived = new AutoResetEvent(false);
         public static AutoResetEvent SaveToDatabaseAuto = new AutoResetEvent(false);
@@ -69,7 +69,7 @@ namespace WlanAnalyzer.ViewModels
         public static double Latitude { get; set; }
         public static double Longitude { get; set; }
 
-        public List<double> RefreshTimeList
+        public List<int> RefreshTimeList
         {
             get
             {
@@ -81,7 +81,7 @@ namespace WlanAnalyzer.ViewModels
                 RaisePropertyChanged(nameof(RefreshTimeList));
             }
         }
-        public double RefreshTime
+        public int RefreshTime
         {
             get
             {
@@ -89,7 +89,7 @@ namespace WlanAnalyzer.ViewModels
             }
             set
             {
-                if(!IsScanning)
+                if (!IsScanning)
                 {
                     _refreshTime = value;
                     RaisePropertyChanged(nameof(RefreshTime));
@@ -195,7 +195,7 @@ namespace WlanAnalyzer.ViewModels
         public MainPageViewModel(INavigation navigation)
         {
             _navigation = navigation;
-            RefreshTimeList = new List<double>();
+            RefreshTimeList = new List<int>();
             DetectedWifiNetworks = new ObservableCollection<WifiParameters>();
             ListOfWifiNetworks = new ObservableCollection<WifiParameters>();
             CurrentWifiNetworkName = "-";
@@ -410,7 +410,12 @@ namespace WlanAnalyzer.ViewModels
         }
         private async Task OpenChartsPage()
         {
-            await _navigation.PushAsync(new ChartsPage());
+            if(DetectedWifiNetworks.Count != 0)
+                await _navigation.PushAsync(new ChartsPage());
+            else
+                Toast.MakeText(Android.App.Application.Context, "You have to start scanning first!", ToastLength.Short).Show();
+
+
         }
         private async Task SaveListToDatabase()
         {
@@ -472,7 +477,7 @@ namespace WlanAnalyzer.ViewModels
         }
         private void FillRefreshTimeList()
         {
-            RefreshTimeList.AddRange(new List<double>
+            RefreshTimeList.AddRange(new List<int>
             {
                 10,15,20,30,60
             });
@@ -484,6 +489,8 @@ namespace WlanAnalyzer.ViewModels
                 IList<ScanResult> scanWifiNetworks = wifiManager.ScanResults;
                 foreach (ScanResult wifiNetwork in scanWifiNetworks)
                 {
+                    if (wifiNetwork.Ssid == "")
+                        wifiNetwork.Ssid = "Unknown SSID";
                     ListOfWifiNetworks.Add(new WifiParameters() { SSID = wifiNetwork.Ssid, BSSID = wifiNetwork.Bssid, Frequency = wifiNetwork.Frequency, Level = wifiNetwork.Level, Channel = WifiParameters.GetChannel(wifiNetwork.Frequency), Latitude = Latitude, Longitude = Longitude });
                    // ListOfWifiNetworks.Add(new WifiParameters(wifiNetwork.Ssid, wifiNetwork.Bssid, wifiNetwork.Frequency, wifiNetwork.Level, WifiParameters.GetChannel(wifiNetwork.Frequency), wifiNetwork.Timestamp));
                 }
