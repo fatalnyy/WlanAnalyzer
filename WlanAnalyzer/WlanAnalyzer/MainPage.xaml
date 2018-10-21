@@ -15,6 +15,7 @@
         <ToolbarItem Text="Save list to database" Order="Secondary" Command="{Binding SaveListToDatabaseCommand}"/>
         <ToolbarItem Text="Save file to database" Order="Secondary" Command="{Binding SaveFileToDatabaseCommand}"/>
         <ToolbarItem Text="Save list to database automatically" Order="Secondary" Command="{Binding SaveListToDatabaseAutoCommand}"/>
+        <ToolbarItem Text="Save list to file automatically" Order="Secondary" Command="{Binding SaveListToFileAutoCommand}"/>
         <ToolbarItem Text="Clear list" Order="Secondary" Command="{Binding ClearCommand}"/>
     </ContentPage.ToolbarItems>
     <StackLayout BackgroundColor="#eaeef2">

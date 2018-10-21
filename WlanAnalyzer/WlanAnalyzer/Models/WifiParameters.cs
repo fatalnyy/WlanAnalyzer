@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿using Newtonsoft.Json;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,6 +8,7 @@ namespace WlanAnalyzer.Models
 {
     public class WifiParameters
     {
+        [JsonIgnore]
         [PrimaryKey, AutoIncrement]
         public int WifiID { get; set; }
         public string SSID { get; set; }
@@ -16,6 +18,7 @@ namespace WlanAnalyzer.Models
         public int Channel { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
+        [JsonIgnore]
         public double AverageLevel  { get; set; }
         //public long TimeStamp { get; set; }
 

@@ -28,6 +28,7 @@ namespace WlanAnalyzer.ViewModels
         private static WifiManager wifiManager;
         private WifiReceiver wifiReceiver;
         private int _numberOfDetectedAccessPoints;
+        private int _numberOfDetectedAccessPoints1;
         private string _fileName;
         private int _refreshTime;
         private Timer timer;
@@ -36,6 +37,7 @@ namespace WlanAnalyzer.ViewModels
         private string _currentWifiNetworkIPText;
         private int _currentWifiNetworkSpeed;
         public static ObservableCollection<WifiParameters> ListOfWifiNetworks;
+        public static ObservableCollection<WifiParameters> ListOfWifiNetworksFromFile;
         //public ObservableCollection<WifiParameters> ListOfWifiNetworks1 { get; set; }
         private List<int> _refreshTimeList;
         private ObservableCollection<WifiParameters> _detectedWifiNetworks;
@@ -63,6 +65,7 @@ namespace WlanAnalyzer.ViewModels
         public Command ChartsPageToolbarCommand { get; set; }
         public Command SaveListToDatabaseCommand { get; set; }
         public Command SaveListToDatabaseAutoCommand { get; set; }
+        public Command SaveListToFileAutoCommand { get; set; }
         public Command AddSelectedWifiNetworkToDataBaseCommand { get; set; }
         public Command SaveFileToDatabaseCommand { get; set; }
 
@@ -122,6 +125,18 @@ namespace WlanAnalyzer.ViewModels
                 _numberOfDetectedAccessPoints = value;
                 RaisePropertyChanged("NumberOfDetectedAccessPoints");
                 RaisePropertyChanged("NumberOfDetectedAccessPointsText");
+            }
+        }
+        public int NumberOfDetectedAccessPoints1
+        {
+            get
+            {
+                return _numberOfDetectedAccessPoints1;
+            }
+            set
+            {
+                _numberOfDetectedAccessPoints1 = value;
+                RaisePropertyChanged("NumberOfDetectedAccessPoints1");
             }
         }
         public string NumberOfDetectedAccessPointsText
@@ -191,6 +206,7 @@ namespace WlanAnalyzer.ViewModels
         public WifiParameters SelectedWifiNetwork { get; set; }
         public bool IsScanning { get; set; }
         public bool AutoSaveToDatabase { get; set; }
+        public bool AutoSaveToFile { get; set; }
 
         public MainPageViewModel(INavigation navigation)
         {
@@ -198,6 +214,7 @@ namespace WlanAnalyzer.ViewModels
             RefreshTimeList = new List<int>();
             DetectedWifiNetworks = new ObservableCollection<WifiParameters>();
             ListOfWifiNetworks = new ObservableCollection<WifiParameters>();
+            ListOfWifiNetworksFromFile = new ObservableCollection<WifiParameters>();
             CurrentWifiNetworkName = "-";
             CurrentWifiNetworkSpeed = 0;
             CurrentWifiNetworkIPText = "-";
@@ -215,6 +232,7 @@ namespace WlanAnalyzer.ViewModels
             ChartsPageToolbarCommand = new Command(async () => await OpenChartsPage());
             SaveListToDatabaseCommand = new Command(async () => await SaveListToDatabase());
             SaveListToDatabaseAutoCommand = new Command(async () => await SaveListToDatabaseAuto());
+            SaveListToFileAutoCommand = new Command(async () => await SaveListToFileAuto());
             AddSelectedWifiNetworkToDataBaseCommand = new Command(async () => await AddSelectedWifiNetworkToDataBase());
             SaveFileToDatabaseCommand = new Command(async () => await SaveFileToDatabase());
         }
@@ -274,44 +292,56 @@ namespace WlanAnalyzer.ViewModels
                         context.UnregisterReceiver(wifiReceiver);
                         if (ListOfWifiNetworks.Count > 0)
                         {
-                            var newWifiNetworks = ListOfWifiNetworks.Where(x => !DetectedWifiNetworks.Any(y => x.SSID == y.SSID || x.BSSID == y.BSSID));
-                            if (newWifiNetworks != null)
+                            //var newWifiNetworks = ListOfWifiNetworks.Where(x => !DetectedWifiNetworks.Any(y => x.SSID == y.SSID || x.BSSID == y.BSSID));
+                            //if (newWifiNetworks != null)
+                            //{
+                            //    foreach (var wifiNewtork in newWifiNetworks.ToList())
+                            //    {
+                            //        DetectedWifiNetworks.Add(wifiNewtork);
+                            //    }
+                            //}
+
+                            //foreach (var wifiNetwork in ListOfWifiNetworks)
+                            //{
+                            //    var found = DetectedWifiNetworks.FirstOrDefault(x => x.SSID == wifiNetwork.SSID || x.BSSID == wifiNetwork.BSSID);
+                            //    if (found != null)
+                            //    {
+                            //        int i = DetectedWifiNetworks.IndexOf(found);
+                            //        DetectedWifiNetworks[i] = wifiNetwork;
+                            //    }
+                            //}
+
+                            //var wifiNetworksToDelete = DetectedWifiNetworks.Where(x => !ListOfWifiNetworks.Any(y => x.SSID == y.SSID || x.BSSID == y.BSSID));
+                            //if (wifiNetworksToDelete != null)
+                            //{
+                            //    foreach (var wifiNetwork in wifiNetworksToDelete.ToList())
+                            //    {
+                            //        DetectedWifiNetworks.Remove(wifiNetwork);
+                            //    }
+                            //}
+                            DetectedWifiNetworks.Clear();
+                            foreach (var item in ListOfWifiNetworks)
                             {
-                                foreach (var wifiNewtork in newWifiNetworks.ToList())
-                                {
-                                    DetectedWifiNetworks.Add(wifiNewtork);
-                                }
+                                DetectedWifiNetworks.Add(item);
                             }
 
-                            foreach (var wifiNetwork in ListOfWifiNetworks)
-                            {
-                                var found = DetectedWifiNetworks.FirstOrDefault(x => x.SSID == wifiNetwork.SSID || x.BSSID == wifiNetwork.BSSID);
-                                if (found != null)
-                                {
-                                    int i = DetectedWifiNetworks.IndexOf(found);
-                                    DetectedWifiNetworks[i] = wifiNetwork;
-                                }
-                            }
-
-                            var wifiNetworksToDelete = DetectedWifiNetworks.Where(x => !ListOfWifiNetworks.Any(y => x.SSID == y.SSID || x.BSSID == y.BSSID));
-                            if (wifiNetworksToDelete != null)
-                            {
-                                foreach (var wifiNetwork in wifiNetworksToDelete.ToList())
-                                {
-                                    DetectedWifiNetworks.Remove(wifiNetwork);
-                                }
-                            }
                         }
                         CollectionofNetworksArrived.Reset();
                         IsBusy = false;
-                        if (AutoSaveToDatabase)
-                        {
+                        if (AutoSaveToDatabase) {
                             Device.BeginInvokeOnMainThread(async () =>
                             {
                                 await SaveListToDatabase();
                             });
                         }
+                        if (AutoSaveToFile) {
+                            Device.BeginInvokeOnMainThread( () =>
+                            {
+                                Serialization();
+                            });
+                        }
                         NumberOfDetectedAccessPoints = DetectedWifiNetworks.Count;
+                        NumberOfDetectedAccessPoints1 = ListOfWifiNetworks.Count;
                         await locator.StopListeningAsync();
           
                     }, null, startTimeSpan, periodTimeSpan);
@@ -360,6 +390,7 @@ namespace WlanAnalyzer.ViewModels
         {
             if (NumberOfDetectedAccessPoints == 0) {
                 Toast.MakeText(Android.App.Application.Context, "There is nothing to be saved!", ToastLength.Short).Show();
+                AutoSaveToFile = false;
                 return;
             }
 
@@ -367,38 +398,43 @@ namespace WlanAnalyzer.ViewModels
             //var sdCardPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             string filePath = Path.Combine(sdCardPath, FileName + ".json");
 
-            if (!File.Exists(filePath))
-            {
+            foreach (var wifiNetwork in ListOfWifiNetworks) {
+                ListOfWifiNetworksFromFile.Add(wifiNetwork);
+            }
+
+            if (!File.Exists(filePath)) {
                 WifiParametersJSON.ToJson(filePath, ListOfWifiNetworks);
                 Toast.MakeText(Android.App.Application.Context, "List of wifi networks has been saved to file successfully.", ToastLength.Short).Show();
             }
-            else
-            {
-                foreach (var wifiNetwork in WifiParametersJSON.FromJson(filePath))
-                {
-                    ListOfWifiNetworks.Add(wifiNetwork);
+            else {
+                foreach (var wifiNetwork in WifiParametersJSON.FromJson(filePath)) {
+                    ListOfWifiNetworksFromFile.Add(wifiNetwork);
                 }
-                WifiParametersJSON.ToJson(filePath, ListOfWifiNetworks);
+                WifiParametersJSON.ToJson(filePath, ListOfWifiNetworksFromFile);
                 Toast.MakeText(Android.App.Application.Context, "List of wifi networks has been saved to file successfully.", ToastLength.Short).Show();
             }
-            ListOfWifiNetworks.Clear();
+            ListOfWifiNetworksFromFile.Clear();
         }
         private async Task SaveFileToDatabase()
         {
             var sdCardPath = Android.OS.Environment.ExternalStorageDirectory.Path;
             string filePath = Path.Combine(sdCardPath, FileName + ".json");
 
+            foreach (var wifiNetwork in ListOfWifiNetworks) {
+                ListOfWifiNetworksFromFile.Add(wifiNetwork);
+            }
+
             if (File.Exists(filePath))
             {
-                foreach (var wifiNetwork in WifiParametersJSON.FromJson(filePath))
-                {
-                    ListOfWifiNetworks.Add(wifiNetwork);
+                foreach (var wifiNetwork in WifiParametersJSON.FromJson(filePath)) {
+                    ListOfWifiNetworksFromFile.Add(wifiNetwork);
                 }
-                await App.Database.SaveCollectionOfWifiParameters(ListOfWifiNetworks);
-                Toast.MakeText(Android.App.Application.Context, "List of wifi networks from files has been added to database successfully.", ToastLength.Short).Show();
+                await App.Database.SaveCollectionOfWifiParameters(ListOfWifiNetworksFromFile);
+                Toast.MakeText(Android.App.Application.Context, "List of wifi networks from file has been added to database successfully.", ToastLength.Short).Show();
             }
             else
                 Toast.MakeText(Android.App.Application.Context, "File with such name does not exist!", ToastLength.Short).Show();
+            ListOfWifiNetworksFromFile.Clear();
         }
         private async Task OpenDatabase()
         {
@@ -421,6 +457,7 @@ namespace WlanAnalyzer.ViewModels
         {
             if (NumberOfDetectedAccessPoints == 0) {
                 Toast.MakeText(Android.App.Application.Context, "There is nothing to be added!", ToastLength.Short).Show();
+                AutoSaveToDatabase = false;
                 return;
             }
 
@@ -433,7 +470,17 @@ namespace WlanAnalyzer.ViewModels
             await Task.Delay(1);
             Toast.MakeText(Android.App.Application.Context, "Autosave to database is turned on!", ToastLength.Short).Show();
         }
-            
+        private async Task SaveListToFileAuto()
+        {
+            if(FileName != null) {
+                AutoSaveToFile = true;
+                await Task.Delay(1);
+                Toast.MakeText(Android.App.Application.Context, "Autosave to file is turned on!", ToastLength.Short).Show();
+            }
+            else {
+                Toast.MakeText(Android.App.Application.Context, "Enter file name first!", ToastLength.Short).Show();
+            }
+        }
         private async Task AddSelectedWifiNetworkToDataBase()
         {
             if(SelectedWifiNetwork != null) {

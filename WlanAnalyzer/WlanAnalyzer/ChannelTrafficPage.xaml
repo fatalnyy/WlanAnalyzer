@@ -20,17 +20,6 @@
             <Label Text="{Binding FreeChannelsText}"/>
             <BoxView HeightRequest="1" WidthRequest="1" Color="Gray"/>
             <StackLayout Orientation="Horizontal">
-                <Label FontAttributes="Bold" Text="2.4GHz average frequency:"/>
-                <Label Text="{Binding AverageFrequency2GHz}"/>
-                <Label Text="MHz"/>
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label FontAttributes="Bold" Text="5GHz average frequency:"/>
-                <Label Text="{Binding AverageFrequency5GHz}"/>
-                <Label Text="MHz"/>
-            </StackLayout>
-            <BoxView HeightRequest="1" WidthRequest="1" Color="Gray"/>
-            <StackLayout Orientation="Horizontal">
                 <Label FontAttributes="Bold" FontSize="Medium" Text="                  2.4GHz"/>
                 <Label FontAttributes="Bold" FontSize="Medium" Text="                                                5GHz"/>
             </StackLayout>
