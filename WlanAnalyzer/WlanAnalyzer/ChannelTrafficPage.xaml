@@ -4,16 +4,13 @@
              xmlns:vm="clr-namespace:WlanAnalyzer.ViewModels"
              x:Class="WlanAnalyzer.ChannelTrafficPage"
              Title="Channel Traffic">
-    <!--<ContentPage.BindingContext>
-        <vm:StatisticalAnalyzePageViewModel/>
-    </ContentPage.BindingContext>-->
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Sort by number of WLANs ascending" Order="Secondary" Command="{Binding SortNumberOfWLANsAscendingCommand}"/>
         <ToolbarItem Text="Sort by number of WLANs descending" Order="Secondary" Command="{Binding SortNumberOfWLANsDescendingCommand}"/>
         <ToolbarItem Text="Sort by channels" Order="Secondary" Command="{Binding SortByChannelsCommand}"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout BackgroundColor="#eaeef2">
             <StackLayout HorizontalOptions="Center">
                 <Label FontSize="Medium" FontAttributes="Bold" Text="Free Channels" VerticalTextAlignment="Center"/>
             </StackLayout>
@@ -26,10 +23,6 @@
             <StackLayout Orientation="Horizontal">
                 <ListView
                     Header="  Channel        Number of WLANs"
-                    Grid.Column="0"
-                    Grid.Row="4"
-                    Grid.ColumnSpan="3"
-                    Grid.RowSpan="8"
                     ItemsSource="{Binding ChannelsDictionary2GHz}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -46,10 +39,6 @@
                 </ListView>
                 <ListView
                     Header="  Channel        Number of WLANs"
-                    Grid.Column="3"
-                    Grid.Row="4"
-                    Grid.ColumnSpan="3"
-                    Grid.RowSpan="8"
                     ItemsSource="{Binding ChannelsDictionary5GHz}">
                     <ListView.ItemTemplate>
                         <DataTemplate>

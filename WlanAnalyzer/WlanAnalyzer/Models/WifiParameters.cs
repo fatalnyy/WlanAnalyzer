@@ -20,17 +20,6 @@ namespace WlanAnalyzer.Models
         public double Longitude { get; set; }
         [JsonIgnore]
         public double AverageLevel  { get; set; }
-        //public long TimeStamp { get; set; }
-
-        //public WifiParameters(string ssid, string bssid, int frequency, int level, int channel, long timeStamp)
-        //{
-        //    SSID = ssid;
-        //    BSSID = bssid;
-        //    Frequency = frequency;
-        //    Level = level;
-        //    Channel = channel;
-        //    TimeStamp = timeStamp;
-        //}
 
         public static int GetChannel(int Frequency)
         {

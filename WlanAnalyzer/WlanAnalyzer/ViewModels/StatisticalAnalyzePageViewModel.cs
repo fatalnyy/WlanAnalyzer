@@ -34,8 +34,6 @@ namespace WlanAnalyzer.ViewModels
             CollectionOfWifiNetworksToAnalyze = new ObservableCollection<WifiParameters>();
             collectionOfWifiParametersToAnalyzeTrafficChannel = new ObservableCollection<WifiParameters>();
 
-            //StatisticalAnalyzePageViewModel1 = new StatisticalAnalyzePageViewModel(_navigation);
-            myprop = "gsadgas";
             LoadDataFromFileCommand = new Command(async () => await LoadDataFromFile());
             LoadDataFromCurrentScanListCommand = new Command(async () => await LoadDataFromCurrentScanList());
             LoadDataFromDatabaseCommand = new Command(async () => await LoadDataFromDatabase());
@@ -43,7 +41,6 @@ namespace WlanAnalyzer.ViewModels
             SortCollectionByFrequencyCommand = new Command(async () => await SortCollectionByFrequency());
             OpenChannelTrafficToolbarCommand = new Command(async () => await OpenChannelTraffic());
         }
-        //public ChannelTrafficPage ChannelTraficPage1 { get; set; }
         public ObservableCollection<WifiParameters> CollectionOfWifiNetworksToAnalyze
         {
             get
@@ -81,19 +78,6 @@ namespace WlanAnalyzer.ViewModels
                 RaisePropertyChanged(nameof(FileNameToAnalyze));
             }
         }
-        private string myprop;
-        public string MyProperty
-        {
-            get
-            {
-                return myprop;
-            }
-            set
-            {
-                myprop = value;
-
-            }
-        }
         public int NumberOfWifiNetworksToAnalyze
         {
             get
@@ -126,59 +110,6 @@ namespace WlanAnalyzer.ViewModels
                 RaisePropertyChanged(nameof(ListOfWifiNetworksToAnalyze));
             }
         }
-        #region Number of access points in channels properties
-        private int _numberOfWifiNetworksChannel1 =0;
-        public int NumberOfWifiNetworksChannel1
-        {
-            get
-            {
-                return _numberOfWifiNetworksChannel1;
-            }
-            set
-            {
-                _numberOfWifiNetworksChannel1 = value;
-                RaisePropertyChanged(nameof(NumberOfWifiNetworksChannel1));
-            }
-        }
-        public int NumberOfWifiNetworksChannel2 { get; set; }
-        public int NumberOfWifiNetworksChannel3 { get; set; }
-        public int NumberOfWifiNetworksChannel4 { get; set; }
-        public int NumberOfWifiNetworksChannel5 { get; set; }
-        public int NumberOfWifiNetworksChannel6 { get; set; }
-        public int NumberOfWifiNetworksChannel7 { get; set; }
-        public int NumberOfWifiNetworksChannel8 { get; set; }
-        public int NumberOfWifiNetworksChannel9 { get; set; }
-        public int NumberOfWifiNetworksChannel10 { get; set; }
-        public int NumberOfWifiNetworksChannel11 { get; set; }
-        public int NumberOfWifiNetworksChannel12 { get; set; }
-        public int NumberOfWifiNetworksChannel13 { get; set; }
-        public int NumberOfWifiNetworksChannel36 { get; set; }
-        public int NumberOfWifiNetworksChannel40 { get; set; }
-        public int NumberOfWifiNetworksChannel44 { get; set; }
-        public int NumberOfWifiNetworksChannel48 { get; set; }
-        public int NumberOfWifiNetworksChannel52 { get; set; }
-        public int NumberOfWifiNetworksChannel56 { get; set; }
-        public int NumberOfWifiNetworksChannel60 { get; set; }
-        public int NumberOfWifiNetworksChannel64 { get; set; }
-        public int NumberOfWifiNetworksChannel100 { get; set; }
-        public int NumberOfWifiNetworksChannel104 { get; set; }
-        public int NumberOfWifiNetworksChannel108 { get; set; }
-        public int NumberOfWifiNetworksChannel112 { get; set; }
-        public int NumberOfWifiNetworksChannel116 { get; set; }
-        public int NumberOfWifiNetworksChannel120 { get; set; }
-        public int NumberOfWifiNetworksChannel124 { get; set; }
-        public int NumberOfWifiNetworksChannel128 { get; set; }
-        public int NumberOfWifiNetworksChannel132 { get; set; }
-        public int NumberOfWifiNetworksChannel136 { get; set; }
-        public int NumberOfWifiNetworksChannel140 { get; set; }
-        public int NumberOfWifiNetworksChannel144 { get; set; }
-        public int NumberOfWifiNetworksChannel149 { get; set; }
-        public int NumberOfWifiNetworksChannel153 { get; set; }
-        public int NumberOfWifiNetworksChannel157 { get; set; }
-        public int NumberOfWifiNetworksChannel161 { get; set; }
-        public int NumberOfWifiNetworksChannel165 { get; set; }
-
-        #endregion
         private async Task LoadDataFromFile()
         {
             IsBusy = true;

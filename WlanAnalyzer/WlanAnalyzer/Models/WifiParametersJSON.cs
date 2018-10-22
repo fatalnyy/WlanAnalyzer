@@ -14,7 +14,6 @@ namespace WlanAnalyzer.Models
         {
 
         }
-
         public static void ToJson(string filePath, ObservableCollection<WifiParameters> listOfWifiNetworks)
         {
             using (StreamWriter file = File.CreateText(filePath))
@@ -23,8 +22,6 @@ namespace WlanAnalyzer.Models
                 serializer.Serialize(file, listOfWifiNetworks);
                 file.Dispose();
             }
-            //if (NumberOfDetectedAccessPoints != 0)
-            //    Toast.MakeText(Android.App.Application.Context, "List of wifi networks has been saved to file successfully.", ToastLength.Short).Show();
         }
         public static ObservableCollection<WifiParameters> FromJson(string filePath)
         {
@@ -36,6 +33,5 @@ namespace WlanAnalyzer.Models
                 return DeserializedCollectionOfWifiNetworks;
             }
         }
-
     }
 }

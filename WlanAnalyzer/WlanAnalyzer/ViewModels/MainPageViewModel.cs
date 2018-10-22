@@ -22,40 +22,64 @@ namespace WlanAnalyzer.ViewModels
 {
     public class MainPageViewModel : BaseViewModel
     {
-        private INavigation _navigation;
-        private Context context = null;
-        private bool _isBusy;
-        private static WifiManager wifiManager;
-        private WifiReceiver wifiReceiver;
-        private int _numberOfDetectedAccessPoints;
-        private int _numberOfDetectedAccessPoints1;
-        private string _fileName;
-        private int _refreshTime;
-        private Timer timer;
-        private string _currentWifiNetworkName;
-        private int _currentWifiNetworkIP;
-        private string _currentWifiNetworkIPText;
-        private int _currentWifiNetworkSpeed;
+        #region Fields
         public static ObservableCollection<WifiParameters> ListOfWifiNetworks;
         public static ObservableCollection<WifiParameters> ListOfWifiNetworksFromFile;
-        //public ObservableCollection<WifiParameters> ListOfWifiNetworks1 { get; set; }
+        private static WifiManager wifiManager;
+        private int _numberOfDetectedAccessPoints;
+        private int _refreshTime;
+        private int _currentWifiNetworkIP;
+        private int _currentWifiNetworkSpeed;
+        private string _currentWifiNetworkName;
+        private string _currentWifiNetworkIPText;
+        private string _fileName;
+        private bool _isBusy;
+        private Context context = null;
+        private Timer timer;
+        private WifiReceiver wifiReceiver;
         private List<int> _refreshTimeList;
         private ObservableCollection<WifiParameters> _detectedWifiNetworks;
-        public static AutoResetEvent CollectionofNetworksArrived = new AutoResetEvent(false);
-        public static AutoResetEvent SaveToDatabaseAuto = new AutoResetEvent(false);
-       // private WifiParametersJSON _wifiParametersJSON =  new WifiParametersJSON() { CollectionOfSavedWifiNetworks = DetectedWifiNetworks };
-        public ObservableCollection<WifiParameters> DetectedWifiNetworks
+        #endregion
+
+        #region Constructors
+        private INavigation _navigation;
+        public MainPageViewModel(INavigation navigation)
         {
-            get
-            {
-                return _detectedWifiNetworks;
-            }
-            set
-            {
-                _detectedWifiNetworks = value;
-               RaisePropertyChanged("DetectedWifiNetworks");
-            }
+            _navigation = navigation;
+            context = Android.App.Application.Context;
+
+            CurrentWifiNetworkName = "-";
+            CurrentWifiNetworkSpeed = 0;
+            CurrentWifiNetworkIPText = "-";
+
+
+            RefreshTimeList = new List<int>();
+            DetectedWifiNetworks = new ObservableCollection<WifiParameters>();
+            ListOfWifiNetworks = new ObservableCollection<WifiParameters>();
+            ListOfWifiNetworksFromFile = new ObservableCollection<WifiParameters>();
+            FillRefreshTimeList();
+
+            StartScanningCommand = new Command(GetWifiNetworks);
+            StopScanningCommand = new Command(StopScanning);
+            ClearCommand = new Command(ClearWifiNetworksCollection);
+            WriteToJSONFileCommand = new Command(SaveListToFile);
+            DatabaseToolbarCommand = new Command(async () => await OpenDatabase());
+            AnalyzeToolbarCommand = new Command(async () => await OpenAnalyze());
+            ChartsPageToolbarCommand = new Command(async () => await OpenChartsPage());
+            SaveListToDatabaseCommand = new Command(async () => await SaveListToDatabase());
+            SaveListToDatabaseAutoCommand = new Command(async () => await SaveListToDatabaseAuto());
+            SaveListToFileAutoCommand = new Command(async () => await SaveListToFileAuto());
+            AddSelectedWifiNetworkToDataBaseCommand = new Command(async () => await AddSelectedWifiNetworkToDataBase());
+            SaveFileToDatabaseCommand = new Command(async () => await SaveFileToDatabase());
         }
+        #endregion
+
+        #region Events and Interfaces
+        public static AutoResetEvent CollectionofNetworksArrived = new AutoResetEvent(false);
+ 
+        #endregion
+
+        #region Properties
         public Command StartScanningCommand { get; set; }
         public Command StopScanningCommand { get; set; }
         public Command ClearCommand { get; set; }
@@ -71,27 +95,37 @@ namespace WlanAnalyzer.ViewModels
 
         public static double Latitude { get; set; }
         public static double Longitude { get; set; }
+        public bool IsScanning { get; set; }
+        public bool AutoSaveToDatabase { get; set; }
+        public bool AutoSaveToFile { get; set; }
+        public WifiParameters SelectedWifiNetwork { get; set; }
 
+        public ObservableCollection<WifiParameters> DetectedWifiNetworks
+        {
+            get {
+                return _detectedWifiNetworks;
+            }
+            set {
+                _detectedWifiNetworks = value;
+                RaisePropertyChanged("DetectedWifiNetworks");
+            }
+        }
         public List<int> RefreshTimeList
         {
-            get
-            {
+            get {
                 return _refreshTimeList;
             }
-            set
-            {
+            set {
                 _refreshTimeList = value;
                 RaisePropertyChanged(nameof(RefreshTimeList));
             }
         }
         public int RefreshTime
         {
-            get
-            {
+            get {
                 return _refreshTime;
             }
-            set
-            {
+            set {
                 if (!IsScanning)
                 {
                     _refreshTime = value;
@@ -101,144 +135,85 @@ namespace WlanAnalyzer.ViewModels
                     Toast.MakeText(Android.App.Application.Context, "You have to stop scanning first!", ToastLength.Short).Show();
             }
         }
-
         public bool IsBusy
         {
-            get
-            {
+            get {
                 return _isBusy;
             }
-            set
-            {
+            set {
                 _isBusy = value;
                 RaisePropertyChanged("IsBusy");
             }
         }
         public int NumberOfDetectedAccessPoints
         {
-            get
-            {
+            get {
                 return _numberOfDetectedAccessPoints;
             }
-            set
-            {
+            set {
                 _numberOfDetectedAccessPoints = value;
                 RaisePropertyChanged("NumberOfDetectedAccessPoints");
                 RaisePropertyChanged("NumberOfDetectedAccessPointsText");
             }
         }
-        public int NumberOfDetectedAccessPoints1
-        {
-            get
-            {
-                return _numberOfDetectedAccessPoints1;
-            }
-            set
-            {
-                _numberOfDetectedAccessPoints1 = value;
-                RaisePropertyChanged("NumberOfDetectedAccessPoints1");
-            }
-        }
         public string NumberOfDetectedAccessPointsText
         {
-            get
-            {
+            get {
                 return ($"Number of detected access points: {NumberOfDetectedAccessPoints}");
             }
         }
         public string FileName
         {
             get { return _fileName; }
-            set
-            {
+            set {
                 _fileName = value;
                 RaisePropertyChanged(nameof(FileName));
             }
         }
         public string CurrentWifiNetworkName
         {
-            get
-            {
+            get {
                 return _currentWifiNetworkName;
             }
-            set
-            {
+            set {
                 _currentWifiNetworkName = value;
                 RaisePropertyChanged(nameof(CurrentWifiNetworkName));
             }
         }
         public string CurrentWifiNetworkIPText
         {
-            get
-            {
+            get {
                 return _currentWifiNetworkIPText;
             }
-            set
-            {
+            set {
                 _currentWifiNetworkIPText = value;
                 RaisePropertyChanged(nameof(CurrentWifiNetworkIPText));
             }
         }
         public int CurrentWifiNetworkIP
         {
-            get
-            {
+            get {
                 return _currentWifiNetworkIP;
             }
-            set
-            {
+            set {
                 _currentWifiNetworkIP = value;
                 RaisePropertyChanged(nameof(CurrentWifiNetworkIP));
             }
         }
         public int CurrentWifiNetworkSpeed
         {
-            get
-            {
+            get {
                 return _currentWifiNetworkSpeed;
             }
-            set
-            {
+            set {
                 _currentWifiNetworkSpeed = value;
                 RaisePropertyChanged(nameof(CurrentWifiNetworkSpeed));
             }
         }
-        public WifiParameters SelectedWifiNetwork { get; set; }
-        public bool IsScanning { get; set; }
-        public bool AutoSaveToDatabase { get; set; }
-        public bool AutoSaveToFile { get; set; }
+        #endregion
 
-        public MainPageViewModel(INavigation navigation)
-        {
-            _navigation = navigation;
-            RefreshTimeList = new List<int>();
-            DetectedWifiNetworks = new ObservableCollection<WifiParameters>();
-            ListOfWifiNetworks = new ObservableCollection<WifiParameters>();
-            ListOfWifiNetworksFromFile = new ObservableCollection<WifiParameters>();
-            CurrentWifiNetworkName = "-";
-            CurrentWifiNetworkSpeed = 0;
-            CurrentWifiNetworkIPText = "-";
-            //RefreshTime = 15;
-            FillRefreshTimeList();
-            //timer = new Timer();
-
-            context = Android.App.Application.Context;
-            StartScanningCommand = new Command(GetWifiNetworks);
-            StopScanningCommand = new Command(StopScanning);
-            ClearCommand = new Command(ClearWifiNetworksCollection);
-            WriteToJSONFileCommand = new Command(Serialization);
-            DatabaseToolbarCommand = new Command(async () => await OpenDatabase());
-            AnalyzeToolbarCommand = new Command(async () => await OpenAnalyze());
-            ChartsPageToolbarCommand = new Command(async () => await OpenChartsPage());
-            SaveListToDatabaseCommand = new Command(async () => await SaveListToDatabase());
-            SaveListToDatabaseAutoCommand = new Command(async () => await SaveListToDatabaseAuto());
-            SaveListToFileAutoCommand = new Command(async () => await SaveListToFileAuto());
-            AddSelectedWifiNetworkToDataBaseCommand = new Command(async () => await AddSelectedWifiNetworkToDataBase());
-            SaveFileToDatabaseCommand = new Command(async () => await SaveFileToDatabase());
-        }
-
-
-        public void GetWifiNetworks()
+        #region Methods
+        private void GetWifiNetworks()
         {
             if (!IsScanning)
             {
@@ -252,19 +227,17 @@ namespace WlanAnalyzer.ViewModels
                     Toast.MakeText(Android.App.Application.Context, "Scanning has been started!", ToastLength.Short).Show();
 
                     var locator = CrossGeolocator.Current;           
-                    locator.DesiredAccuracy = 10;
+                    locator.DesiredAccuracy = 5;
 
                     var startTimeSpan = TimeSpan.Zero;
                     var periodTimeSpan = TimeSpan.FromSeconds(RefreshTime);
 
                     timer = new Timer(async (e) =>
                     {
-                        //DetectedWifiNetworks.Clear();
                         ListOfWifiNetworks.Clear();
-                        //NumberOfDetectedAccessPoints = 0;
+
                         wifiManager = (WifiManager)context.GetSystemService(Context.WifiService);
                         await locator.StartListeningAsync(TimeSpan.FromSeconds(1), 0.01, false, null);
-                        //locator.DesiredAccuracy = 10;
                         var position = await locator.GetPositionAsync(TimeSpan.FromSeconds(20), null, true);
 
                         if(wifiManager.ConnectionInfo.NetworkId != -1 && wifiManager.ConnectionInfo.SSID != "UNKNOWNSSID") {
@@ -287,44 +260,15 @@ namespace WlanAnalyzer.ViewModels
                         IsBusy = true;
 
                         wifiManager.StartScan();
-                        //Thread.Sleep(1000);
                         CollectionofNetworksArrived.WaitOne();
                         context.UnregisterReceiver(wifiReceiver);
                         if (ListOfWifiNetworks.Count > 0)
                         {
-                            //var newWifiNetworks = ListOfWifiNetworks.Where(x => !DetectedWifiNetworks.Any(y => x.SSID == y.SSID || x.BSSID == y.BSSID));
-                            //if (newWifiNetworks != null)
-                            //{
-                            //    foreach (var wifiNewtork in newWifiNetworks.ToList())
-                            //    {
-                            //        DetectedWifiNetworks.Add(wifiNewtork);
-                            //    }
-                            //}
-
-                            //foreach (var wifiNetwork in ListOfWifiNetworks)
-                            //{
-                            //    var found = DetectedWifiNetworks.FirstOrDefault(x => x.SSID == wifiNetwork.SSID || x.BSSID == wifiNetwork.BSSID);
-                            //    if (found != null)
-                            //    {
-                            //        int i = DetectedWifiNetworks.IndexOf(found);
-                            //        DetectedWifiNetworks[i] = wifiNetwork;
-                            //    }
-                            //}
-
-                            //var wifiNetworksToDelete = DetectedWifiNetworks.Where(x => !ListOfWifiNetworks.Any(y => x.SSID == y.SSID || x.BSSID == y.BSSID));
-                            //if (wifiNetworksToDelete != null)
-                            //{
-                            //    foreach (var wifiNetwork in wifiNetworksToDelete.ToList())
-                            //    {
-                            //        DetectedWifiNetworks.Remove(wifiNetwork);
-                            //    }
-                            //}
                             DetectedWifiNetworks.Clear();
                             foreach (var item in ListOfWifiNetworks)
                             {
                                 DetectedWifiNetworks.Add(item);
                             }
-
                         }
                         CollectionofNetworksArrived.Reset();
                         IsBusy = false;
@@ -337,11 +281,10 @@ namespace WlanAnalyzer.ViewModels
                         if (AutoSaveToFile) {
                             Device.BeginInvokeOnMainThread( () =>
                             {
-                                Serialization();
+                                SaveListToFile();
                             });
                         }
                         NumberOfDetectedAccessPoints = DetectedWifiNetworks.Count;
-                        NumberOfDetectedAccessPoints1 = ListOfWifiNetworks.Count;
                         await locator.StopListeningAsync();
           
                     }, null, startTimeSpan, periodTimeSpan);
@@ -365,28 +308,8 @@ namespace WlanAnalyzer.ViewModels
                 Toast.MakeText(Android.App.Application.Context, "List of wifi networks has been cleared successfully.", ToastLength.Short).Show();
             }
         }
-        //private void ToJson(string filePath)
-        //{
-        //    using (StreamWriter file = File.CreateText(filePath))
-        //    {
-        //        JsonSerializer serializer = new JsonSerializer();
-        //        serializer.Serialize(file, ListOfWifiNetworks);
-        //        file.Dispose();
-        //    }
-        //    if (NumberOfDetectedAccessPoints != 0)
-        //        Toast.MakeText(Android.App.Application.Context, "List of wifi networks has been saved to file successfully.", ToastLength.Short).Show();
-        //}
-        //private ObservableCollection<WifiParameters> FromJson(string filePath)
-        //{
-        //    using (StreamReader streamReader = File.OpenText(filePath))
-        //    {
-        //        JsonSerializer serializer = new JsonSerializer();
-        //        ObservableCollection<WifiParameters> DeserializedCollectionOfWifiNetworks = (ObservableCollection<WifiParameters>)serializer.Deserialize(streamReader, typeof(ObservableCollection<WifiParameters>));
-        //        streamReader.Dispose();
-        //        return DeserializedCollectionOfWifiNetworks;
-        //    }
-        //}
-        private void Serialization()
+
+        private void SaveListToFile()
         {
             if (NumberOfDetectedAccessPoints == 0) {
                 Toast.MakeText(Android.App.Application.Context, "There is nothing to be saved!", ToastLength.Short).Show();
@@ -395,7 +318,6 @@ namespace WlanAnalyzer.ViewModels
             }
 
             var sdCardPath = Android.OS.Environment.ExternalStorageDirectory.Path;
-            //var sdCardPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             string filePath = Path.Combine(sdCardPath, FileName + ".json");
 
             foreach (var wifiNetwork in ListOfWifiNetworks) {
@@ -415,6 +337,31 @@ namespace WlanAnalyzer.ViewModels
             }
             ListOfWifiNetworksFromFile.Clear();
         }
+
+        private void StopScanning()
+        {
+            if (timer != null)
+            {
+                timer.Change(Timeout.Infinite, Timeout.Infinite);
+                timer.Dispose();
+                IsScanning = false;
+                AutoSaveToDatabase = false;
+                Toast.MakeText(Android.App.Application.Context, "Scanning has been stopped!", ToastLength.Short).Show();
+            }
+
+            else
+                Toast.MakeText(Android.App.Application.Context, "You have to start scanning first!", ToastLength.Short).Show();
+
+        }
+
+        private void FillRefreshTimeList()
+        {
+            RefreshTimeList.AddRange(new List<int>
+            {
+                10,15,20,30,60
+            });
+        }
+
         private async Task SaveFileToDatabase()
         {
             var sdCardPath = Android.OS.Environment.ExternalStorageDirectory.Path;
@@ -436,23 +383,25 @@ namespace WlanAnalyzer.ViewModels
                 Toast.MakeText(Android.App.Application.Context, "File with such name does not exist!", ToastLength.Short).Show();
             ListOfWifiNetworksFromFile.Clear();
         }
+
         private async Task OpenDatabase()
         {
              await _navigation.PushAsync(new WifiParametersDataBaseListPage());
         }
+
         private async Task OpenAnalyze()
         {
              await _navigation.PushAsync(new StatisticalAnalyzePage());
         }
+
         private async Task OpenChartsPage()
         {
             if(DetectedWifiNetworks.Count != 0)
                 await _navigation.PushAsync(new ChartsPage());
             else
                 Toast.MakeText(Android.App.Application.Context, "You have to start scanning first!", ToastLength.Short).Show();
-
-
         }
+
         private async Task SaveListToDatabase()
         {
             if (NumberOfDetectedAccessPoints == 0) {
@@ -464,12 +413,14 @@ namespace WlanAnalyzer.ViewModels
             await App.Database.SaveCollectionOfWifiParameters(DetectedWifiNetworks);
             Toast.MakeText(Android.App.Application.Context, "List of wifi networks has been added to database successfully.", ToastLength.Short).Show();
         }
+
         private async Task SaveListToDatabaseAuto()
         {
             AutoSaveToDatabase = true;
             await Task.Delay(1);
             Toast.MakeText(Android.App.Application.Context, "Autosave to database is turned on!", ToastLength.Short).Show();
         }
+
         private async Task SaveListToFileAuto()
         {
             if(FileName != null) {
@@ -481,6 +432,7 @@ namespace WlanAnalyzer.ViewModels
                 Toast.MakeText(Android.App.Application.Context, "Enter file name first!", ToastLength.Short).Show();
             }
         }
+
         private async Task AddSelectedWifiNetworkToDataBase()
         {
             if(SelectedWifiNetwork != null) {
@@ -496,39 +448,9 @@ namespace WlanAnalyzer.ViewModels
                 }
             }
         }
-        private async void GetCurrentLocation()
-        {
-            var locator = CrossGeolocator.Current;
-            await locator.StartListeningAsync(TimeSpan.FromSeconds(1), 1, false, null);
-            var position = await locator.GetPositionAsync(TimeSpan.FromSeconds(20), null, true);
-            //locator.DesiredAccuracy = 50;
-            //var position = await locator.GetPositionAsync(TimeSpan.FromSeconds(20), null, true);
-            //var position = await locator.GetPositionAsync(10000);
+        #endregion
 
-            Latitude = position.Latitude;
-            Longitude = position.Longitude;
-        }
-        private void StopScanning()
-        {
-            if(timer != null) {
-                timer.Change(Timeout.Infinite, Timeout.Infinite);
-                timer.Dispose();
-                IsScanning = false;
-                AutoSaveToDatabase = true;
-                Toast.MakeText(Android.App.Application.Context, "Scanning has been stopped!", ToastLength.Short).Show();
-            }
-
-            else
-                Toast.MakeText(Android.App.Application.Context, "You have to start scanning first!", ToastLength.Short).Show();
-
-        }
-        private void FillRefreshTimeList()
-        {
-            RefreshTimeList.AddRange(new List<int>
-            {
-                10,15,20,30,60
-            });
-        }
+        #region Classes
         class WifiReceiver : BroadcastReceiver
         {
             public override void OnReceive(Context context, Intent intent)
@@ -539,39 +461,10 @@ namespace WlanAnalyzer.ViewModels
                     if (wifiNetwork.Ssid == "")
                         wifiNetwork.Ssid = "Unknown SSID";
                     ListOfWifiNetworks.Add(new WifiParameters() { SSID = wifiNetwork.Ssid, BSSID = wifiNetwork.Bssid, Frequency = wifiNetwork.Frequency, Level = wifiNetwork.Level, Channel = WifiParameters.GetChannel(wifiNetwork.Frequency), Latitude = Latitude, Longitude = Longitude });
-                   // ListOfWifiNetworks.Add(new WifiParameters(wifiNetwork.Ssid, wifiNetwork.Bssid, wifiNetwork.Frequency, wifiNetwork.Level, WifiParameters.GetChannel(wifiNetwork.Frequency), wifiNetwork.Timestamp));
                 }
                 CollectionofNetworksArrived.Set(); 
             }
-
         }
-        public class Person
-        {
-            public string Name { get; set; }
-            public int Age { get; set; }
-
-            //public Person(string name, int age)
-            //{
-            //    Name = name;
-            //    Age = age;
-            //}
-        }
-        private string _name = "Adam";
-
-        public string Name
-        {
-            get { return _name; }
-            set
-            {
-                _name = value;
-                RaisePropertyChanged("Name");
-                RaisePropertyChanged("DisplayMessage");
-            }
-        }
-
-        public string DisplayMessage
-        {
-            get { return $"Your new friend is named {Name}"; }
-        }
+        #endregion
     }
 }
