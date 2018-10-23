@@ -12,51 +12,13 @@ namespace WlanAnalyzer.ViewModels
 {
     public class WifiParametersDataBaseListPageViewModel : BaseViewModel
     {
-        private INavigation _navigation;
+        #region Fields
         private List<WifiParameters> _listOfWifiParameters;
         private ObservableCollection<WifiParameters> _collectionOfWifiParameters;
         private int _numberOfWifiNetworksDB;
-        public int NumberOfWifiNetworksDB
-        {
-            get
-            {
-                return _numberOfWifiNetworksDB;
-            }
-            set
-            {
-                _numberOfWifiNetworksDB = value;
-                RaisePropertyChanged(nameof(NumberOfWifiNetworksDB));
-            }
-        }
-        public ObservableCollection<WifiParameters> CollectionOfWifiParameters
-        {
-            get
-            {
-                return _collectionOfWifiParameters;
-            }
-            set
-            {
-                _collectionOfWifiParameters = value;
-                RaisePropertyChanged("CollectionOfWifiParameters");
-            }
-        }
-        public List<WifiParameters> ListOfWifiParameters
-        {
-            get
-            {
-                return _listOfWifiParameters;
-            }
-            set
-            {
-                _listOfWifiParameters = value;
-                RaisePropertyChanged("ListOfWifiParameters");
-            }
-        }
-        public Command DeleteSelectedWifiNetworkCommand { get; set; }
-        public Command ClearDatabaseCommand { get; set; }
-   
-        public WifiParameters SelectedWifiNetwork { get; set; }
+        #endregion
 
+        #region Constructors
         public WifiParametersDataBaseListPageViewModel(INavigation navigation)
         {
             _navigation = navigation;
@@ -65,9 +27,51 @@ namespace WlanAnalyzer.ViewModels
             DeleteSelectedWifiNetworkCommand = new Command(async () => await DeleteSelectedWifiNetwork());
             ClearDatabaseCommand = new Command(ClearDatabase);
         }
+        #endregion
 
-        private async void GetListOfWifiParameters()
+        #region Interfaces
+        private INavigation _navigation;
+        #endregion
+
+        #region Properties
+        public Command DeleteSelectedWifiNetworkCommand { get; set; }
+        public Command ClearDatabaseCommand { get; set; }
+        public WifiParameters SelectedWifiNetwork { get; set; }
+
+        public int NumberOfWifiNetworksDB
         {
+            get {
+                return _numberOfWifiNetworksDB;
+            }
+            set {
+                _numberOfWifiNetworksDB = value;
+                RaisePropertyChanged(nameof(NumberOfWifiNetworksDB));
+            }
+        }
+        public ObservableCollection<WifiParameters> CollectionOfWifiParameters
+        {
+            get {
+                return _collectionOfWifiParameters;
+            }
+            set {
+                _collectionOfWifiParameters = value;
+                RaisePropertyChanged("CollectionOfWifiParameters");
+            }
+        }
+        public List<WifiParameters> ListOfWifiParameters
+        {
+            get {
+                return _listOfWifiParameters;
+            }
+            set {
+                _listOfWifiParameters = value;
+                RaisePropertyChanged("ListOfWifiParameters");
+            }
+        }
+        #endregion
+
+        #region Methods
+        private async void GetListOfWifiParameters() {
             ListOfWifiParameters = await App.Database.GetListOfWifiParametersAsync();
             foreach (var wifiNetwork in ListOfWifiParameters)
             {
@@ -75,9 +79,7 @@ namespace WlanAnalyzer.ViewModels
             }
             NumberOfWifiNetworksDB = CollectionOfWifiParameters.Count;
         }
-
-        private async Task DeleteSelectedWifiNetwork()
-        {
+        private async Task DeleteSelectedWifiNetwork() {
             if(SelectedWifiNetwork != null)
             {
                 CollectionOfWifiParameters.Remove(SelectedWifiNetwork);
@@ -87,13 +89,12 @@ namespace WlanAnalyzer.ViewModels
                 NumberOfWifiNetworksDB--;
             }
         }
-
-        private void ClearDatabase()
-        {
+        private void ClearDatabase() {
             App.Database.DeleteAllObjectsFromDatabase();
             CollectionOfWifiParameters.Clear();
             Toast.MakeText(Android.App.Application.Context, "Database has been cleared successfully.", ToastLength.Short).Show();
             NumberOfWifiNetworksDB = 0;
         }
+        #endregion
     }
 }

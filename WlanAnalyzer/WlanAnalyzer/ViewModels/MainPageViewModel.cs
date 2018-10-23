@@ -346,6 +346,7 @@ namespace WlanAnalyzer.ViewModels
                 timer.Dispose();
                 IsScanning = false;
                 AutoSaveToDatabase = false;
+                AutoSaveToFile = false;
                 Toast.MakeText(Android.App.Application.Context, "Scanning has been stopped!", ToastLength.Short).Show();
             }
 

@@ -21,8 +21,7 @@ namespace WlanAnalyzer.Models
         [JsonIgnore]
         public double AverageLevel  { get; set; }
 
-        public static int GetChannel(int Frequency)
-        {
+        public static int GetChannel(int Frequency) {
             if (Frequency == 2484)
                 return 14;
 

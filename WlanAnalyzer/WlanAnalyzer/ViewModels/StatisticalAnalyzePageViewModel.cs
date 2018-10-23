@@ -14,20 +14,16 @@ namespace WlanAnalyzer.ViewModels
 {
     public class StatisticalAnalyzePageViewModel : BaseViewModel
     {
-        private INavigation _navigation;
-        public Command LoadDataFromFileCommand { get; set; }
-        public Command LoadDataFromCurrentScanListCommand { get; set; }
-        public Command LoadDataFromDatabaseCommand { get; set; }
-        public Command SortCollectionByLevelCommand { get; set; }
-        public Command SortCollectionByFrequencyCommand { get; set; }
-        public Command OpenChannelTrafficToolbarCommand { get; set; }
-        private bool _isBusy;
-        private string _fileNameToAnalyze;
-        private int _numberOfWifiNetworksToAnalyze;
+        #region Fields
         public static ObservableCollection<WifiParameters> collectionOfWifiParametersToAnalyzeTrafficChannel;
         private static ObservableCollection<WifiParameters> _collectionOfWifiNetworksToAnalyze;
         private List<WifiParameters> _listOfWifiNetworksToAnalyze;
-        StatisticalAnalyzePageViewModel StatisticalAnalyzePageViewModel1 { get; set; }
+        private bool _isBusy;
+        private string _fileNameToAnalyze;
+        private int _numberOfWifiNetworksToAnalyze;
+        #endregion
+
+        #region Constructors
         public StatisticalAnalyzePageViewModel(INavigation navigation)
         {
             _navigation = navigation;
@@ -41,61 +37,28 @@ namespace WlanAnalyzer.ViewModels
             SortCollectionByFrequencyCommand = new Command(async () => await SortCollectionByFrequency());
             OpenChannelTrafficToolbarCommand = new Command(async () => await OpenChannelTraffic());
         }
+        #endregion
+
+        #region Interfaces
+        private INavigation _navigation;
+        #endregion
+
+        #region Properties
+        public Command LoadDataFromFileCommand { get; set; }
+        public Command LoadDataFromCurrentScanListCommand { get; set; }
+        public Command LoadDataFromDatabaseCommand { get; set; }
+        public Command SortCollectionByLevelCommand { get; set; }
+        public Command SortCollectionByFrequencyCommand { get; set; }
+        public Command OpenChannelTrafficToolbarCommand { get; set; }
+
         public ObservableCollection<WifiParameters> CollectionOfWifiNetworksToAnalyze
         {
-            get
-            {
+            get {
                 return _collectionOfWifiNetworksToAnalyze;
             }
-            set
-            {
+            set {
                 _collectionOfWifiNetworksToAnalyze = value;
                 RaisePropertyChanged("CollectionOfWifiNetworksToAnalyze");
-            }
-        }
-
-        public bool IsBusy
-        {
-            get
-            {
-                return _isBusy;
-            }
-            set
-            {
-                _isBusy = value;
-                RaisePropertyChanged(nameof(IsBusy));
-            }
-        }
-        public string FileNameToAnalyze
-        {
-            get
-            {
-                return _fileNameToAnalyze;
-            }
-            set
-            {
-                _fileNameToAnalyze = value;
-                RaisePropertyChanged(nameof(FileNameToAnalyze));
-            }
-        }
-        public int NumberOfWifiNetworksToAnalyze
-        {
-            get
-            {
-                return _numberOfWifiNetworksToAnalyze;
-            }
-            set
-            {
-                _numberOfWifiNetworksToAnalyze = value;
-                RaisePropertyChanged(nameof(NumberOfWifiNetworksToAnalyze));
-                RaisePropertyChanged(nameof(NumberOfWifiNetworksToAnalyzeText));
-            }
-        }
-        public string NumberOfWifiNetworksToAnalyzeText
-        {
-            get
-            {
-                return ($"Number of detected access points: {NumberOfWifiNetworksToAnalyze}");
             }
         }
         public List<WifiParameters> ListOfWifiNetworksToAnalyze
@@ -110,13 +73,51 @@ namespace WlanAnalyzer.ViewModels
                 RaisePropertyChanged(nameof(ListOfWifiNetworksToAnalyze));
             }
         }
-        private async Task LoadDataFromFile()
+        public bool IsBusy
         {
+            get {
+                return _isBusy;
+            }
+            set {
+                _isBusy = value;
+                RaisePropertyChanged(nameof(IsBusy));
+            }
+        }
+        public string FileNameToAnalyze
+        {
+            get {
+                return _fileNameToAnalyze;
+            }
+            set {
+                _fileNameToAnalyze = value;
+                RaisePropertyChanged(nameof(FileNameToAnalyze));
+            }
+        }
+        public int NumberOfWifiNetworksToAnalyze
+        {
+            get {
+                return _numberOfWifiNetworksToAnalyze;
+            }
+            set {
+                _numberOfWifiNetworksToAnalyze = value;
+                RaisePropertyChanged(nameof(NumberOfWifiNetworksToAnalyze));
+                RaisePropertyChanged(nameof(NumberOfWifiNetworksToAnalyzeText));
+            }
+        }
+        public string NumberOfWifiNetworksToAnalyzeText
+        {
+            get {
+                return ($"Number of detected access points: {NumberOfWifiNetworksToAnalyze}");
+            }
+        }
+        #endregion
+
+        #region Methods
+        private async Task LoadDataFromFile() {
             IsBusy = true;
             CollectionOfWifiNetworksToAnalyze.Clear();
             await Task.Delay(2000);
             var sdCardPath = Android.OS.Environment.ExternalStorageDirectory.Path;
-            //var sdCardPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             string filePath = Path.Combine(sdCardPath, FileNameToAnalyze + ".json");
 
             if (File.Exists(filePath))
@@ -136,10 +137,7 @@ namespace WlanAnalyzer.ViewModels
             }
             IsBusy = false;
         }
-
-        private async Task LoadDataFromCurrentScanList()
-        {
-
+        private async Task LoadDataFromCurrentScanList() {
             IsBusy = true;
             CollectionOfWifiNetworksToAnalyze.Clear();
             await Task.Delay(2000);
@@ -160,10 +158,7 @@ namespace WlanAnalyzer.ViewModels
             }
             IsBusy = false;
         }
-
-        private async Task LoadDataFromDatabase()
-        {
-
+        private async Task LoadDataFromDatabase() {
             IsBusy = true;
             CollectionOfWifiNetworksToAnalyze.Clear();
             await Task.Delay(2000);
@@ -185,9 +180,7 @@ namespace WlanAnalyzer.ViewModels
             }
             IsBusy = false;
         }
-
-        private async Task SortCollectionByLevel()
-        {
+        private async Task SortCollectionByLevel() {
             if(CollectionOfWifiNetworksToAnalyze.Count != 0)
             {
                 IsBusy = true;
@@ -200,8 +193,7 @@ namespace WlanAnalyzer.ViewModels
                 Toast.MakeText(Android.App.Application.Context, "You have to load your data first!", ToastLength.Short).Show();
             }
         }
-        private async Task SortCollectionByFrequency()
-        {
+        private async Task SortCollectionByFrequency() {
             if(CollectionOfWifiNetworksToAnalyze.Count != 0)
             {
                 IsBusy = true;
@@ -214,13 +206,12 @@ namespace WlanAnalyzer.ViewModels
                 Toast.MakeText(Android.App.Application.Context, "You have to load your data first!", ToastLength.Short).Show();
             }
         }
-
-        private async Task OpenChannelTraffic()
-        {
+        private async Task OpenChannelTraffic() {
             if(CollectionOfWifiNetworksToAnalyze.Count != 0)
                 await _navigation.PushAsync(new ChannelTrafficPage());
             else
                 Toast.MakeText(Android.App.Application.Context, "You have to load your data first!", ToastLength.Short).Show();
         }
+        #endregion
     }
 }
