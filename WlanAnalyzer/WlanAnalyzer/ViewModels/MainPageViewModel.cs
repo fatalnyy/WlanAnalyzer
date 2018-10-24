@@ -51,7 +51,7 @@ namespace WlanAnalyzer.ViewModels
             CurrentWifiNetworkName = "-";
             CurrentWifiNetworkSpeed = 0;
             CurrentWifiNetworkIPText = "-";
-
+            RefreshTime = 10;
 
             RefreshTimeList = new List<int>();
             DetectedWifiNetworks = new ObservableCollection<WifiParameters>();

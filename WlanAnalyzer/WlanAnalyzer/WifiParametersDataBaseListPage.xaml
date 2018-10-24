@@ -4,9 +4,6 @@
              xmlns:ViewModel="clr-namespace:WlanAnalyzer.ViewModels"
              x:Class="WlanAnalyzer.WifiParametersDataBaseListPage"
              Title="Database">
-    <!--<ContentPage.BindingContext>
-        <ViewModel:WifiParametersDataBaseListPageViewModel/>
-    </ContentPage.BindingContext>-->
     <ContentPage.Resources>
         <Style TargetType="Label">
             <Setter Property="TextColor" Value="White"/>

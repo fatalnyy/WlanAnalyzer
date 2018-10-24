@@ -19,6 +19,7 @@ namespace WlanAnalyzer.Models
             using (StreamWriter file = File.CreateText(filePath))
             {
                 JsonSerializer serializer = new JsonSerializer();
+                serializer.Formatting = Formatting.Indented;
                 serializer.Serialize(file, listOfWifiNetworks);
                 file.Dispose();
             }

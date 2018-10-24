@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WlanAnalyzer.StatisticalAnalyzePage"
-             Title="Statistical Analyze">
+             Title="Analyze">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Channel Traffic" Command="{Binding OpenChannelTrafficToolbarCommand}"/>
         <ToolbarItem Order="Secondary" Text="Sort by Level" Command="{Binding SortCollectionByLevelCommand}"/>
@@ -18,24 +18,12 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="0.5*"/>
                 </Grid.RowDefinitions>
 
                 <Entry
@@ -67,7 +55,7 @@
 
                 <ActivityIndicator
                     Grid.Row="3"
-                    Grid.Column="2"
+                    Grid.ColumnSpan="5"
                     IsRunning="{Binding IsBusy}"/>
 
                 <ListView 

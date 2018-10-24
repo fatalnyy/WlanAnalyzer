@@ -5,12 +5,9 @@
              xmlns:ViewModel="clr-namespace:WlanAnalyzer.ViewModels"
              x:Class="WlanAnalyzer.MainPage"
              Title="WlanAnalyzer ">
-    <!--<ContentPage.BindingContext>
-        <ViewModel:MainPageViewModel/>
-    </ContentPage.BindingContext>-->
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="StatisticalAnalyze" Text="Analyze"  Command="{Binding AnalyzeToolbarCommand}"/>
-        <ToolbarItem x:Name="Database" Text="Database"  Command="{Binding DatabaseToolbarCommand}"/>
+        <ToolbarItem x:Name="Database" Text="Database" Command="{Binding DatabaseToolbarCommand}"/>
         <ToolbarItem x:Name="Charts" Text="Charts"  Command="{Binding ChartsPageToolbarCommand}"/>
         <ToolbarItem Text="Save list to database" Order="Secondary" Command="{Binding SaveListToDatabaseCommand}"/>
         <ToolbarItem Text="Save file to database" Order="Secondary" Command="{Binding SaveFileToDatabaseCommand}"/>
@@ -18,179 +15,76 @@
         <ToolbarItem Text="Save list to file automatically" Order="Secondary" Command="{Binding SaveListToFileAutoCommand}"/>
         <ToolbarItem Text="Clear list" Order="Secondary" Command="{Binding ClearCommand}"/>
     </ContentPage.ToolbarItems>
-    <StackLayout BackgroundColor="#eaeef2">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+    <Grid BackgroundColor="#eaeef2">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="0.05*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-            <!--<Entry
-                Grid.Row="0"
-                Grid.ColumnSpan="2"
-                Text="{Binding RefreshTime}"
-                Placeholder="Refresh time"/>-->
-            <Picker
+        <!--<Picker
                 Grid.Row="0"
                 Grid.ColumnSpan="2"
                 Title="Refresh time"
                 ItemsSource="{Binding RefreshTimeList}"
-                SelectedItem="{Binding RefreshTime}"/>
-            <Button 
+                SelectedItem="{Binding RefreshTime}"/>-->
+        <Button 
                 Text="Start Scanning"
-                Grid.Row="0" 
-                Grid.Column="2"
-                Grid.ColumnSpan="2"
+                Grid.Row="0"
+                Grid.ColumnSpan="4"
                 Command="{Binding StartScanningCommand}"/>
-            <Button 
+        <Button 
                 Text="Stop"
                 Grid.Row="0"
                 Grid.Column="4"
-            
-                Command="{Binding StopScanningCommand}"/>
-            <!--<Button 
-                Text="Clear list"
-                Grid.Row="0"
-                Grid.Column="3"
                 Grid.ColumnSpan="2"
-                Command="{Binding ClearCommand}"/>-->
 
-            <Entry
+                Command="{Binding StopScanningCommand}"/>
+
+        <Entry
                 Grid.Row="1"
-                Grid.ColumnSpan="2"
+                Grid.Column="3"
+                Grid.ColumnSpan="3"
                 Text="{Binding FileName}"
                 Placeholder="File name"/>
-            <Button
+        <Button
                 Grid.Row="1"
-                Grid.Column="2"
+                Grid.Column="0"
                 Grid.ColumnSpan="3"
                 Text="Save list to txt file"
                 Command="{Binding WriteToJSONFileCommand}"/>
-            <StackLayout 
+        <StackLayout 
                 Grid.Row="2"
-                Grid.RowSpan="2"
                 Grid.ColumnSpan="5">
-                <Label Text="{Binding NumberOfDetectedAccessPointsText}"/>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Currently conntected to:"/>
-                    <Label FontAttributes="Bold" Text="{Binding CurrentWifiNetworkName}"/>
-                    <Label Text="Speed:"/>
-                    <Label FontAttributes="Bold" Text="{Binding CurrentWifiNetworkSpeed}"/>
-                    <Label FontAttributes="Bold" Text="Mbps"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="IP address:"/>
-                    <Label FontAttributes="Bold" Text="{Binding CurrentWifiNetworkIPText}"/>
-                </StackLayout>
+            <Label Text="{Binding NumberOfDetectedAccessPointsText}"/>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Currently conntected to:"/>
+                <Label FontAttributes="Bold" Text="{Binding CurrentWifiNetworkName}"/>
+                <Label Text="Speed:"/>
+                <Label FontAttributes="Bold" Text="{Binding CurrentWifiNetworkSpeed}"/>
+                <Label FontAttributes="Bold" Text="Mbps"/>
             </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="IP address:"/>
+                <Label FontAttributes="Bold" Text="{Binding CurrentWifiNetworkIPText}"/>
+            </StackLayout>
+        </StackLayout>
 
-            <!--<Label
-                Grid.Row="2"
-                Grid.ColumnSpan="4"
-                Text="{Binding NumberOfDetectedAccessPointsText}"/>-->
-            <ActivityIndicator
+        <ActivityIndicator
                 Grid.Row="3"
-                Grid.Column="2"
+                Grid.ColumnSpan="6"
                 IsRunning="{Binding IsBusy}"/>
 
-            <ListView 
+        <ListView 
                   x:Name="ScanResults"
                   Grid.Row="4"
-                  Grid.ColumnSpan="5" 
-                  Grid.RowSpan="9"
-                  ItemsSource="{Binding DetectedWifiNetworks}"
-                  SelectedItem="{Binding SelectedWifiNetwork}"
-                  SelectionMode="Single"
-                  HasUnevenRows="True">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <StackLayout Grid.ColumnSpan="4">
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label FontAttributes="Bold" Text="{Binding SSID}"/>
-                                        <Label FontAttributes="Bold" Text="("/>
-                                        <Label FontAttributes="Bold" Text="{Binding BSSID}"/>
-                                        <Label FontAttributes="Bold" Text=")"/>
-                                    </StackLayout>
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Text="Frequency:"/>
-                                        <Label Text="{Binding Frequency}"/>
-                                        <Label Text="MHz"/>
-                                    </StackLayout>
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Text="Level:"/>
-                                        <Label Text="{Binding Level}"/>
-                                        <Label Text="dBm"/>
-                                    </StackLayout>
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Text="Channel:"/>
-                                        <Label Text="{Binding Channel}"/>
-                                    </StackLayout>
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Text="Latitude:"/>
-                                        <Label Text="{Binding Latitude}"/>
-                                    </StackLayout>
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Text="Longitude:"/>
-                                        <Label Text="{Binding Longitude}"/>
-                                    </StackLayout>
-                                </StackLayout>
-                                <Button Grid.Column="4" Grid.ColumnSpan="1"  Text="Add" BindingContext="{Binding Source={x:Reference ScanResults}, Path=BindingContext}" Command="{Binding AddSelectedWifiNetworkToDataBaseCommand}"/>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </Grid>
-        <!--<StackLayout Orientation="Horizontal">
-            <Button 
-                Text="Start Scanning"
-                WidthRequest="200"
-                Command="{Binding StartScanningCommand}"/>
-            <Button 
-                Text="Clear list"
-                WidthRequest="200"
-                HorizontalOptions="Center"
-                Command="{Binding ClearCommand}"/>
-        </StackLayout>
-        <StackLayout Orientation="Horizontal">
-            <Entry 
-                Text="{Binding FileName}"
-                WidthRequest="200"
-                Placeholder="Enter file name"/>
-            <Button 
-                WidthRequest="200"
-                Text="Write to txt file"
-                Command="{Binding WriteToJSONFileCommand}"/>
-        </StackLayout>
-        <Label Text="{Binding NumberOfDetectedAccessPointsText}"/>
-        <ActivityIndicator IsRunning="{Binding IsBusy}"/>
-        <ListView x:Name="ScanResults" 
+                  Grid.ColumnSpan="6" 
                   ItemsSource="{Binding DetectedWifiNetworks}"
                   SelectedItem="{Binding SelectedWifiNetwork}"
                   SelectionMode="Single"
@@ -198,20 +92,49 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout>
-                            <Label Text="{Binding SSID}"/>
-                            <Label Text="{Binding BSSID}"/>
-                            <Label Text="{Binding Frequency}"/>
-                            <Label Text="{Binding Level}"/>
-                            <Label Text="{Binding Channel}"/>
-                            <Label Text="{Binding TimeStamp}"/>
-                            <Button Text="Add" BindingContext="{Binding Source={x:Reference ScanResults}, Path=BindingContext}" Command="{Binding AddSelectedWifiNetworkToDataBaseCommand}"/>
-                        </StackLayout>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Grid.ColumnSpan="4">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label FontAttributes="Bold" Text="{Binding SSID}"/>
+                                    <Label FontAttributes="Bold" Text="("/>
+                                    <Label FontAttributes="Bold" Text="{Binding BSSID}"/>
+                                    <Label FontAttributes="Bold" Text=")"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Frequency:"/>
+                                    <Label Text="{Binding Frequency}"/>
+                                    <Label Text="MHz"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Level:"/>
+                                    <Label Text="{Binding Level}"/>
+                                    <Label Text="dBm"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Channel:"/>
+                                    <Label Text="{Binding Channel}"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Latitude:"/>
+                                    <Label Text="{Binding Latitude}"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Longitude:"/>
+                                    <Label Text="{Binding Longitude}"/>
+                                </StackLayout>
+                            </StackLayout>
+                            <Button Grid.Column="4" Grid.ColumnSpan="1"  Text="Add" BindingContext="{Binding Source={x:Reference ScanResults}, Path=BindingContext}" Command="{Binding AddSelectedWifiNetworkToDataBaseCommand}"/>
+                        </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
-        </ListView>-->
-    </StackLayout>
-    
-
+        </ListView>
+    </Grid>
 </ContentPage>
