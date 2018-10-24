@@ -17,6 +17,7 @@ using Newtonsoft.Json;
 using Android.Widget;
 using Plugin.Geolocator;
 using System.Linq;
+using WlanAnalyzer.Views;
 
 namespace WlanAnalyzer.ViewModels
 {

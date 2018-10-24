@@ -1,6 +1,7 @@
 ﻿using System;
 using WlanAnalyzer.DataBase;
 using WlanAnalyzer.Interfaces;
+using WlanAnalyzer.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

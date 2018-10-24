@@ -39,7 +39,6 @@ namespace WlanAnalyzer.Droid
 
         readonly string[] PermissionsGroupLocation =
         {
-                            //TODO add more permissions
                             Manifest.Permission.AccessCoarseLocation,
                             Manifest.Permission.AccessFineLocation,
                             Manifest.Permission.AccessWifiState,
@@ -48,20 +47,16 @@ namespace WlanAnalyzer.Droid
         };
         async Task GetPermissionsAsync()
         {
-            //const string permission = Manifest.Permission.AccessFineLocation;
-            //const string permission1 = Manifest.Permission.AccessWifiState;
             foreach(string permission in PermissionsGroupLocation)
             {
                 if (CheckSelfPermission(permission) == (int)Android.Content.PM.Permission.Granted)
                 {
-                    //TODO change the message to show the permissions name
                     Toast.MakeText(this, "Special permissions granted", ToastLength.Short).Show();
                     continue;
                 }
 
                 if (ShouldShowRequestPermissionRationale(permission))
                 {
-                    //set alert for executing the task
                     AlertDialog.Builder alert = new AlertDialog.Builder(this);
                     alert.SetTitle("Permissions Needed");
                     alert.SetMessage("The application need special permissions to continue");
@@ -86,28 +81,6 @@ namespace WlanAnalyzer.Droid
                 RequestLocationId++;
             }
         }
-        //public override async void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
-        //{
-        //    switch (requestCode)
-        //    {
-        //        case RequestLocationId:
-        //            {
-        //                if (grantResults[0] == (int)Android.Content.PM.Permission.Granted)
-        //                {
-        //                    Toast.MakeText(this, "Special permissions granted", ToastLength.Short).Show();
-
-        //                }
-        //                else
-        //                {
-        //                    //Permission Denied :(
-        //                    Toast.MakeText(this, "Special permissions denied", ToastLength.Short).Show();
-
-        //                }
-        //            }
-        //            break;
-        //    }
-        //    //base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-        //}
         void Forms_ViewInitialized(object sender, Xamarin.Forms.ViewInitializedEventArgs e)
         {
             if (e.NativeView is SfChart)
