@@ -82,6 +82,10 @@ namespace WlanAnalyzer.ViewModels
                     }
                     CollectionOfWifiNetworksChart.Insert(0, wifiNetwork);
                 }
+                if (CollectionOfWifiNetworksChart.Count == 0)
+                    IsBusy = true;
+                else
+                    IsBusy = false;
                 return true;
             });
         }
