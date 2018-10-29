@@ -541,6 +541,24 @@
     <AppxPackagedFile Include="C:\Users\OptiNav\.nuget\packages\sqlitepclraw.provider.e_sqlite3.uwp10\1.1.11\lib\uap10.0\SQLitePCLRaw.provider.e_sqlite3.dll">
       <PackagePath>SQLitePCLRaw.provider.e_sqlite3.dll</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\OptiNav\.nuget\packages\syncfusion.licensing\16.3.0.21\lib\uap10.0\Syncfusion.Licensing.dll">
+      <PackagePath>Syncfusion.Licensing.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\OptiNav\.nuget\packages\syncfusion.xamarin.core\16.3.0.21\lib\uap10.0\Syncfusion.Core.XForms.UWP.dll">
+      <PackagePath>Syncfusion.Core.XForms.UWP.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\OptiNav\.nuget\packages\syncfusion.xamarin.core\16.3.0.21\lib\uap10.0\Syncfusion.Core.XForms.dll">
+      <PackagePath>Syncfusion.Core.XForms.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\OptiNav\.nuget\packages\syncfusion.xamarin.sfchart\16.3.0.21\lib\uap10.0\Syncfusion.SfChart.UWP.dll">
+      <PackagePath>Syncfusion.SfChart.UWP.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\OptiNav\.nuget\packages\syncfusion.xamarin.sfchart\16.3.0.21\lib\uap10.0\Syncfusion.SfChart.XForms.UWP.dll">
+      <PackagePath>Syncfusion.SfChart.XForms.UWP.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\OptiNav\.nuget\packages\syncfusion.xamarin.sfchart\16.3.0.21\lib\uap10.0\Syncfusion.SfChart.XForms.dll">
+      <PackagePath>Syncfusion.SfChart.XForms.dll</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\OptiNav\.nuget\packages\xam.plugin.geolocator\4.5.0.6\lib\uap10.0.10240\Plugin.Geolocator.dll">
       <PackagePath>Plugin.Geolocator.dll</PackagePath>
     </AppxPackagedFile>
@@ -684,6 +702,63 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.17134.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\OptiNav\.nuget\packages\syncfusion.xamarin.core\16.3.0.21\lib\uap10.0\Syncfusion.Core.XForms.UWP\Syncfusion.Core.XForms.UWP.xr.xml">
+      <PackagePath>Syncfusion.Core.XForms.UWP\Syncfusion.Core.XForms.UWP.xr.xml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\OptiNav\.nuget\packages\syncfusion.xamarin.core\16.3.0.21\lib\uap10.0\Syncfusion.Core.XForms.UWP\ToggleIcons\ToggleCollapsedIcon.xbf">
+      <PackagePath>Syncfusion.Core.XForms.UWP\ToggleIcons\ToggleCollapsedIcon.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\OptiNav\.nuget\packages\syncfusion.xamarin.core\16.3.0.21\lib\uap10.0\Syncfusion.Core.XForms.UWP\ToggleIcons\ToggleVisibleIcon.xbf">
+      <PackagePath>Syncfusion.Core.XForms.UWP\ToggleIcons\ToggleVisibleIcon.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\OptiNav\.nuget\packages\syncfusion.xamarin.sfchart\16.3.0.21\lib\uap10.0\Syncfusion.SfChart.UWP\Syncfusion.SfChart.UWP.xr.xml">
+      <PackagePath>Syncfusion.SfChart.UWP\Syncfusion.SfChart.UWP.xr.xml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\OptiNav\.nuget\packages\syncfusion.xamarin.sfchart\16.3.0.21\lib\uap10.0\Syncfusion.SfChart.UWP\3D\ChartArea\Themes\SfChart3D.xbf">
+      <PackagePath>Syncfusion.SfChart.UWP\3D\ChartArea\Themes\SfChart3D.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\OptiNav\.nuget\packages\syncfusion.xamarin.sfchart\16.3.0.21\lib\uap10.0\Syncfusion.SfChart.UWP\3D\ChartSeries\Themes\ChartSeries.xbf">
+      <PackagePath>Syncfusion.SfChart.UWP\3D\ChartSeries\Themes\ChartSeries.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\OptiNav\.nuget\packages\syncfusion.xamarin.sfchart\16.3.0.21\lib\uap10.0\Syncfusion.SfChart.UWP\ChartArea\Themes\ChartArea.xbf">
+      <PackagePath>Syncfusion.SfChart.UWP\ChartArea\Themes\ChartArea.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\OptiNav\.nuget\packages\syncfusion.xamarin.sfchart\16.3.0.21\lib\uap10.0\Syncfusion.SfChart.UWP\ChartAxis\Themes\ChartAxis.xbf">
+      <PackagePath>Syncfusion.SfChart.UWP\ChartAxis\Themes\ChartAxis.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\OptiNav\.nuget\packages\syncfusion.xamarin.sfchart\16.3.0.21\lib\uap10.0\Syncfusion.SfChart.UWP\ChartSeries\Themes\ChartSeries.xbf">
+      <PackagePath>Syncfusion.SfChart.UWP\ChartSeries\Themes\ChartSeries.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\OptiNav\.nuget\packages\syncfusion.xamarin.sfchart\16.3.0.21\lib\uap10.0\Syncfusion.SfChart.UWP\Controls\Themes\ChartToolBar.xbf">
+      <PackagePath>Syncfusion.SfChart.UWP\Controls\Themes\ChartToolBar.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\OptiNav\.nuget\packages\syncfusion.xamarin.sfchart\16.3.0.21\lib\uap10.0\Syncfusion.SfChart.UWP\Controls\Themes\ResizableScrollBar.xbf">
+      <PackagePath>Syncfusion.SfChart.UWP\Controls\Themes\ResizableScrollBar.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\OptiNav\.nuget\packages\syncfusion.xamarin.sfchart\16.3.0.21\lib\uap10.0\Syncfusion.SfChart.UWP\Controls\Themes\Resizer.xbf">
+      <PackagePath>Syncfusion.SfChart.UWP\Controls\Themes\Resizer.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\OptiNav\.nuget\packages\syncfusion.xamarin.sfchart\16.3.0.21\lib\uap10.0\Syncfusion.SfChart.UWP\Controls\Themes\SfRangeNavigator.xbf">
+      <PackagePath>Syncfusion.SfChart.UWP\Controls\Themes\SfRangeNavigator.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\OptiNav\.nuget\packages\syncfusion.xamarin.sfchart\16.3.0.21\lib\uap10.0\Syncfusion.SfChart.UWP\Properties\Syncfusion.SfChart.UWP_2015.rd.xml">
+      <PackagePath>Syncfusion.SfChart.UWP\Properties\Syncfusion.SfChart.UWP_2015.rd.xml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\OptiNav\.nuget\packages\syncfusion.xamarin.sfchart\16.3.0.21\lib\uap10.0\Syncfusion.SfChart.UWP\Sparkline\Themes\Sparkline.xbf">
+      <PackagePath>Syncfusion.SfChart.UWP\Sparkline\Themes\Sparkline.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\OptiNav\.nuget\packages\syncfusion.xamarin.sfchart\16.3.0.21\lib\uap10.0\Syncfusion.SfChart.UWP\Themes\Generic.Common.xbf">
+      <PackagePath>Syncfusion.SfChart.UWP\Themes\Generic.Common.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\OptiNav\.nuget\packages\syncfusion.xamarin.sfchart\16.3.0.21\lib\uap10.0\Syncfusion.SfChart.UWP\Themes\Generic.Legend.xbf">
+      <PackagePath>Syncfusion.SfChart.UWP\Themes\Generic.Legend.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\OptiNav\.nuget\packages\syncfusion.xamarin.sfchart\16.3.0.21\lib\uap10.0\Syncfusion.SfChart.UWP\Themes\Generic.Symbol.xbf">
+      <PackagePath>Syncfusion.SfChart.UWP\Themes\Generic.Symbol.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\OptiNav\.nuget\packages\syncfusion.xamarin.sfchart\16.3.0.21\lib\uap10.0\Syncfusion.SfChart.UWP\Themes\generic.xbf">
+      <PackagePath>Syncfusion.SfChart.UWP\Themes\generic.xbf</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\OptiNav\.nuget\packages\xamarin.forms\3.1.0.697729\lib\uap10.0\Xamarin.Forms.Platform.UAP\AutoSuggestStyle.xbf">
       <PackagePath>Xamarin.Forms.Platform.UAP\AutoSuggestStyle.xbf</PackagePath>

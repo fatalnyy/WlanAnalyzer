@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PriInfo>
+	<ResourceMap name="Syncfusion.Core.XForms.UWP" version="1.0" primary="true">
+		<Qualifiers/>
+		<ResourceMapSubtree name="Files">
+			<ResourceMapSubtree name="Syncfusion.Core.XForms.UWP">
+				<NamedResource name="Syncfusion.Core.XForms.UWP.xr.xml" uri="ms-resource://Syncfusion.Core.XForms.UWP/Files/Syncfusion.Core.XForms.UWP/Syncfusion.Core.XForms.UWP.xr.xml">
+					<Candidate type="Path">
+						<Value>Syncfusion.Core.XForms.UWP\Syncfusion.Core.XForms.UWP.xr.xml</Value>
+					</Candidate>
+				</NamedResource>
+				<ResourceMapSubtree name="ToggleIcons">
+					<NamedResource name="ToggleCollapsedIcon.xaml" uri="ms-resource://Syncfusion.Core.XForms.UWP/Files/Syncfusion.Core.XForms.UWP/ToggleIcons/ToggleCollapsedIcon.xaml">
+						<Candidate type="Path">
+							<Value>Syncfusion.Core.XForms.UWP\ToggleIcons\ToggleCollapsedIcon.xaml</Value>
+						</Candidate>
+					</NamedResource>
+					<NamedResource name="ToggleCollapsedIcon.xbf" uri="ms-resource://Syncfusion.Core.XForms.UWP/Files/Syncfusion.Core.XForms.UWP/ToggleIcons/ToggleCollapsedIcon.xbf">
+						<Candidate type="Path">
+							<Value>Syncfusion.Core.XForms.UWP\ToggleIcons\ToggleCollapsedIcon.xbf</Value>
+						</Candidate>
+					</NamedResource>
+					<NamedResource name="ToggleVisibleIcon.xaml" uri="ms-resource://Syncfusion.Core.XForms.UWP/Files/Syncfusion.Core.XForms.UWP/ToggleIcons/ToggleVisibleIcon.xaml">
+						<Candidate type="Path">
+							<Value>Syncfusion.Core.XForms.UWP\ToggleIcons\ToggleVisibleIcon.xaml</Value>
+						</Candidate>
+					</NamedResource>
+					<NamedResource name="ToggleVisibleIcon.xbf" uri="ms-resource://Syncfusion.Core.XForms.UWP/Files/Syncfusion.Core.XForms.UWP/ToggleIcons/ToggleVisibleIcon.xbf">
+						<Candidate type="Path">
+							<Value>Syncfusion.Core.XForms.UWP\ToggleIcons\ToggleVisibleIcon.xbf</Value>
+						</Candidate>
+					</NamedResource>
+				</ResourceMapSubtree>
+			</ResourceMapSubtree>
+		</ResourceMapSubtree>
+	</ResourceMap>
+</PriInfo>

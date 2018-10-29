@@ -18,7 +18,8 @@ namespace WlanAnalyzer
             InitializeComponent();
 
             MainPage = new NavigationPage(new MainPage());
-            
+
+
         }
 
         public static WifiParametersDataBase Database

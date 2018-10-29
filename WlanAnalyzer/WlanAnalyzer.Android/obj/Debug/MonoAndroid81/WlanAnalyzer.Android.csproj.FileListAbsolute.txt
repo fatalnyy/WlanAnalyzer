@@ -4,7 +4,6 @@ C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\bin\Debug\com.companyna
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\bin\Debug\com.companyname.WlanAnalyzer-Signed.apk
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\bin\Debug\WlanAnalyzer.dll
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\bin\Debug\WlanAnalyzer.pdb
-C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\bin\Debug\WlanAnalyzer.dll.mdb
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\WlanAnalyzer.Android.csprojAssemblyReference.cache
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\res.flag
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\WlanAnalyzer.Android.csproj.CoreCompileInputs.cache
@@ -52,6 +51,7 @@ C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\bin\Debug\System.Xml.pd
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\bin\Debug\Xamarin.Forms.Core.pdb
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\bin\Debug\Xamarin.Forms.Xaml.pdb
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\bin\Debug\FormsViewGroup.dll.mdb
+C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\bin\Debug\WlanAnalyzer.dll.mdb
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\bin\Debug\Xamarin.Forms.Platform.Android.dll.mdb
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\linksrc\WlanAnalyzer.Android.pdb
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Debug\MonoAndroid81\linksrc\Mono.Android.pdb

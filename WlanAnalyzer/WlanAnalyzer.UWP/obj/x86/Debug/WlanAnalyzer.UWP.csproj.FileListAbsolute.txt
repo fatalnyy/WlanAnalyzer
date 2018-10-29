@@ -613,3 +613,11 @@ C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.UWP\obj\x86\Debug\Xamarin.Forms
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.UWP\obj\x86\Debug\ProjectArchitectures.txt
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.UWP\bin\x86\Debug\Plugin.Geolocator.dll
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.UWP\obj\x86\Debug\Plugin.Geolocator.pri.xml
+C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.UWP\bin\x86\Debug\Syncfusion.Licensing.dll
+C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.UWP\bin\x86\Debug\Syncfusion.Core.XForms.UWP.dll
+C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.UWP\bin\x86\Debug\Syncfusion.Core.XForms.dll
+C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.UWP\bin\x86\Debug\Syncfusion.SfChart.UWP.dll
+C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.UWP\bin\x86\Debug\Syncfusion.SfChart.XForms.UWP.dll
+C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.UWP\bin\x86\Debug\Syncfusion.SfChart.XForms.dll
+C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.UWP\obj\x86\Debug\Syncfusion.Core.XForms.UWP.pri.xml
+C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.UWP\obj\x86\Debug\Syncfusion.SfChart.UWP.pri.xml

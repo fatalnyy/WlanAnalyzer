@@ -17,15 +17,19 @@ namespace WlanAnalyzer.Droid
     {
         protected override async void OnCreate(Bundle savedInstanceState)
         {
-            await TryToGetPermissions();
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
-
-            Xamarin.Forms.Forms.ViewInitialized += Forms_ViewInitialized;
 
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
+
+            await TryToGetPermissions();
+
+
+            Xamarin.Forms.Forms.ViewInitialized += Forms_ViewInitialized;
+
+
         }
         async Task TryToGetPermissions()
         {
@@ -44,9 +48,12 @@ namespace WlanAnalyzer.Droid
                             Manifest.Permission.AccessWifiState,
                             Manifest.Permission.ChangeWifiState,
                             Manifest.Permission.ChangeWifiMulticastState,
+                            Manifest.Permission.ReadExternalStorage,
+                            Manifest.Permission.WriteExternalStorage
         };
         async Task GetPermissionsAsync()
         {
+            await Task.Delay(1);
             foreach(string permission in PermissionsGroupLocation)
             {
                 if (CheckSelfPermission(permission) == (int)Android.Content.PM.Permission.Granted)

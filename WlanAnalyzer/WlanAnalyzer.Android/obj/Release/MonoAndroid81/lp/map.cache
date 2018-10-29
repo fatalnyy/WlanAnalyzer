@@ -1,4 +1,19 @@
 FormsViewGroup
+Newtonsoft.Json
+Plugin.CurrentActivity
+Plugin.Geolocator
+Plugin.Permissions
+SQLite-net
+SQLitePCLRaw.batteries_green
+SQLitePCLRaw.batteries_v2
+SQLitePCLRaw.core
+SQLitePCLRaw.lib.e_sqlite3
+SQLitePCLRaw.provider.e_sqlite3
+Syncfusion.Core.XForms.Android
+Syncfusion.Core.XForms
+Syncfusion.Licensing
+Syncfusion.SfChart.XForms.Android
+Syncfusion.SfChart.XForms
 System.Runtime
 WlanAnalyzer
 Xamarin.Android.Arch.Core.Common
@@ -24,3 +39,6 @@ Xamarin.Forms.Core
 Xamarin.Forms.Platform.Android
 Xamarin.Forms.Platform
 Xamarin.Forms.Xaml
+netstandard
+System.Reflection.Extensions
+System.Resources.ResourceManager

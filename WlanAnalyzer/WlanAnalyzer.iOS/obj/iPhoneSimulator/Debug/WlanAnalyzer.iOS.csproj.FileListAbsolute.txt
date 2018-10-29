@@ -128,3 +128,8 @@ C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.iOS\obj\iPhoneSimulator\Debug\W
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.iOS\obj\iPhoneSimulator\Debug\WlanAnalyzer.iOS.pdb
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.iOS\bin\iPhoneSimulator\Debug\Plugin.Permissions.dll
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.iOS\bin\iPhoneSimulator\Debug\Plugin.Geolocator.dll
+C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.iOS\bin\iPhoneSimulator\Debug\Syncfusion.Licensing.dll
+C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.iOS\bin\iPhoneSimulator\Debug\Syncfusion.Core.XForms.dll
+C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.iOS\bin\iPhoneSimulator\Debug\Syncfusion.Core.XForms.iOS.dll
+C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.iOS\bin\iPhoneSimulator\Debug\Syncfusion.SfChart.XForms.dll
+C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.iOS\bin\iPhoneSimulator\Debug\Syncfusion.SfChart.XForms.iOS.dll

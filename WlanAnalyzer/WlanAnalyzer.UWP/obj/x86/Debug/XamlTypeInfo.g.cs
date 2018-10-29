@@ -213,19 +213,55 @@ namespace WlanAnalyzer.UWP.WlanAnalyzer_UWP_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[5];
+            _typeNameTable = new string[23];
             _typeNameTable[0] = "Xamarin.Forms.Platform.UWP.WindowsPage";
             _typeNameTable[1] = "Xamarin.Forms.Platform.UWP.WindowsBasePage";
             _typeNameTable[2] = "Windows.UI.Xaml.Controls.Page";
             _typeNameTable[3] = "Windows.UI.Xaml.Controls.UserControl";
             _typeNameTable[4] = "WlanAnalyzer.UWP.MainPage";
+            _typeNameTable[5] = "Syncfusion.SfChart.XForms.UWP.LabelViewConverter";
+            _typeNameTable[6] = "Object";
+            _typeNameTable[7] = "Syncfusion.SfChart.XForms.UWP.LegendViewConverter";
+            _typeNameTable[8] = "Syncfusion.SfChart.XForms.UWP.LegendLabelViewConverter";
+            _typeNameTable[9] = "Syncfusion.SfChart.XForms.UWP.ChartLegendWrapPanel";
+            _typeNameTable[10] = "Windows.UI.Xaml.Controls.Panel";
+            _typeNameTable[11] = "Double";
+            _typeNameTable[12] = "Syncfusion.SfChart.XForms.LegendPlacement";
+            _typeNameTable[13] = "System.Enum";
+            _typeNameTable[14] = "System.ValueType";
+            _typeNameTable[15] = "Windows.UI.Xaml.Thickness";
+            _typeNameTable[16] = "Syncfusion.SfChart.XForms.UWP.TooltipViewConverter";
+            _typeNameTable[17] = "Syncfusion.SfChart.XForms.UWP.DataMarkerViewConverter";
+            _typeNameTable[18] = "Syncfusion.SfChart.XForms.UWP.TrackballViewConverter";
+            _typeNameTable[19] = "Syncfusion.SfChart.XForms.UWP.AxisTrackballViewConverter";
+            _typeNameTable[20] = "Syncfusion.SfChart.XForms.UWP.AnnotationViewConverter";
+            _typeNameTable[21] = "Syncfusion.SfChart.XForms.UWP.TooltipConverter";
+            _typeNameTable[22] = "Syncfusion.SfChart.XForms.UWP.TooltipLabelFormatConverter";
 
-            _typeTable = new global::System.Type[5];
+            _typeTable = new global::System.Type[23];
             _typeTable[0] = typeof(global::Xamarin.Forms.Platform.UWP.WindowsPage);
             _typeTable[1] = typeof(global::Xamarin.Forms.Platform.UWP.WindowsBasePage);
             _typeTable[2] = typeof(global::Windows.UI.Xaml.Controls.Page);
             _typeTable[3] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
             _typeTable[4] = typeof(global::WlanAnalyzer.UWP.MainPage);
+            _typeTable[5] = typeof(global::Syncfusion.SfChart.XForms.UWP.LabelViewConverter);
+            _typeTable[6] = typeof(global::System.Object);
+            _typeTable[7] = typeof(global::Syncfusion.SfChart.XForms.UWP.LegendViewConverter);
+            _typeTable[8] = typeof(global::Syncfusion.SfChart.XForms.UWP.LegendLabelViewConverter);
+            _typeTable[9] = typeof(global::Syncfusion.SfChart.XForms.UWP.ChartLegendWrapPanel);
+            _typeTable[10] = typeof(global::Windows.UI.Xaml.Controls.Panel);
+            _typeTable[11] = typeof(global::System.Double);
+            _typeTable[12] = typeof(global::Syncfusion.SfChart.XForms.LegendPlacement);
+            _typeTable[13] = typeof(global::System.Enum);
+            _typeTable[14] = typeof(global::System.ValueType);
+            _typeTable[15] = typeof(global::Windows.UI.Xaml.Thickness);
+            _typeTable[16] = typeof(global::Syncfusion.SfChart.XForms.UWP.TooltipViewConverter);
+            _typeTable[17] = typeof(global::Syncfusion.SfChart.XForms.UWP.DataMarkerViewConverter);
+            _typeTable[18] = typeof(global::Syncfusion.SfChart.XForms.UWP.TrackballViewConverter);
+            _typeTable[19] = typeof(global::Syncfusion.SfChart.XForms.UWP.AxisTrackballViewConverter);
+            _typeTable[20] = typeof(global::Syncfusion.SfChart.XForms.UWP.AnnotationViewConverter);
+            _typeTable[21] = typeof(global::Syncfusion.SfChart.XForms.UWP.TooltipConverter);
+            _typeTable[22] = typeof(global::Syncfusion.SfChart.XForms.UWP.TooltipLabelFormatConverter);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -262,6 +298,17 @@ namespace WlanAnalyzer.UWP.WlanAnalyzer_UWP_XamlTypeInfo
 
         private object Activate_0_WindowsPage() { return new global::Xamarin.Forms.Platform.UWP.WindowsPage(); }
         private object Activate_4_MainPage() { return new global::WlanAnalyzer.UWP.MainPage(); }
+        private object Activate_5_LabelViewConverter() { return new global::Syncfusion.SfChart.XForms.UWP.LabelViewConverter(); }
+        private object Activate_7_LegendViewConverter() { return new global::Syncfusion.SfChart.XForms.UWP.LegendViewConverter(); }
+        private object Activate_8_LegendLabelViewConverter() { return new global::Syncfusion.SfChart.XForms.UWP.LegendLabelViewConverter(); }
+        private object Activate_9_ChartLegendWrapPanel() { return new global::Syncfusion.SfChart.XForms.UWP.ChartLegendWrapPanel(); }
+        private object Activate_16_TooltipViewConverter() { return new global::Syncfusion.SfChart.XForms.UWP.TooltipViewConverter(); }
+        private object Activate_17_DataMarkerViewConverter() { return new global::Syncfusion.SfChart.XForms.UWP.DataMarkerViewConverter(); }
+        private object Activate_18_TrackballViewConverter() { return new global::Syncfusion.SfChart.XForms.UWP.TrackballViewConverter(); }
+        private object Activate_19_AxisTrackballViewConverter() { return new global::Syncfusion.SfChart.XForms.UWP.AxisTrackballViewConverter(); }
+        private object Activate_20_AnnotationViewConverter() { return new global::Syncfusion.SfChart.XForms.UWP.AnnotationViewConverter(); }
+        private object Activate_21_TooltipConverter() { return new global::Syncfusion.SfChart.XForms.UWP.TooltipConverter(); }
+        private object Activate_22_TooltipLabelFormatConverter() { return new global::Syncfusion.SfChart.XForms.UWP.TooltipLabelFormatConverter(); }
 
         private global::Windows.UI.Xaml.Markup.IXamlType CreateXamlType(int typeIndex)
         {
@@ -298,6 +345,122 @@ namespace WlanAnalyzer.UWP.WlanAnalyzer_UWP_XamlTypeInfo
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
+
+            case 5:   //  Syncfusion.SfChart.XForms.UWP.LabelViewConverter
+                userType = new global::WlanAnalyzer.UWP.WlanAnalyzer_UWP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_5_LabelViewConverter;
+                userType.SetIsBindable();
+                xamlType = userType;
+                break;
+
+            case 6:   //  Object
+                xamlType = new global::WlanAnalyzer.UWP.WlanAnalyzer_UWP_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 7:   //  Syncfusion.SfChart.XForms.UWP.LegendViewConverter
+                userType = new global::WlanAnalyzer.UWP.WlanAnalyzer_UWP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_7_LegendViewConverter;
+                userType.SetIsBindable();
+                xamlType = userType;
+                break;
+
+            case 8:   //  Syncfusion.SfChart.XForms.UWP.LegendLabelViewConverter
+                userType = new global::WlanAnalyzer.UWP.WlanAnalyzer_UWP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_8_LegendLabelViewConverter;
+                userType.SetIsBindable();
+                xamlType = userType;
+                break;
+
+            case 9:   //  Syncfusion.SfChart.XForms.UWP.ChartLegendWrapPanel
+                userType = new global::WlanAnalyzer.UWP.WlanAnalyzer_UWP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Panel"));
+                userType.Activator = Activate_9_ChartLegendWrapPanel;
+                userType.AddMemberName("MaximumWidth");
+                userType.AddMemberName("LegendPlacement");
+                userType.AddMemberName("ItemMargin");
+                userType.SetIsBindable();
+                xamlType = userType;
+                break;
+
+            case 10:   //  Windows.UI.Xaml.Controls.Panel
+                xamlType = new global::WlanAnalyzer.UWP.WlanAnalyzer_UWP_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 11:   //  Double
+                xamlType = new global::WlanAnalyzer.UWP.WlanAnalyzer_UWP_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 12:   //  Syncfusion.SfChart.XForms.LegendPlacement
+                userType = new global::WlanAnalyzer.UWP.WlanAnalyzer_UWP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.AddEnumValue("Left", global::Syncfusion.SfChart.XForms.LegendPlacement.Left);
+                userType.AddEnumValue("Top", global::Syncfusion.SfChart.XForms.LegendPlacement.Top);
+                userType.AddEnumValue("Right", global::Syncfusion.SfChart.XForms.LegendPlacement.Right);
+                userType.AddEnumValue("Bottom", global::Syncfusion.SfChart.XForms.LegendPlacement.Bottom);
+                userType.AddEnumValue("Floating", global::Syncfusion.SfChart.XForms.LegendPlacement.Floating);
+                xamlType = userType;
+                break;
+
+            case 13:   //  System.Enum
+                userType = new global::WlanAnalyzer.UWP.WlanAnalyzer_UWP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
+                xamlType = userType;
+                break;
+
+            case 14:   //  System.ValueType
+                userType = new global::WlanAnalyzer.UWP.WlanAnalyzer_UWP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                xamlType = userType;
+                break;
+
+            case 15:   //  Windows.UI.Xaml.Thickness
+                xamlType = new global::WlanAnalyzer.UWP.WlanAnalyzer_UWP_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 16:   //  Syncfusion.SfChart.XForms.UWP.TooltipViewConverter
+                userType = new global::WlanAnalyzer.UWP.WlanAnalyzer_UWP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_16_TooltipViewConverter;
+                userType.SetIsBindable();
+                xamlType = userType;
+                break;
+
+            case 17:   //  Syncfusion.SfChart.XForms.UWP.DataMarkerViewConverter
+                userType = new global::WlanAnalyzer.UWP.WlanAnalyzer_UWP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_17_DataMarkerViewConverter;
+                userType.SetIsBindable();
+                xamlType = userType;
+                break;
+
+            case 18:   //  Syncfusion.SfChart.XForms.UWP.TrackballViewConverter
+                userType = new global::WlanAnalyzer.UWP.WlanAnalyzer_UWP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_18_TrackballViewConverter;
+                userType.SetIsBindable();
+                xamlType = userType;
+                break;
+
+            case 19:   //  Syncfusion.SfChart.XForms.UWP.AxisTrackballViewConverter
+                userType = new global::WlanAnalyzer.UWP.WlanAnalyzer_UWP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_19_AxisTrackballViewConverter;
+                userType.SetIsBindable();
+                xamlType = userType;
+                break;
+
+            case 20:   //  Syncfusion.SfChart.XForms.UWP.AnnotationViewConverter
+                userType = new global::WlanAnalyzer.UWP.WlanAnalyzer_UWP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_20_AnnotationViewConverter;
+                userType.SetIsBindable();
+                xamlType = userType;
+                break;
+
+            case 21:   //  Syncfusion.SfChart.XForms.UWP.TooltipConverter
+                userType = new global::WlanAnalyzer.UWP.WlanAnalyzer_UWP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_21_TooltipConverter;
+                userType.SetIsBindable();
+                xamlType = userType;
+                break;
+
+            case 22:   //  Syncfusion.SfChart.XForms.UWP.TooltipLabelFormatConverter
+                userType = new global::WlanAnalyzer.UWP.WlanAnalyzer_UWP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_22_TooltipLabelFormatConverter;
+                userType.SetIsBindable();
+                xamlType = userType;
+                break;
             }
             return xamlType;
         }
@@ -311,6 +474,10 @@ namespace WlanAnalyzer.UWP.WlanAnalyzer_UWP_XamlTypeInfo
                 {
                     var otherProviders = new global::System.Collections.Generic.List<global::Windows.UI.Xaml.Markup.IXamlMetadataProvider>();
                     global::Windows.UI.Xaml.Markup.IXamlMetadataProvider provider;
+                    provider = new global::Syncfusion.XForms.UWP.Core.Syncfusion_Core_XForms_UWP_XamlTypeInfo.XamlMetaDataProvider() as global::Windows.UI.Xaml.Markup.IXamlMetadataProvider;
+                    otherProviders.Add(provider); 
+                    provider = new global::Syncfusion.SfChart.UWP.Syncfusion_SfChart_UWP_2015_XamlTypeInfo.XamlMetaDataProvider() as global::Windows.UI.Xaml.Markup.IXamlMetadataProvider;
+                    otherProviders.Add(provider); 
                     provider = new global::Xamarin.Forms.Platform.UAP.Xamarin_Forms_Platform_UAP_XamlTypeInfo.XamlMetaDataProvider() as global::Windows.UI.Xaml.Markup.IXamlMetadataProvider;
                     otherProviders.Add(provider); 
                     _otherProviders = otherProviders;
@@ -357,11 +524,63 @@ namespace WlanAnalyzer.UWP.WlanAnalyzer_UWP_XamlTypeInfo
             return foundXamlType;
         }
 
+        private object get_0_ChartLegendWrapPanel_MaximumWidth(object instance)
+        {
+            var that = (global::Syncfusion.SfChart.XForms.UWP.ChartLegendWrapPanel)instance;
+            return that.MaximumWidth;
+        }
+        private void set_0_ChartLegendWrapPanel_MaximumWidth(object instance, object Value)
+        {
+            var that = (global::Syncfusion.SfChart.XForms.UWP.ChartLegendWrapPanel)instance;
+            that.MaximumWidth = (global::System.Double)Value;
+        }
+        private object get_1_ChartLegendWrapPanel_LegendPlacement(object instance)
+        {
+            var that = (global::Syncfusion.SfChart.XForms.UWP.ChartLegendWrapPanel)instance;
+            return that.LegendPlacement;
+        }
+        private void set_1_ChartLegendWrapPanel_LegendPlacement(object instance, object Value)
+        {
+            var that = (global::Syncfusion.SfChart.XForms.UWP.ChartLegendWrapPanel)instance;
+            that.LegendPlacement = (global::Syncfusion.SfChart.XForms.LegendPlacement)Value;
+        }
+        private object get_2_ChartLegendWrapPanel_ItemMargin(object instance)
+        {
+            var that = (global::Syncfusion.SfChart.XForms.UWP.ChartLegendWrapPanel)instance;
+            return that.ItemMargin;
+        }
+        private void set_2_ChartLegendWrapPanel_ItemMargin(object instance, object Value)
+        {
+            var that = (global::Syncfusion.SfChart.XForms.UWP.ChartLegendWrapPanel)instance;
+            that.ItemMargin = (global::Windows.UI.Xaml.Thickness)Value;
+        }
 
         private global::Windows.UI.Xaml.Markup.IXamlMember CreateXamlMember(string longMemberName)
         {
             global::WlanAnalyzer.UWP.WlanAnalyzer_UWP_XamlTypeInfo.XamlMember xamlMember = null;
-            // No Local Properties
+            global::WlanAnalyzer.UWP.WlanAnalyzer_UWP_XamlTypeInfo.XamlUserType userType;
+
+            switch (longMemberName)
+            {
+            case "Syncfusion.SfChart.XForms.UWP.ChartLegendWrapPanel.MaximumWidth":
+                userType = (global::WlanAnalyzer.UWP.WlanAnalyzer_UWP_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.SfChart.XForms.UWP.ChartLegendWrapPanel");
+                xamlMember = new global::WlanAnalyzer.UWP.WlanAnalyzer_UWP_XamlTypeInfo.XamlMember(this, "MaximumWidth", "Double");
+                xamlMember.Getter = get_0_ChartLegendWrapPanel_MaximumWidth;
+                xamlMember.Setter = set_0_ChartLegendWrapPanel_MaximumWidth;
+                break;
+            case "Syncfusion.SfChart.XForms.UWP.ChartLegendWrapPanel.LegendPlacement":
+                userType = (global::WlanAnalyzer.UWP.WlanAnalyzer_UWP_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.SfChart.XForms.UWP.ChartLegendWrapPanel");
+                xamlMember = new global::WlanAnalyzer.UWP.WlanAnalyzer_UWP_XamlTypeInfo.XamlMember(this, "LegendPlacement", "Syncfusion.SfChart.XForms.LegendPlacement");
+                xamlMember.Getter = get_1_ChartLegendWrapPanel_LegendPlacement;
+                xamlMember.Setter = set_1_ChartLegendWrapPanel_LegendPlacement;
+                break;
+            case "Syncfusion.SfChart.XForms.UWP.ChartLegendWrapPanel.ItemMargin":
+                userType = (global::WlanAnalyzer.UWP.WlanAnalyzer_UWP_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.SfChart.XForms.UWP.ChartLegendWrapPanel");
+                xamlMember = new global::WlanAnalyzer.UWP.WlanAnalyzer_UWP_XamlTypeInfo.XamlMember(this, "ItemMargin", "Windows.UI.Xaml.Thickness");
+                xamlMember.Getter = get_2_ChartLegendWrapPanel_ItemMargin;
+                xamlMember.Setter = set_2_ChartLegendWrapPanel_ItemMargin;
+                break;
+            }
             return xamlMember;
         }
     }
