@@ -38,7 +38,6 @@ namespace WlanAnalyzer.ViewModels
         private Context context = null;
         private Timer timer;
         private WifiReceiver wifiReceiver;
-        private List<int> _refreshTimeList;
         private ObservableCollection<WifiParameters> _detectedWifiNetworks;
         #endregion
 
@@ -54,11 +53,9 @@ namespace WlanAnalyzer.ViewModels
             CurrentWifiNetworkIPText = "-";
             RefreshTime = 10;
 
-            RefreshTimeList = new List<int>();
             DetectedWifiNetworks = new ObservableCollection<WifiParameters>();
             ListOfWifiNetworks = new ObservableCollection<WifiParameters>();
             ListOfWifiNetworksFromFile = new ObservableCollection<WifiParameters>();
-            FillRefreshTimeList();
 
             StartScanningCommand = new Command(GetWifiNetworks);
             StopScanningCommand = new Command(StopScanning);
@@ -109,16 +106,6 @@ namespace WlanAnalyzer.ViewModels
             set {
                 _detectedWifiNetworks = value;
                 RaisePropertyChanged("DetectedWifiNetworks");
-            }
-        }
-        public List<int> RefreshTimeList
-        {
-            get {
-                return _refreshTimeList;
-            }
-            set {
-                _refreshTimeList = value;
-                RaisePropertyChanged(nameof(RefreshTimeList));
             }
         }
         public int RefreshTime
@@ -357,14 +344,6 @@ namespace WlanAnalyzer.ViewModels
             else
                 Toast.MakeText(Android.App.Application.Context, "You have to start scanning first!", ToastLength.Short).Show();
 
-        }
-
-        private void FillRefreshTimeList()
-        {
-            RefreshTimeList.AddRange(new List<int>
-            {
-                10,15,20,30,60
-            });
         }
 
         private async Task SaveFileToDatabase()

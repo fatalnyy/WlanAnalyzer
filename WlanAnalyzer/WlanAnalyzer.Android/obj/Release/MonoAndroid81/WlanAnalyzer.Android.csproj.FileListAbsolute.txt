@@ -95,6 +95,7 @@ C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Release\MonoAndroid
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Release\MonoAndroid81\android\assets\Xamarin.Forms.Core.pdb
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Release\MonoAndroid81\android\assets\Xamarin.Forms.Xaml.pdb
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\bin\Release\WlanAnalyzer.Android.dll
+C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Release\MonoAndroid81\linksrc\WlanAnalyzer.pdb
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Release\MonoAndroid81\linksrc\WlanAnalyzer.Android.dll.mdb
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Release\MonoAndroid81\linksrc\FormsViewGroup.dll.mdb
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer.Android\obj\Release\MonoAndroid81\linksrc\Xamarin.Forms.Platform.Android.dll.mdb

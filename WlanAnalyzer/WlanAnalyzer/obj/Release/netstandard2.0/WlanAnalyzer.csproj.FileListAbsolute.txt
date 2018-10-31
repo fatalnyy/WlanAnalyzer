@@ -17,3 +17,4 @@ C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer\obj\Release\netstandard2.0\Xaml
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer\obj\Release\netstandard2.0\WlanAnalyzer.csproj.CopyComplete
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer\obj\Release\netstandard2.0\WlanAnalyzer.dll
 C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer\obj\Release\netstandard2.0\WlanAnalyzer.pdb
+C:\App\EngineerProject\WlanAnalyzer\WlanAnalyzer\obj\Release\netstandard2.0\WlanAnalyzer.csprojAssemblyReference.cache

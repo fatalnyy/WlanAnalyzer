@@ -28,12 +28,6 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!--<Picker
-                Grid.Row="0"
-                Grid.ColumnSpan="2"
-                Title="Refresh time"
-                ItemsSource="{Binding RefreshTimeList}"
-                SelectedItem="{Binding RefreshTime}"/>-->
         <Button 
                 Text="Start Scanning"
                 Grid.Row="0"
